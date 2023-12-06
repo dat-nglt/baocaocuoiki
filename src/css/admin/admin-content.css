@@ -1,0 +1,133 @@
+.table-account {
+    margin: 10px auto;
+    width: 1260px;
+    border-collapse: collapse;
+}
+.table-account th {
+    padding: 10px 0px;
+    background-color: #333;
+    color: #fff;
+}
+
+.table-account td {
+    height: 100px;
+    padding: 5px 0px;
+}
+
+.table-account td img {
+    border-radius: 50%;
+    width: 100px;
+    aspect-ratio: 1 / 1;
+}
+
+.table-account td,
+th {
+    text-align: center;
+    border: 1px solid #c9c1c1;
+}
+
+.table-account tr:nth-child(odd) {
+    background-color: gray;
+    color: #fff;
+}
+.table-account tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.table-account tr:nth-child(odd) a {
+    color: #fff;
+}
+
+.table-account tr:nth-child(even) a {
+    color: #333;
+}
+
+/* .edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+} */
+
+.edit i:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+/* Form Sort và Search */
+.container-form {
+    width: 1260px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin: 10px auto;
+}
+
+.container-form button {
+    background: none;
+    margin-left: 5px;
+    border: none;
+}
+
+.container-form input, select {
+    background-color: transparent;
+    border: 2px solid rgb(88, 88, 83);
+    border-style: none none solid none;
+    outline: none;
+    padding: 5px 10px;
+}
+
+.btn-form {
+    background: none;
+    border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.page-number {
+    width: 1260px;
+    font-size: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 auto;
+    gap: 15px;
+    padding: 10px;
+}
+
+.page-number a {
+    color: rgb(88, 88, 83);
+}
+
+.page-number strong {
+    color: rgb(255, 0, 0);
+    border-bottom: 2px solid rgb(255, 0, 0);
+}
+
+.number-of-page:hover {
+    color: rgb(255, 0, 0);
+    font-weight: 600;
+}

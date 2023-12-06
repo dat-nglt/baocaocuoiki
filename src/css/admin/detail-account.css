@@ -1,0 +1,132 @@
+.admin-title {
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  color: rgb(84, 84, 83);
+  margin-bottom: 20px;
+  /* background-color: rgb(158, 135, 105); */
+}
+
+.info-user {
+  position: relative;
+  padding: 10px;
+  background-color: rgba(204, 204, 204, 0.5);
+  box-shadow: 3px 3px 5px #333;
+  border-radius: 5px;
+  width: 900px;
+  margin: 0 auto;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.info-avatar {
+  width: 220px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+}
+
+.info-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+}
+
+.info-field {
+  color: rgb(84, 84, 83);
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.info-detail span {
+  font-weight: normal;
+}
+
+/* .setRole {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 3rem;
+} */
+
+#buttonAdd,
+#buttonUnlock,
+#buttonLock {
+  width: 150px;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+}
+
+#buttonAdd:hover,
+#buttonUnlock:hover,
+#buttonLock:hover {
+  scale: 1.02;
+}
+
+.info-user .info-field input[type='text']{
+  border: 0;
+  border-bottom: 1px solid rgba(83, 83, 84, 0.3);
+  outline: none;
+  background-color: transparent;
+  padding: 0 0 3px 0;
+}
+
+.info-user .fa-pen {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.info-user .info-field.product {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  gap: 5px;
+}
+
+.button-save {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.add-product {
+  border: 1px blue solid;
+  padding: 5px;
+}
+
+.add-product:hover{
+  scale: 1.04;
+  
+}
+
+.old-img img,
+#imgContainer img{
+  max-width: 250px;
+}
+
+#dateSale {
+  background: none;
+  border: none;
+  width: 100px;
+}

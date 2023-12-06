@@ -1,0 +1,121 @@
+.modal {
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+  }
+  
+  .modal.openForm {
+    display: flex;
+  }
+  
+  .modal-container {
+    background-color: #fff;
+    position: relative;
+    max-width: calc(100% - 32px);
+    width: 600px;
+    min-height: 200px;
+    border-radius: 15px 15px 10px 10px;
+    box-shadow: 0px 10px 10px #333;
+  }
+  
+  .modal-close {
+    font-size: 3rem;
+    padding: 15px;
+    color: white;
+    top: 0;
+    right: 0;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  
+  .modal-close:hover {
+    opacity: 0.6;
+  }
+  
+  .modal-header {
+    background: rgb(25, 55, 72);
+    color: rgb(171, 193, 205);
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    padding: 0 50px;
+    gap: 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0px 5px 3px #aaaaaa;
+  }
+  
+  .modal-body {
+    padding: 16px 30px;
+    overflow: hidden;
+  }
+  
+  #form-all {
+    display: grid;
+  }
+  
+  .modal-label {
+    font-weight: 500;
+    display: block;
+    font-size: 1.5rem;
+    padding: 15px 0;
+  }
+  
+  .modal-input {
+    border: 1px solid slategrey;
+    padding: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+    border-radius: 6px;
+  }
+  
+  .modal-input.hidden {
+    caret-color: transparent;
+    border: none;
+  }
+  
+  .btn-modal {
+    background: #009688;
+    color: beige;
+    border: none;
+    padding: 10px 35px;
+    font-size: 1.5rem;
+    position: relative;
+    width: 100%;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  
+  .btn-modal:hover {
+    transition: ease 0.3s;
+    background: #016055;
+  }
+  
+  .addBrand button {
+    cursor: pointer;
+    background-color: midnightblue;
+    width: 150px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+  }
+  
+  .addBrand button:hover {
+    scale: 1.02;
+  }

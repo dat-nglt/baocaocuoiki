@@ -1,0 +1,99 @@
+.user-header {
+  background-color: rgb(217, 217, 215);
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.user-header .menu {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 25px;
+}
+
+.user-header .menu img {
+  width: 200px;
+  height: auto;
+}
+
+.user-header .menu a {
+  color: rgb(84, 84, 83);
+  text-transform: uppercase;
+  font-size: 1.8rem;
+}
+
+.user-header .user {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  gap: 20px;
+}
+
+.user-header .user button {
+  position: relative;
+  right: 20px;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+}
+
+.user-header .user input {
+  border: 2px solid rgb(88, 88, 83);
+  border-style: none none solid none;
+  outline: none;
+  padding: 2px;
+  background-color: transparent;
+}
+
+.user-header .user a:hover i,
+.user-header a:hover,
+.user-header .user button:hover i,
+.filter a:hover {
+  color: hsl(36, 80%, 51%) !important;
+}
+
+.menu-user {
+  display: none;
+  padding: 5px;
+  position: absolute;
+  top: 45px;
+  right: -10px;
+  border-radius: 5px;
+  background-color: hsl(36, 80%, 51%);
+}
+
+.menu-user li a:hover {
+  color: hsl(36, 80%, 51%);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.menu-user::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 7px;
+  border-left: 13px solid transparent; /* Điều chỉnh độ rộng tam giác */
+  border-right: 13px solid transparent; /* Điều chỉnh độ rộng tam giác */
+  border-bottom: 13px solid hsl(36, 80%, 51%);
+}
+
+#profile:hover .menu-user {
+  display: block;
+}
+
+.menu-user li a {
+  display: block;
+  padding: 10px;
+  min-width: 100px;
+  border-radius: 5px;
+  text-align: left;
+  font-size: 1.2rem;
+  color: white;
+}

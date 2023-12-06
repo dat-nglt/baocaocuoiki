@@ -1,0 +1,68 @@
+.table-account {
+    font-size: 1.4rem;
+    margin: 0 auto;
+    width: 1260px;
+    border-collapse: collapse;
+}
+.table-account th {
+    padding: 10px 0px;
+    background-color: #333; 
+    color: #fff;
+}
+
+.table-account td {
+    padding: 5px 0px;
+}
+
+.table-account td,
+th {
+    text-align: center;
+    border: 1px solid #c9c1c1;
+}
+
+.table-account tr:nth-child(odd) {
+    background-color: gray;
+    color: #fff;
+}
+.table-account tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.table-account tr:nth-child(odd) a {
+    color: #fff;
+}
+
+.table-account tr:nth-child(even) a {
+    color: #333;
+}
+
+.edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.edit i:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+td.edit {
+    border: none;
+    
+}
+
+.table-title {
+    padding-top: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 4rem;
+}
+
+.table-title i {
+    margin-right: 10px;
+}
+
+
