@@ -1,0 +1,145 @@
+#login-main {
+  background-image: url("https://evatronix.com/images/en/offer/product-design/software-development/Evatronix_Web_applications_01_1920x1080.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#form-login {
+  display: block;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#form-signin {
+  display: none;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#login__title {
+  background: linear-gradient(
+    180deg,
+    rgba(35, 35, 250, 1) 22%,
+    rgb(47 169 247) 100%
+  );
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+  text-transform: uppercase;
+  padding: 8px;
+}
+
+.login__input {
+  padding: 45px;
+}
+
+.login__input__box {
+  display: flex;
+  gap: 10px;
+}
+
+.login__input__box > fieldset {
+  min-width: 300px;
+  width: 100%;
+  border-radius: 5px;
+  padding: 4px 15px 10px;
+  border: 1px solid #0f79e6;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.fieldset-login {
+  width: 400px !important;
+}
+
+.error_message {
+  display: none;
+  position: absolute;
+  left: 10px;
+  bottom: -24px;
+  font-size: 13px;
+  font-style: italic;
+  color: red;
+}
+
+.eye {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  color: #828282;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.login__input__box > fieldset > legend {
+  font-weight: 500;
+  font-size: 16px;
+  color: #0f79e6;
+}
+
+.login__input__box > fieldset > input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  color: #828282;
+  background: transparent;
+}
+
+.login__input__box > fieldset > input::placeholder {
+  font-size: 14px;
+}
+
+.login__input__box > fieldset > input[type="password"] {
+  padding-right: 25px;
+}
+
+.submit_login_btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  width: 250px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0f79e6;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: capitalize;
+  transition: background-color 0.09s linear;
+}
+
+.submit_login_btn:hover {
+  cursor: pointer;
+  background-color: #f79800;
+}
+
+#remember_login {
+  /* margin-top: 10px; */
+  display: flex;
+  gap: 7px;
+  font-size: 15px;
+}
+
+.check-text {
+  text-align: center;
+  font-size: 15px;
+}
+
+.check-text > span {
+  color: #0f79e6;
+}
+
+.check-text > span:hover {
+  cursor: pointer;
+  color: #f79800;
+}

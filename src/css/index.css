@@ -1,0 +1,194 @@
+@import "./user/user-header.css";
+@import "./user/user-homepage.css";
+@import "./user/user-footer.css";
+@import "./user/user-cart.css";
+@import "./user/user-account.css";
+@import "./user/user-detail-bill-history.css";
+@import "./user/success-order.css";
+@import "./user/form-message.css";
+@import "./user/detail-product.css";
+@import "./user/category-product.css";
+@import "./login/login.css";
+
+html {
+  background-color: rgb(244, 244, 241);
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+}
+
+
+  * {
+    padding: 0;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+  }
+
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+#vnd {
+  margin-left: 2px;
+  /* font-size: 1.7rem;
+  vertical-align: middle; */
+  display: inline;
+}
+
+.toast-message {
+  width: 400px;
+  opacity: 1;
+  overflow: hidden;
+  transition: opacity 0.4s linear;
+  background-color: rgb(0, 187, 67);
+  position: absolute;
+  z-index: 1000000;
+  top: 30%;
+  right: 0px;
+  border-radius: 5px;
+  display: flex;
+  animation: moveToastMessage 0.5s linear, hidden 4s linear;
+  animation-fill-mode: forwards;
+}
+
+.toast-topic {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.toast-content {
+  flex: 1;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  padding: 10px;
+  text-align: justify;
+}
+
+@keyframes moveToastMessage {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes hidden {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+#more-product {
+  color: white;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  background-color: rgb(230 150 30);
+  border-radius: 5px;
+  transition: scale 0.2s ease;
+}
+
+#more-product:hover {
+  scale: 1.03;
+}
+
+:root {
+  --white-cl: white;
+  --black-cl: black;
+  --purple-cl: rgb(116, 4, 103);
+  --purple-white-cl: rgb(155, 3, 137);
+  --red-cl: rgb(250, 54, 50);
+  --red-black-cl: rgb(217, 13, 9);
+  --green-cl: rgb(3, 165, 3);
+  --green-black-cl: rgb(14, 130, 14);
+  --black-gray-cl: #1d2327;
+  --blue-dark-cl: rgb(0, 61, 111);
+  --blue-cl: rgb(0, 122, 222);
+  --blue-white-cl: rgb(18, 149, 255);
+  --orange-cl: rgb(255, 177, 8);
+  --gray-cl: rgb(172, 172, 172);
+  --gray-white-cl: rgb(226 226 226);
+  --gray-black-cl: #2c3338;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+#not-pound-page__bg-img {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(https://philippecooke.com/wp-content/uploads/2023/04/404-Page-GIF-White-BG-2.gif);
+
+  a {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px 36px;
+    background-color: var(--blue-cl);
+    color: var(--white-cl);
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    border-radius: 10px;
+
+    :hover {
+      background-color: var(--black-cl);
+    }
+  }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  display: none;
+}
+
+.current-page {
+  li,
+  span {
+    color: var(--blue-cl) !important;
+  }
+}
+
+.nav-selected {
+  color: var(--orange-cl) !important;
+}
+
+.error-input-form,
+.error-textarea-form {
+  border: 1px solid var(--red-cl) !important;
+}
+
+.error-input-form-detail {
+  border-bottom: 2px solid var(--red-cl) !important;
+}
