@@ -2,7 +2,7 @@
 
 function success($msg, $link)
 {
-  echo '<script>
+    echo '<script>
         Swal.fire({
             title: "Thông báo",
             text: "' . $msg . '",
@@ -13,10 +13,24 @@ function success($msg, $link)
         });
     </script>';
 }
+function successAdmin($msg, $adminLink, $homeLink)
+{
+    echo '<script>
+        Swal.fire({
+            title: "Thông báo",
+            text: "' . $msg . '",
+            icon: "success",
+            showConfirmButton: true,
+        }).then(function(){
+            window.open("' . $adminLink . '", "_blank");
+            window.open("' . $homeLink . '", "_self");
+        });
+    </script>';
+}
 
 function error($msg, $link)
 {
-  echo '<script>
+    echo '<script>
         Swal.fire({
             title: "Thông báo",
             text: "' . $msg . '",
@@ -30,7 +44,7 @@ function error($msg, $link)
 
 function warning($msg, $link)
 {
-  echo '<script>
+    echo '<script>
         Swal.fire({
             title: "Thông báo",
             text: "' . $msg . '",

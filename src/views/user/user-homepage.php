@@ -48,7 +48,7 @@
     <div class="sale-product">
         <div class="sale-prodoct-header">
             <div id="title">Danh sách sản phẩm</div>
-            <a href="index.php?page=allproduct" id="more-product">Xem tất cả    ...</a>
+            <a href="index.php?page=allproduct" id="more-product">Xem tất cả...</a>
         </div>
         <div class="sale-product-content">
             <?php foreach ($listProduct as $key => $value) {

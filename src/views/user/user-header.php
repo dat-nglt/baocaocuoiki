@@ -13,7 +13,7 @@
 <header class="container user-header">
 
     <div class="menu">
-        <a href="index.php"><img src="./img/logo.png" alt="" ></a>
+        <a href="index.php"><img src="./img/logo.png" alt=""></a>
         <a href="index.php">Trang chủ</a>
         <a href="#">Về chúng tôi</a>
         <a href="index.php?page=allproduct">Sản Phẩm</a>
@@ -28,10 +28,10 @@
         </form>
         <?php if (isset($_SESSION['user'])) {
             echo '<a href="index.php?page=cart"><i class="fa-solid fa-cart-shopping" style="color: rgb(255, 255, 255);"></i></a>';
-            echo '<div id="profile"><i title="Hồ sơ" class="fa-solid fa-circle-user fa-xl" id="profile-icon" style="cursor: pointer"></i>
+            echo '<div id="profile"><a href="index.php?page=profile"><i title="Hồ sơ" class="fa-solid fa-circle-user" id="profile-icon" style="color: rgb(255, 255, 255); cursor: pointer"></i></a>
                     <ul class="menu-user">' ?>
             <?php if (isset($_SESSION['user']) && $_SESSION['user']['quyenTruyCap'] == '2') {
-                echo '<li> <a href="http://localhost/baocaocuoiki/admin/index.php">Quản Trị Viên</a> </li>';
+                echo '<li> <a target="_blank" href="http://localhost/baocaocuoiki/admin/index.php">Quản Trị Viên</a> </li>';
             } ?>
             <?php
             echo '          <li> <a href="index.php?page=profile">Hồ Sơ Cá Nhân</a> </li>

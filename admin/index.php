@@ -21,7 +21,7 @@
     session_start();
     if (isset($_SESSION['user']) && $_SESSION['user']['quyenTruyCap'] == '2') {
     } else {
-        header("Location: http://localhost/baocaocuoiki/src/index.php");
+        header("Location: http://localhost/baocaocuoiki/src/");
         exit();
     }
     date_default_timezone_set("Asia/Ho_Chi_Minh");

@@ -1,5 +1,5 @@
 .list-menu {
-  padding: 15px 0 40px 20px;
+  padding: 15px;
 }
 
 .category-product {
@@ -67,7 +67,7 @@
 
 .category-product .category-product img {
   width: 100%;
-  height: 230px;
+  /* height: 230px; */
   border-radius: 5px 5px 0 0;
 }
 
@@ -80,6 +80,7 @@
 }
 
 .category-product .category-product .info-product .name-product {
+  width: fit-content;
   height: 30px;
   overflow: hidden;
   display: -webkit-box;
@@ -116,4 +117,54 @@
 
 .category-sidebar button[type="submit"]:hover {
   background-color: #ddd;
+}
+
+.list__paging {
+  background-color: var(--white-cl);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 0;
+
+  div:first-of-type {
+    align-items: normal;
+    gap: 0;
+  }
+
+  > span {
+    font-weight: 600;
+    text-transform: none;
+    font-size: 13px;
+    color: var(--black-cl);
+    margin-right: 10px;
+    max-width: 700px;
+    overflow: hidden;
+
+    > span {
+      text-transform: none;
+      font-size: 13px;
+      font-weight: 500;
+    }
+  }
+
+  button {
+    border: none;
+    border-radius: 4px;
+    color: var(--black-gray-cl);
+    padding: 4px 10px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: var(--gray-white-cl);
+    transition: all 0.1s linear;
+    margin-left: 5px;
+
+    &:hover {
+      color: var(--white-cl);
+      background-color: var(--blue-white-cl);
+    }
+  }
+  .button-current button {
+    color: var(--white-cl);
+    background-color: var(--blue-white-cl);
+  }
 }

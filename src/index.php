@@ -13,6 +13,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
     <title>Báo Cáo Cuối Kì</title>
 </head>
 
@@ -51,8 +52,13 @@
                 include "./controllers/userControllers/productControllers/hotProduct.php";
                 break;
             case 'login':
-                include "./controllers/userControllers/accountControllers/login.php";
-                break;
+                if (isset($_SESSION['user'])) {
+                    include "./controllers/userControllers/otherControllers/home.php";
+                    break;
+                } else {
+                    include "./controllers/userControllers/accountControllers/login.php";
+                    break;
+                }
             case 'logout':
                 include "./controllers/userControllers/accountControllers/logout.php";
                 break;

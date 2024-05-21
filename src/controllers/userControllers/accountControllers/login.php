@@ -24,9 +24,9 @@ if (isset($_POST['login'])) { // Kiểm tra có yêu cầu đăng nhập đượ
         if (password_verify($password, $hash['matKhau'])) {
             $_SESSION['user'] = mysqli_fetch_assoc(checkAccountWithUsername($conn, $username));
             if ($_SESSION['user']['quyenTruyCap'] == 2) {
-                success('Đăng nhập thành công', 'http://localhost/baocaocuoiki/admin/');
+                successAdmin('Đăng nhập thành công', 'http://localhost/baocaocuoiki/admin/', 'http://localhost/baocaocuoiki/src/');
             } else {
-                success('Đăng nhập thành công', 'http://localhost/baocaocuoiki/src/index.php');
+                success('Đăng nhập thành công', 'http://localhost/baocaocuoiki/src/');
             }
         } else {
             error('Mật khẩu không chính xác', 'http://localhost/baocaocuoiki/src/index.php?page=login');
@@ -34,6 +34,7 @@ if (isset($_POST['login'])) { // Kiểm tra có yêu cầu đăng nhập đượ
     } else {
         error('Tên tài khoản không tồn tại', 'http://localhost/baocaocuoiki/src/index.php?page=login');
     }
+
 }
 
 include ("./views/login/login.php");

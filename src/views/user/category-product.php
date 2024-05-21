@@ -30,14 +30,15 @@
                 </ul>
             </div>
             <div class="category-product-content">
-                <?php foreach ($listProduct as $key => $value) {
+                <?php
+                foreach ($listProduct as $key => $value) {
                     extract($value);
                     $maSanPham1 = $maSanPham;
                     $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
                     $imgProduct = "./img/Product/" . $hinhAnh . "";
-                    if($giaGiam!=0 && (strtotime($ngayHetHanGiam) > strtotime(date('Y-m-d')))){
-                        $price = ($giaTien - ($giaTien*($giaGiam/100))) ; 
-                    }else{
+                    if ($giaGiam != 0 && (strtotime($ngayHetHanGiam) > strtotime(date('Y-m-d')))) {
+                        $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
+                    } else {
                         $price = $giaTien;
                     }
                     ?>
@@ -57,7 +58,8 @@
                             </div>
                         </div>
                     </a>
-                <?php } ?>
+                    <?php
+                } ?>
             </div>
         </div>
     </div>
