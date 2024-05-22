@@ -1,5 +1,5 @@
 var bodyContainer = document.querySelector(".body__container");
-var selectCategory = document.querySelector("#category-book");
+var selectCategory = document.querySelector("#sort-classify-product");
 
 function openFormAdd() {
     var optionCategory = "";
@@ -20,15 +20,15 @@ function openFormAdd() {
     addFormAdd.className = "list__form";
     bodyContainer.appendChild(addFormAdd);
     addFormAdd.innerHTML = `
-            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 620px;">
+            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 680px;">
             <div class="list__form-title">
-                <span><i class="fa-solid fa-book icon"></i> Thêm sách</span><i class="fa-solid fa-xmark close-icon"
+                <span><i class="fa-solid fa-book icon"></i> Thêm sản phẩm</span><i class="fa-solid fa-xmark close-icon"
                 onclick="closeFormAdd()"></i>
             </div>
             <div class="list__form-content"style="display: block">
                 <div class="list__add-handmade" style="padding: 10px 15px 0 15px;">
                     <div style="text-align: start;">
-                        <div style="font-size: 18px; font-weight: 500;">Hình ảnh sách</div>
+                        <div style="font-size: 18px; font-weight: 500;">Hình ảnh sản phẩm</div>
                         <div style="display: flex; flex-direction: column;">
                             <div style="display: flex;justify-content: center; margin-bottom: 5px;" id="imgContainer"></div>
                             <img id="oldimg" src="" alt="">
@@ -40,44 +40,30 @@ function openFormAdd() {
                     </div>
                     <div>
                     <div class="list__form-box">
-                    <label for="input-name" class="list__form-label">Tên sách <span>*</span></label>
-                    <input type="text" class="list__form-input" id="input-name" required placeholder="Nhập tên sách">
+                    <label for="input-name" class="list__form-label">Tên sản phẩm <span>*</span></label>
+                    <input type="text" class="list__form-input" id="input-name" required placeholder="Nhập tên sản phẩm">
                     </div>
                     <div class="list__form-box" style="margin-top: 10px">
-                        <label for="input-creator" class="list__form-label">Tác giả <span>*</span></label>
-                        <input type="text" class="list__form-input" id="input-creator" required
-                            placeholder="Nhập tác giả">
+                        <label for="input-price" class="list__form-label">Giá tiền <span>*</span></label>
+                        <input type="number" class="list__form-input" inputmode="numeric" pattern="[0-9]*" id="input-price" required
+                            placeholder="Nhập giá tiền">
                     </div>
                 </div>
                 </div>
                 <div class="list__add-handmade">
-                    <div>
-                        <div class="list__form-box">
-                        <label for="input-count" class="list__form-label">Số lượng <span>*</span></label>
-                            <input type="number" class="list__form-input" id="input-count" required
-                                placeholder="Nhập số lượng" inputmode="numeric" pattern="[0-9]*">
-                        </div>
-                        <div class="list__form-box" style="margin-top: 10px">
-                            <label class="list__form-label">Danh mục</label>
-                                <select name="category-book" id="category-book-add">
-                                    ${optionCategory}
-                                </select>
-                        </div>
-                    </div>
-                    <div>
                     <div class="list__form-box">
-                        <label for="input-publisher" class="list__form-label">Nhà xuất bản <span>*</span></label>
-                        <input type="text" class="list__form-input" id="input-publisher" required
-                            placeholder="Nhập nhà xuất bản">
+                    <label for="input-count" class="list__form-label">Số lượng <span>*</span></label>
+                        <input type="number" class="list__form-input" id="input-count" required
+                            placeholder="Nhập số lượng" inputmode="numeric" pattern="[0-9]*">
                     </div>
-                    <div class="list__form-box" style="margin-top: 10px">
-                        <label for="input-date-book" class="list__form-label">Năm xuất bản <span>*</span></label>
-                        <input type="text" class="list__form-input" id="input-date-book" required
-                            placeholder="Nhập Năm xuất bản">
+                    <div class="list__form-box">
+                        <label class="list__form-label">Thương hiệu</label>
+                            <select id="category-product-add">
+                                ${optionCategory}
+                            </select>
                     </div>
                 </div>
-                </div>
-                <div class="list__add-handmade" style="display:flex">
+                <div class="list__add-handmade" style="display:flex; padding: 10px 15px 0 15px;">
                     <div class="list__form-box" style="flex: 1">
                         <label for="input-des" class="list__form-label">Mô tả</label>
                         <textarea id="input-des" placeholder="Nhập mô tả"></textarea>
@@ -86,7 +72,8 @@ function openFormAdd() {
             </div>
             <div class="list__form-btn">
                 <button type="button" class="close-btn" onclick="closeFormAdd()">Đóng</button>
-                <button type="button" onclick="submitBook()" name="add-book" >Thêm</button>
+                <button type="button" onclick="submitProduct()" name="add-book" >Thêm</button>
             </div>
         </form>`;
+        CKEDITOR.replace('input-des');
 }

@@ -5,7 +5,7 @@ var links = document.querySelectorAll('.header__nav a');
                 links[i].classList.add("current-page");
             }else if(currentURL.includes('?page=listaccounts&pageNumber=')){
                 links[1].classList.add("current-page");
-            }else if(currentURL.includes('?controller=admin&action=category&page=')){
+            }else if(currentURL.includes('?page=listproducts&pageNumber=')){
                 links[2].classList.add("current-page");
             }else if(currentURL.includes('?controller=admin&action=book&page=')){
                 links[3].classList.add("current-page");

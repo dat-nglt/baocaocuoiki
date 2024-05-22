@@ -17,15 +17,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = mysqli_query($conn, $sql);
     if($result){
         $quyenTruyCap = mysqli_fetch_assoc($result)['quyenTruyCap'];
-        if($quyenTruyCap === 1){
-            $lock = 0;
+        if($quyenTruyCap === '1'){
+            $lock = '0';
         }else{
-            $lock = 1;
+            $lock = '1';
         }
         $sql = "update nguoidung set quyenTruyCap = $lock where maNguoiDung = $id";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            if($lock === 0){
+            if($lock === '0'){
                 $response = array(
                     'status' => 'success',
                     'msg' => 'Khóa tài khoản thành công.',

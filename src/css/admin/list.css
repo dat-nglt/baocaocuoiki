@@ -7,7 +7,7 @@
     .list__container {
         flex: 1;
         padding: 10px 30px 20px;
-        margin-left: 192px;
+        margin-left: 182px;
 
         div:first-of-type {
             display: flex;
@@ -431,7 +431,7 @@
                 background-color: var(--green-black-cl);
                 padding: 8px 25px;
                 margin-right: 15px;
-                margin-bottom: 15px;
+                margin-bottom: 5px;
                 outline: none;
                 border: 0;
                 border-radius: 5px;
@@ -454,4 +454,8 @@
             }
         }
     }
+}
+
+#cke_input-des{
+    width: 100%;
 }
