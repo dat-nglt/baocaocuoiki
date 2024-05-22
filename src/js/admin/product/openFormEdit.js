@@ -28,7 +28,7 @@ $(document).on("click", ".list__action-open-edit", function () {
     addFormEdit.className = "list__form";
     bodyContainer.appendChild(addFormEdit);
     addFormEdit.innerHTML = `
-            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 735px;">
+            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 720px;">
                 <div class="list__form-title">
                     <span><i class="fa-solid fa-book icon"></i> Thêm sản phẩm</span><i class="fa-solid fa-xmark close-icon"
                     onclick="closeFormAdd()"></i>
@@ -49,18 +49,18 @@ $(document).on("click", ".list__action-open-edit", function () {
                             </div>
                         </div>
                         <div>
-                        <div class="list__form-box">
-                        <label for="input-name" class="list__form-label">Tên sản phẩm <span>*</span></label>
-                        <input type="text" class="list__form-input" id="input-name" value="${name}" required placeholder="Nhập tên sản phẩm">
-                        </div>
-                        <div class="list__form-box" style="margin-top: 10px">
-                            <label for="input-price" class="list__form-label">Giá tiền <span>*</span></label>
-                            <input type="number" class="list__form-input" value="${price}" inputmode="numeric" pattern="[0-9]*" id="input-price" required
-                                placeholder="Nhập giá tiền">
-                        </div>
+                            <div class="list__form-box">
+                                <label for="input-name" class="list__form-label">Tên sản phẩm <span>*</span></label>
+                                <input type="text" class="list__form-input" id="input-name" value="${name}" required placeholder="Nhập tên sản phẩm">
+                                </div>
+                                <div class="list__form-box" style="margin-top: 10px">
+                                    <label for="input-price" class="list__form-label">Giá tiền <span>*</span></label>
+                                    <input type="number" class="list__form-input" value="${price}" inputmode="numeric" pattern="[0-9]*" id="input-price" required
+                                        placeholder="Nhập giá tiền">
+                                </div>
+                            </div>
                     </div>
-                    </div>
-                    <div class="list__add-handmade">
+                    <div class="list__add-handmade" style="padding: 5px 15px 0 15px;">
                         <div class="list__form-box">
                         <label for="input-count" class="list__form-label">Số lượng <span>*</span></label>
                             <input type="number" class="list__form-input" id="input-count" required
@@ -71,6 +71,18 @@ $(document).on("click", ".list__action-open-edit", function () {
                                 <select id="category-product-add">
                                   ${optionCategoryEdit}
                                 </select>
+                        </div>
+                    </div>
+                    <div class="list__add-handmade" style="padding: 5px 15px 0 15px;">
+                        <div class="list__form-box">
+                            <label for="input-price" class="list__form-label">Giá tiền <span>*</span></label>
+                            <input type="number" class="list__form-input" value="${price}" inputmode="numeric" pattern="[0-9]*" id="input-price" required
+                                placeholder="Nhập giá tiền">
+                        </div>
+                        <div class="list__form-box">
+                            <label for="input-price" class="list__form-label">Giá tiền <span>*</span></label>
+                            <input type="number" class="list__form-input" value="${price}" inputmode="numeric" pattern="[0-9]*" id="input-price" required
+                                placeholder="Nhập giá tiền">
                         </div>
                     </div>
                     <div class="list__add-handmade" style="display:flex; padding: 10px 15px 0 15px;">

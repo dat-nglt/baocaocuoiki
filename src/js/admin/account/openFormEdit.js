@@ -17,7 +17,7 @@ $(document).on("click", ".list__action-open-edit", function () {
     addFormEdit.className = "list__form";
     bodyContainer.appendChild(addFormEdit);
     addFormEdit.innerHTML = `
-        <form action="" method="post" style="height: 500px" class="list__form-add">
+        <form action="" method="post" style="height: 480px" class="list__form-add">
             <div class="list__form-title">
                 <span><i class="fa-solid fa-user"></i> Chi tiết tài khoản</span><i class="fa-solid fa-xmark close-icon"
                 onclick="closeFormAdd()"></i>

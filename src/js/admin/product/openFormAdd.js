@@ -20,7 +20,7 @@ function openFormAdd() {
     addFormAdd.className = "list__form";
     bodyContainer.appendChild(addFormAdd);
     addFormAdd.innerHTML = `
-            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 680px;">
+            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 620px;">
             <div class="list__form-title">
                 <span><i class="fa-solid fa-book icon"></i> Thêm sản phẩm</span><i class="fa-solid fa-xmark close-icon"
                 onclick="closeFormAdd()"></i>
@@ -64,7 +64,7 @@ function openFormAdd() {
                     </div>
                 </div>
                 <div class="list__add-handmade" style="display:flex; padding: 10px 15px 0 15px;">
-                    <div class="list__form-box" style="flex: 1">
+                    <div class="list__form-box" style="flex: 1;">
                         <label for="input-des" class="list__form-label">Mô tả</label>
                         <textarea id="input-des" placeholder="Nhập mô tả"></textarea>
                     </div>

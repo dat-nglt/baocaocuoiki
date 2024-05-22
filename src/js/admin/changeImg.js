@@ -10,7 +10,7 @@ function changeImg(event){
     var imageContainer = document.querySelector('#imgContainer');
     var oldimg = document.querySelector('#oldimg');
     var heightForm = document.querySelector('.list__form-add');
-    heightForm.style.height = '735px';
+    heightForm.style.height = '720px';
     oldimg.style.display="none";
     imageContainer.innerHTML = '';
     imageContainer.appendChild(img);
