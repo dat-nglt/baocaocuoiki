@@ -12,46 +12,34 @@ if (!$conn) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $name = $_POST['name'];
-  $price = $_POST['price'];
-  $count = $_POST['count'];
-  $brand = $_POST['brand'];
-  $des = $_POST['des'];
-
-  if($count < 0){
-    $count = 0;
-  }
-
-  if(isset($_POST['image'])){
+    $name = $_POST['name'];
     $image = $_POST['image'];
-  }else{
-    $image = '';
-  }
-  $sql = "select * from sanpham where tenSanPham = '$name'";
+
+  $sql = "select * from phanloai where tenLoai = '$name'";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) < 1) {
-    $sql = "INSERT INTO sanpham VALUES ('', '$name', '$image', '$price', '$count', '$des', '', DATE(NOW()), '$brand')";
+    $sql = "INSERT INTO phanloai VALUES ('', '$name', '$image')";
     $result = mysqli_query($conn, $sql);
     if ($result) {
       $response = array(
         'status' => 'success',
-        'msg' => 'Thêm sản phẩm thành công',
-        'path' => "index.php?page=listproducts"
+        'msg' => 'Thêm thương hiệu thành công',
+        'path' => "index.php?page=listclassify"
       );
       echo json_encode($response);
     } else {
       $response = array(
         'status' => 'error',
-        'msg' => 'Thêm sản phẩm không thành công',
-        'path' => "index.php?page=listproducts"
+        'msg' => 'Thêm thương hiệu không thành công',
+        'path' => "index.php?page=listclassify"
       );
       echo json_encode($response);
     }
   } else {
     $response = array(
       'status' => 'error',
-      'msg' => 'Tên sản phẩm đã tồn tại',
-      'path' => "index.php?page=listproducts"
+      'msg' => 'Tên thương hiệu đã tồn tại',
+      'path' => "index.php?page=listclassify"
     );
     echo json_encode($response);
   }
@@ -59,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
   $response = array(
     'status' => 'success',
-    'msg' => 'Lỗi không thể thêm sản phẩm',
-    'path' => "index.php?page=listproducts"
+    'msg' => 'Lỗi không thể thêm thương hiệu',
+    'path' => "index.php?page=listclassify"
   );
   echo json_encode($response);
 }

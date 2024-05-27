@@ -11,38 +11,25 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $name = $_POST['name'];
-  $price = $_POST['price'];
-  $count = $_POST['count'];
-  $brand = $_POST['brand'];
-  $des = $_POST['des'];
-
-  if($count < 0){
-    $count = 0;
-  }
-
-  if(isset($_POST['image'])){
-    $image = $_POST['image'];
-  }else{
-    $image = '';
-  }
-  $sql = "select * from sanpham where tenSanPham = '$name'";
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+  parse_str(file_get_contents("php://input"), $_DELETE);
+  $itemId = $_DELETE['id'];
+  $sql = "select * from chitietdonhang where maSanPham = '$itemId'";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) < 1) {
-    $sql = "INSERT INTO sanpham VALUES ('', '$name', '$image', '$price', '$count', '$des', '', DATE(NOW()), '$brand')";
+    $sql = "delete from sanpham where maSanPham = '$itemId'";
     $result = mysqli_query($conn, $sql);
     if ($result) {
       $response = array(
         'status' => 'success',
-        'msg' => 'Thêm sản phẩm thành công',
+        'msg' => 'Xóa thành công.',
         'path' => "index.php?page=listproducts"
       );
       echo json_encode($response);
     } else {
       $response = array(
         'status' => 'error',
-        'msg' => 'Thêm sản phẩm không thành công',
+        'msg' => 'Xóa không thành công.',
         'path' => "index.php?page=listproducts"
       );
       echo json_encode($response);
@@ -50,19 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } else {
     $response = array(
       'status' => 'error',
-      'msg' => 'Tên sản phẩm đã tồn tại',
+      'msg' => 'Xóa không thành công. Vui lòng đảm bảo sản phẩm không thuộc đơn hàng',
       'path' => "index.php?page=listproducts"
     );
     echo json_encode($response);
   }
 
 } else {
-  $response = array(
-    'status' => 'success',
-    'msg' => 'Lỗi không thể thêm sản phẩm',
-    'path' => "index.php?page=listproducts"
-  );
-  echo json_encode($response);
+  echo "Phương thức không được hỗ trợ.";
 }
 
 $conn = null;

@@ -34,7 +34,6 @@
                     extract($value);
                     $maSanPham1 = $value[0];
                     $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
-                    $imgProduct = "./img/Product/" . $value[2] . "";
                     if($value[6]!=0 && (strtotime($value[7]) > strtotime(date('Y-m-d')))){
                         $price = ($value[3] - ($value[3]*($value[6]/100))) ; 
                     }else{
@@ -43,7 +42,7 @@
                     ?>
                     <a href="<?= $linkProduct ?>">
                         <div class="category-product">
-                            <img src="<?= $imgProduct ?>" alt="">
+                            <img src="<?= $value[2] ?>" alt="">
                             <div class="info-product">
                                 <div class="name-product">
                                     <?= $value[1] ?>

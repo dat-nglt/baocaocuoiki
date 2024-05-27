@@ -34,12 +34,11 @@
                     extract($value);
                     $maSanPham1 = $maSanPham;
                     $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
-                    $imgProduct = "./img/Product/" . $hinhAnh . "";
                         $price = ($giaTien - ($giaTien*($giaGiam/100))) ; 
                     ?>
                     <a href="<?= $linkProduct ?>">
                         <div class="category-product">
-                            <img src="<?= $imgProduct ?>" alt="">
+                            <img src="<?= $hinhAnh ?>" alt="">
                             <div class="info-product">
                                 <div class="name-product">
                                     <?= $tenSanPham ?>

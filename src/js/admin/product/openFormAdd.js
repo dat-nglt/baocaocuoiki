@@ -28,7 +28,7 @@ function openFormAdd() {
             <div class="list__form-content"style="display: block">
                 <div class="list__add-handmade" style="padding: 10px 15px 0 15px;">
                     <div style="text-align: start;">
-                        <div style="font-size: 18px; font-weight: 500;">Hình ảnh sản phẩm</div>
+                        <div style="font-size: 18px; font-weight: 500;">Hình ảnh sản phẩm <span style="color: red">*</span></div>
                         <div style="display: flex; flex-direction: column;">
                             <div style="display: flex;justify-content: center; margin-bottom: 5px;" id="imgContainer"></div>
                             <img id="oldimg" src="" alt="">

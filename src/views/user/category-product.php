@@ -35,7 +35,6 @@
                     extract($value);
                     $maSanPham1 = $maSanPham;
                     $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
-                    $imgProduct = "./img/Product/" . $hinhAnh . "";
                     if ($giaGiam != 0 && (strtotime($ngayHetHanGiam) > strtotime(date('Y-m-d')))) {
                         $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                     } else {
@@ -44,7 +43,7 @@
                     ?>
                     <a href="<?= $linkProduct ?>">
                         <div class="category-product">
-                            <img src="<?= $imgProduct ?>" alt="">
+                            <img src="<?= $hinhAnh ?>" alt="">
                             <div class="info-product">
                                 <div class="name-product">
                                     <?= $tenSanPham ?>

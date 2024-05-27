@@ -6,10 +6,9 @@
             <div id="meme">Không có sản phẩm trong giỏ hàng</div>
         <?php } else {
             foreach ($_SESSION['cart'] as $key => $value) {
-                $imgProduct = './img/Product/' . $value[2];
                 ?>
                 <div class="detail-product-cart">
-                    <img src="<?= $imgProduct ?>" alt="">
+                    <img src="<?= $value[2] ?>" alt="">
                     <div class="info-product">
                         <div class="info-product-name">
                             <?= $value[1] ?>

@@ -1,24 +1,24 @@
 <header class="header__nav"> 
     <div >
-        <a href="index.php"><i class="fa-solid fa-user-gear"></i><span>ADMIN</span></a>
+        <a href="http://localhost/baocaocuoiki/src/index.php"><i class="fa-solid fa-user-gear"></i><span>ADMIN</span></a>
     </div>
     <ul>
         <!-- <a href="?controller=admin&action=dashboard">
             <li><i class="fa-solid fa-house icon"></i>Trang chủ</li>
         </a> -->
         <a href="index.php?page=listaccounts">
-            <li><i class="fa-solid fa-user-group"> </i>Tài khoản</li>
+            <li><i class="fa-solid fa-user-group icon"></i>Tài khoản</li>
         </a>
         <a href="index.php?page=listproducts">
-            <li><i class="fa-solid fa-laptop"></i> </i>Sản phẩm</li>
+            <li><i class="fa-solid fa-laptop icon"></i> </i>Sản phẩm</li>
         </a>
-        <a href="index.php?page=listclassfitys">
-            <li><i class="fa-brands fa-sketch"></i> Thương hiệu</li>
+        <a href="index.php?page=listclassify">
+            <li><i class="fa-brands fa-sketch icon"></i> Thương hiệu</li>
         </a>
-        <a href="index.php?page=listorders">
-            <li><i class="fa-solid fa-box"></i> Đơn hàng</li>
+        <a href="index.php?page=listbills">
+            <li><i class="fa-solid fa-box icon"></i> Đơn hàng</li>
         </a>
-        <a href="index.php">
+        <a href="index.php?page=charts">
             <li><i class="fa-solid fa-chart-simple icon"></i> Thống kê</li>
         </a>
         <a href="http://localhost/baocaocuoiki/src/index.php">

@@ -1,36 +1,15 @@
-function submitProductEdit() {
+function submitCategoryEdit() {
     $.cloudinary.config({
         cloud_name: "di37whq60",
         api_key: "287339152575881",
         api_secret: "0ghXMK9HlG7IFL3l3njbLKFQgXo",
     });
 
-    var id = $("#id_product").val();
+    var id = $("#id_category").val();
     var name = $("#input-name").val();
-    var count = $("#input-count").val();
-    var category = $("#category-product").val();
-    var sale = $("#input-sale").val();
-    var dateSale = $("#input-date-sale").val();
-    var editor = CKEDITOR.instances['input-des'];
-    var des = editor.getData();
-
-    if (category.trim() === "") {
-        Swal.fire({
-            title: "Thông báo",
-            text: "Vui lòng thương hiệu sản phẩm",
-            icon: "warning",
-            showConfirmButton: true,
-        });
-        return;
-    }
-
-    if(dateSale === undefined){
-        dateSale = '';
-    }
 
     if (
-        name.trim() === "" ||
-        count.trim() === ""
+        name.trim() === ""
     ) {
         Swal.fire({
             title: "Thông báo",
@@ -40,24 +19,17 @@ function submitProductEdit() {
         });
         return;
     }
-
     var file = $("#newImg")[0].files[0];
     if (file === undefined) {
         var image = $('#oldimg').attr('src');;
         var data = {
-            name,
-            count,
-            category,
-            sale,
-            dateSale,
-            des,
             id,
+            name,
             image
         };
-        console.log(data);
         $.ajax({
             type: "POST",
-            url: "../src/services/admin/editProduct.php",
+            url: "../src/services/admin/editCategory.php",
             dataType: "json",
             data: data,
             success: function (result) {
@@ -77,7 +49,7 @@ function submitProductEdit() {
                     icon: "error",
                     showConfirmButton: true,
                 }).then(function () {
-                    window.location.assign("index.php?page=listproducts");
+                    window.location.assign("index.php?page=listclassify");
                 });
             },
         });
@@ -94,17 +66,12 @@ function submitProductEdit() {
             success: function (response) {
                 var data = {
                     name,
-                    count,
-                    category,
-                    sale,
-                    dateSale,
-                    des,
                     id,
                     image: response.secure_url,
                 };
                 $.ajax({
                     type: "POST",
-                    url: "../src/services/admin/editProduct.php",
+                    url: "../src/services/admin/editCategory.php",
                     dataType: "json",
                     data: data,
                     success: function (result) {
@@ -126,7 +93,7 @@ function submitProductEdit() {
                             showConfirmButton: true,
                         }).then(function () {
                             window.location.assign(
-                                "index.php?page=listproducts"
+                                "index.php?page=listclassify"
                             );
                         });
                     },
@@ -139,7 +106,7 @@ function submitProductEdit() {
                     icon: "error",
                     showConfirmButton: true,
                 }).then(function () {
-                    window.location.assign("index.php?page=listproducts");
+                    window.location.assign("index.php?page=listclassify");
                 });
             },
         });

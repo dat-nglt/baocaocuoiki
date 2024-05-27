@@ -170,10 +170,9 @@
   flex: 1;
   border: none;
   display: inline-block;
-  padding: 10px 0px;
+  padding: 12px 10px 14px;
   text-align: center;
-  text-transform: capitalize;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   border-radius: 5px;
   background-color: rgb(146, 146, 146);
   color: #fff;

@@ -46,17 +46,11 @@
             case 'listbills':
                 include "../src/controllers/adminControllers/productControllers/listBill.php";
                 break;
-            case 'detailProduct':
-                include "../src/controllers/adminControllers/productControllers/detailProduct.php";
-                break;
-            case 'addProduct':
-                include "../src/controllers/adminControllers/productControllers/addProduct.php";
-                break;
-            case 'listclassfity':
+            case 'listclassify':
                 include "../src/controllers/adminControllers/classfityControllers/listClassfity.php";
                 break;
             case 'detailbill':
-                include ('../src/views/admin/bill/detail-bill.php');
+                include "../src/controllers/adminControllers/productControllers/detailBill.php";
                 break;
         }
     } else {

@@ -1,20 +1,21 @@
 <div class="homepage main">
     <!-- Banner -->
     <div class="container banner-header">
-        <a href=""><img id="banner-1" src="https://file.hstatic.net/200000722513/file/gearvn-mua-nitro-v-nhan-qua-vip_6dc10804e83d41258ca09061fd3a59ad.jpg" alt=""></a>
+        <a href=""><img id="banner-1"
+                src="https://file.hstatic.net/200000722513/file/gearvn-mua-nitro-v-nhan-qua-vip_6dc10804e83d41258ca09061fd3a59ad.jpg"
+                alt=""></a>
         <a href=""><img id="banner-2" src="./img/Product/Banner2.png" alt=""></a>
     </div>
     <!-- Phân loại Giày -->
     <div class="container filter">
         <?php foreach ($listClassify as $key => $value) {
             extract($value);
-            $imgClassify = "./img/phanLoai/".$anhLoai."";
-            $linkClassify = "index.php?page=category-product&id=".$maLoai;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
-        ?>
-        <a href="<?=$linkClassify?>">
-            <div class="filter-item"><img class="scale-item" src="<?=$imgClassify?>" alt=""><?=$tenLoai?></div>
-        </a>
-    <?php }?>   
+            $linkClassify = "index.php?page=category-product&id=" . $maLoai;
+            ?>
+            <a href="<?= $linkClassify ?>">
+                <div class="filter-item"><img class="scale-item" src="<?= $anhLoai ?>" alt=""><?= $tenLoai ?></div>
+            </a>
+        <?php } ?>
     </div>
     <!-- Các sản phẩm giảm giá -->
     <div class="sale-product">
@@ -27,20 +28,21 @@
             <?php foreach ($arrayProductFlashSale as $key => $value) {
                 extract($value);
                 $maSanPham1 = $maSanPham;
-                $linkProduct = "index.php?page=details-product&id=".$maSanPham1;
-                $imgProduct = "./img/Product/".$hinhAnh."";
-                $price = ($giaTien - ($giaTien*($giaGiam/100))) ; 
+                $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
+                $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                 ?>
-                <a href="<?=$linkProduct?>">
-                <div class="product scale-item">
-                    <img src="<?=$imgProduct?>" alt="">
-                    <div class="info-product">
-                        <div class="name-product"><?=$tenSanPham?></div>
-                        <div class="price-product"><?=number_format($price, 0, '.', '.') ?><span id="vnd">&#8363;</span></div>
-                        <div class="sold">Đã bán: <?=ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)'])?></div>
+                <a href="<?= $linkProduct ?>">
+                    <div class="product scale-item">
+                        <img src="<?= $hinhAnh ?>" alt="">
+                        <div class="info-product">
+                            <div class="name-product"><?= $tenSanPham ?></div>
+                            <div class="price-product"><?= number_format($price, 0, '.', '.') ?><span id="vnd">&#8363;</span>
+                            </div>
+                            <div class="sold">Đã bán: <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
             <?php } ?>
         </div>
     </div>
@@ -54,20 +56,21 @@
             <?php foreach ($listProduct as $key => $value) {
                 extract($value);
                 $maSanPham1 = $maSanPham;
-                $linkProduct = "index.php?page=details-product&id=".$maSanPham1;
-                $imgProduct = "./img/Product/".$hinhAnh."";
-                $price = ($giaTien - ($giaTien*($giaGiam/100))) ; 
+                $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
+                $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                 ?>
-                <a href="<?=$linkProduct?>">
-                <div class="product scale-item">
-                    <img src="<?=$imgProduct?>" alt="">
-                    <div class="info-product">
-                        <div class="name-product"><?=$tenSanPham?></div>
-                        <div class="price-product"><?=number_format($price, 0, '.', '.') ?><span id="vnd">&#8363;</span></div>
-                        <div class="sold">Đã bán: <?=ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)'])?></div>
+                <a href="<?= $linkProduct ?>">
+                    <div class="product scale-item">
+                        <img src="<?= $hinhAnh ?>" alt="">
+                        <div class="info-product">
+                            <div class="name-product"><?= $tenSanPham ?></div>
+                            <div class="price-product"><?= number_format($price, 0, '.', '.') ?><span id="vnd">&#8363;</span>
+                            </div>
+                            <div class="sold">Đã bán: <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
             <?php } ?>
         </div>
     </div>

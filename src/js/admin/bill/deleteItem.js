@@ -2,7 +2,7 @@ $(document).ready(function () {
   $('.list__action-btn').on('click', function () {
     Swal.fire({
       title: 'Xác nhận',
-      text: 'Bạn có xóa sản phẩm này!',
+      text: 'Bạn có xóa đơn hàng này!',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#d33',
@@ -13,7 +13,7 @@ $(document).ready(function () {
     if (result.isConfirmed) {
     var itemId = $(this).data('id');
     $.ajax({
-      url: '../src/services/admin/deleteProduct.php',
+      url: '../src/services/admin/deleteBill.php',
       type: 'DELETE',
       dataType: 'json',
       data: { id: itemId },
@@ -34,7 +34,7 @@ $(document).ready(function () {
           icon: "error",
           showConfirmButton: true,
         }).then(function () {
-            window.location.assign("index.php?page=listproducts");
+            window.location.assign("index.php?page=listbills");
         });
       }
     });

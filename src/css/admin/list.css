@@ -76,7 +76,6 @@
             .list__content td:last-of-type div {
                 display: flex;
                 justify-content: center;
-                gap: 25px;
                 margin: 0;
                 font-size: 15px;
 
@@ -238,7 +237,7 @@
             .list__form-title {
                 color: var(--white-cl);
                 position: relative;
-                padding: 20px 120px;
+                padding: 20px;
                 background-color: var(--blue-cl);
 
                 > span {

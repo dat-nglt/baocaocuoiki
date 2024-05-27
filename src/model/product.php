@@ -39,6 +39,12 @@ function getAllProductOfClassify($conn,$id){
     return $resultData; 
 }
 
+function getCountProductWithClassify($conn, $classify){
+    $sql = "select count(maLoai) from sanpham where maLoai = '$classify'";
+    $resultData = mysqli_query($conn, $sql);
+    return $resultData;
+}
+
 function getProductFlashSale($conn,$limit){
     $sql = "select * from sanpham where giaGiam > 0";
     if($limit!=""){

@@ -5,25 +5,21 @@
         <?php echo $detailProduct['tenLoai']; ?>
     </a>
     <span> <i class="fa-solid fa-angle-right"></i> </span>
-    <strong>
+    <strong style="color: var();">
         <?php echo $detailProduct['tenSanPham']; ?>
     </strong>
 </div>
 <div class="container detail-product main">
     <div class="content">
         <div class="s">
-            <?php if ($detailProduct['hinhAnh'] != '') {
-                $imgProduct = '../src/img/Product/' . $detailProduct['hinhAnh'] . '';
-            } else {
-                $imgProduct = '../src/img/Product/giay-mlb-liner-mid-monogram-ny';
-            }
+            <?php
             if ($detailProduct['giaGiam'] != 0 && (strtotime($detailProduct['ngayHetHanGiam']) > strtotime(date('Y-m-d')))) {
                 $price = ($detailProduct['giaTien'] - ($detailProduct['giaTien'] * ($detailProduct['giaGiam'] / 100)));
             } else {
                 $price = $detailProduct['giaTien'];
             }
             ?>
-            <img src="<?= $imgProduct ?>" alt="">
+            <img src="<?= $detailProduct['hinhAnh'] ?>" alt="">
             <div class="ssss">
                 <h2>
                     <?php echo $detailProduct['tenSanPham']; ?>
@@ -43,7 +39,6 @@
                     <?php } else { ?> <b style="color: red">Hết hàng</b>
                     <?php } ?>
                 </div>
-                <div>Khung giờ vàng nhiều ưu đãi hấp dấn (Mua laptop tặng balo kèm túi chống sốc!)</div>
                 <form action="" method="post">
                     <input type="hidden" name="tensanpham" value="<?= $detailProduct['tenSanPham'] ?>">
                     <input type="hidden" name="giasanpham" value="<?= $price ?>">
@@ -53,7 +48,19 @@
                     } else {
                         echo 'style="background: seagreen; width: 400px; cursor: pointer;"';
                     } ?> id="button-buy-now" type="submit" name="addtocart">
-                        MUA NGAY</button>
+                        MUA NGAY <p style="font-size: 1.4rem; margin-top: 3px; font-weight: 400;">Giao tận nơi hoặc nhận
+                            tại cửa hàng</p></button>
+                    <div class="service-product">
+                        <p>✔ Bảo hành chính hãng 24 tháng.</p>
+                        <p>✔ Hỗ trợ đổi mới trong 7 ngày.</p>
+                        <p>✔ Miễn phí giao hàng toàn quốc.</p>
+                    </div>
+                    <div class="gift-product">
+                        <p class="gift-title">Quà tặng:</p>
+                        <p>🎁 Balo Z3 - Generation</p>
+                        <p>🎁 Móc khoá Z3 - Generation</p>
+                        <p>🎁 Lót chuột Z3 - Generation</p>
+                    </div>
                 </form>
             </div>
         </div>
@@ -82,7 +89,6 @@
                 extract($value);
                 $maSanPham1 = $maSanPham;
                 $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
-                $imgProduct = "./img/Product/" . $hinhAnh . "";
                 if ($giaGiam != 0 && (strtotime($ngayHetHanGiam) > strtotime(date('Y-m-d')))) {
                     $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                 } else {
@@ -91,7 +97,7 @@
                 ?>
                 <div class="mx-2">
                     <a href="<?= $linkProduct ?>">
-                        <img src="<?= $imgProduct ?>" alt="">
+                        <img src="<?= $hinhAnh ?>" alt="">
                     </a>
                     <div class="text-center xyz">
                         <h2 class="pt-2 fw-bold"><?= $tenSanPham ?></h2>

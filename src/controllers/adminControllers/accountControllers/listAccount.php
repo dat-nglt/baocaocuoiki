@@ -11,7 +11,6 @@ $_SESSION['sort-account'] = isset($_SESSION['sort-account']) ? $_SESSION['sort-a
 
 $countAccount = getAllAccount($conn, $_SESSION['search-account'], $_SESSION['sort-account'], '', '');
 $total_page = ceil(mysqli_num_rows($countAccount) / $limitPage);
-
 if ($total_page == 0) {
     $total_page = 1;
 }

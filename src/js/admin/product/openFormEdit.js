@@ -9,6 +9,11 @@ $(document).on("click", ".list__action-open-edit", function () {
     var category = $(this).closest("tr").find("td:eq(7)").text().trim();
     var des = $(this).closest("tr").find("td:eq(8)").text().trim();
 
+    if(dateSale != ''){
+        var parts = dateSale.split("-");
+        var convertedDateSale = parts[2] + "-" + parts[1] + "-" + parts[0];
+    }
+
     var optionCategoryEdit = '';
 
     if(selectCategory.options.length>1){
@@ -30,7 +35,7 @@ $(document).on("click", ".list__action-open-edit", function () {
     addFormEdit.innerHTML = `
             <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 720px;">
                 <div class="list__form-title">
-                    <span><i class="fa-solid fa-book icon"></i> Thêm sản phẩm</span><i class="fa-solid fa-xmark close-icon"
+                    <span><i class="fa-solid fa-book icon"></i> Chỉnh sửa sản phẩm</span><i class="fa-solid fa-xmark close-icon"
                     onclick="closeFormAdd()"></i>
                 </div>
                 <div class="list__form-content"style="display: block">
@@ -60,7 +65,7 @@ $(document).on("click", ".list__action-open-edit", function () {
                                 </div>
                             </div>
                     </div>
-                    <div class="list__add-handmade" style="padding: 5px 15px 0 15px;">
+                    <div class="list__add-handmade" style="padding: 5px 15px 5px 15px;">
                         <div class="list__form-box">
                         <label for="input-count" class="list__form-label">Số lượng <span>*</span></label>
                             <input type="number" class="list__form-input" id="input-count" required
@@ -68,23 +73,22 @@ $(document).on("click", ".list__action-open-edit", function () {
                         </div>
                         <div class="list__form-box">
                             <label class="list__form-label">Thương hiệu</label>
-                                <select id="category-product-add">
+                                <select id="category-product">
                                   ${optionCategoryEdit}
                                 </select>
                         </div>
                     </div>
-                    <div class="list__add-handmade" style="padding: 5px 15px 0 15px;">
-                        <div class="list__form-box">
-                            <label for="input-price" class="list__form-label">Giá tiền <span>*</span></label>
-                            <input type="number" class="list__form-input" value="${price}" inputmode="numeric" pattern="[0-9]*" id="input-price" required
-                                placeholder="Nhập giá tiền">
-                        </div>
-                        <div class="list__form-box">
-                            <label for="input-price" class="list__form-label">Giá tiền <span>*</span></label>
-                            <input type="number" class="list__form-input" value="${price}" inputmode="numeric" pattern="[0-9]*" id="input-price" required
-                                placeholder="Nhập giá tiền">
-                        </div>
+                    <div class="list__add-handmade" style="padding: 5px 15px 5px 15px;">
+                    <div class="list__form-box">
+                    <label for="input-sale" class="list__form-label">Giảm giá(%)</label>
+                    <input type="number" class="list__form-input" value="${sale}" inputmode="numeric" pattern="[0-9]*" id="input-sale">
                     </div>
+                    <div class="list__form-box">
+                    <label for="input-date-sale" class="list__form-label">Giảm đến ngày</label>
+                    <input type="date"  id="input-date-sale" class="list__form-input" value="${convertedDateSale}">
+                    </div>
+                    </div>
+                    <input type="hidden" value="${id}" id="id_product">
                     <div class="list__add-handmade" style="display:flex; padding: 10px 15px 0 15px;">
                         <div class="list__form-box" style="flex: 1">
                             <label for="input-des" class="list__form-label">Mô tả</label>
@@ -94,8 +98,9 @@ $(document).on("click", ".list__action-open-edit", function () {
                 </div>
                 <div class="list__form-btn">
                     <button type="button" class="close-btn" onclick="closeFormAdd()">Đóng</button>
-                    <button type="button" onclick="submitProduct()" name="add-book" >Thêm</button>
+                    <button type="button" onclick="submitProductEdit()">Chỉnh sửa</button>
                 </div>
             </form>`;
             CKEDITOR.replace('input-des');
 });
+

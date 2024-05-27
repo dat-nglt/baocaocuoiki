@@ -176,7 +176,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .current-page {
   li,
   span {
-    color: var(--blue-cl) !important;
+    color: var(--purple-white-cl) !important;
   }
 }
 
@@ -241,7 +241,7 @@ input[type="number"]::-webkit-outer-spin-button {
   padding:10px 15px;
   position: relative;
   height:auto !important;
-  transition: all 900ms ease;
+  transition: all 500ms ease;
 }
 
 

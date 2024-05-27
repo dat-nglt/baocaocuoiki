@@ -30,7 +30,7 @@ $(document).ready(function () {
           error: function (xhr, status, error) {
             Swal.fire({
               title: "Thông báo",
-              text: "Khóa tài khoản không thành công.",
+              text: "Không thể thự hiện hành động",
               icon: "error",
               showConfirmButton: true,
             }).then(function () {

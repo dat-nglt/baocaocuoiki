@@ -1,155 +1,149 @@
-<div class="container-form">
-    <form action="index.php?page=listbills" method="post">
-        <input type="text" name="search-input-order" id="" placeholder="Tìm kiếm">
-        <button type="submit" name="search-submit-order"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-    <form action="index.php?page=listbills" method="post">
-        <select id="select-sort" name="sort-select-order">
-            <option <?php if ($_SESSION['sort-order'] === 'desc')
-                echo 'selected'; ?> value="desc"> Mới Nhất </option>
-
-            <option <?php if ($_SESSION['sort-order'] === 'asc')
-                echo 'selected'; ?> value="asc"> Cũ Nhất </option>
-
-            <option <?php if ($_SESSION['sort-order'] === 'asc1')
-                echo 'selected'; ?> value="asc1"> Tổng tiền tăng
-            </option>
-
-            <option <?php if ($_SESSION['sort-order'] === 'desc1')
-                echo 'selected'; ?> value="desc1"> Tổng tiền giảm
-            </option>
-
-            <option <?php if ($_SESSION['sort-order'] == 0)
-                echo 'selected'; ?> value="0"> Chưa xử lý
-            </option>
-
-            <option <?php if ($_SESSION['sort-order'] == 1)
-                echo 'selected'; ?> value="1"> Đã duyệt
-            </option>
-
-        </select>
-        <button type="submit" name="sort-submit-order"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-</div>
-<?php if ($total_page > 1) { ?>
-    <div class="page-number">
-
-        <?php if ($current_page > 3) { ?>
-            <a class="number-of-page" href="index.php?page=listbills&pageNumber=1">Trang đầu</a>
-        <?php } ?>
-
-        <?php if ($current_page > 1) { ?>
-            <a class="number-of-page" href="index.php?page=listbills&pageNumber=<?= $current_page - 1 ?>"><i
-                    class="fa-solid fa-backward-step"></i></a>
-        <?php }
-        ?>
-
-        <?php for ($index = 1; $index <= $total_page; $index++) {
-            if ($current_page == $index) { //thiết lập điều kiện là trang hiện tại đã được chọn thì không chứa liên kết?>
-
-                <strong class="number-of-page">
-                    <?= $index ?>
-                </strong>
-
-            <?php } else { //thiết lập điều kiện là trang chưa được chọn thì sẽ chứa liên kết
-                if ($current_page == $total_page) { // Nếu là trang cuối thì hiện thêm 4 trang trước đó
-                    if ($index > ($current_page - 5)) { ?>
-                        <a class="number-of-page" href="index.php?page=listbills&pageNumber=<?= $index ?>">
-                            <?= $index ?>
-                        </a>
-                        <?php
-                    }
-                } else if ($current_page == 1) { // Nếu là trang đầu thì hiện thêm 4 trang sau đó
-                    if ($index < ($current_page + 5)) { ?>
-                            <a class="number-of-page" href="index.php?page=listbills&pageNumber=<?= $index ?>">
-                            <?= $index ?>
-                            </a>
-                        <?php
-                    }
-
-                } else if ($current_page == 2) {
-                    if ($index < ($current_page + 4)) { ?>
-                                <a class="number-of-page" href="index.php?page=listbills&pageNumber=<?= $index ?>">
-                            <?= $index ?>
-                                </a>
-                        <?php
-                    }
-                    ?>
-                    <?php
-                } else if ($current_page == $total_page - 1) {
-                    if ($index > ($current_page - 4)) { ?>
-                                    <a class="number-of-page" href="index.php?page=listbills&pageNumber=<?= $index ?>">
-                            <?= $index ?>
-                                    </a>
-                        <?php
-                    } ?>
-
-                <?php } else if ($index > ($current_page - 3) && $index < ($current_page + 3)) { ?>
-                                    <a class="number-of-page" href="index.php?page=listbills&pageNumber=<?= $index ?>">
-                        <?= $index ?>
-                                    </a>
-                <?php } ?>
-            <?php }
-        } ?>
-        <?php if ($total_page > 1 && $current_page < $total_page) { ?>
-            <a class="number-of-page" href="index.php?page=listbills&pageNumber=<?= $current_page + 1 ?>"><i
-                    class="fa-solid fa-forward-step"></i></a>
-        <?php } ?>
-    </div>
-<?php } ?>
-<table class="table-account">
-    <tr>
-        <th style="width: 3%">STT</th>
-        <th style="width: 7%">Mã đơn hàng</th>
-        <th style="width: 7%">Tên người dùng</th>
-        <th style="width: 15%">Thành tiền</th>
-        <th style="width: 10%">Ngày đặt hàng</th>
-        <th style="width: 10%">Trạng thái</th>
-        <th style="width: 10%">Tuỳ chọn</th>
-    </tr>
-
-    <?php
-
-    $autoSTT = (($current_page - 1) * $limitPage) + 1;
-
-    foreach ($dataOrder as $key => $value) {
-        extract($value) ?>
-        <tr>
-            <td>
-                <?= $autoSTT ?>
-            </td>
-            <td>
-                <?= $maDonHang ?>
-            </td>
-            <td>
-                <?= $tenNguoiDung ?>
-            </td>
-            <td>
-                <?= $formattedAmount = number_format($thanhTien, 0, ',', '.') ?> <span id="vnd">&#8363;</span>
-            </td>
-            <td>
-                <?= $ngayDatFormatted ?>
-            </td>
-            <td>
+<div class="body__container">
+    <div class="list__container">
+        <div>
+            <div style="flex: 1;display:flex;justify-content: space-between">
+                <div>
+                    <span>Danh sách tài khoản</span>
+                    <!-- <button onclick="openFormAdd()" id="list__add-btn"
+                        type="button">Thêm
+                        tài khoản</button> -->
+                </div>
+                <div style="display:flex; gap: 5px; justify-content: center; padding: 0 0 5px;align-items: center;">
+                    <fieldset>
+                        <legend>Tìm kiếm</legend>
+                        <form action="" method="post" class="admin__form-search">
+                            <input type="text" name="search-order" placeholder="Tên người dùng"
+                                autocomplete="off">
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Sắp xếp</legend>
+                        <form action="" method="post" class="admin__form-search">
+                            <select name="sort-order" id="">
+                                <option value="desc" <?php if ($_SESSION['sort-order'] === 'desc')
+                                    echo 'selected' ?>>
+                                        Mới nhất
+                                    </option>
+                                    <option value="asc" <?php if ($_SESSION['sort-order'] === 'asc')
+                                    echo 'selected' ?>>Cũ
+                                        nhất
+                                    </option>
+                                    <option value="asc1" <?php if ($_SESSION['sort-order'] === 'asc1')
+                                    echo 'selected' ?>>
+                                        Tổng tiền tăng dần
+                                    </option>
+                                    <option value="desc1" <?php if ($_SESSION['sort-order'] === 'desc1')
+                                    echo 'selected' ?>>
+                                        Tổng tiền giảm dần
+                                    </option>
+                                </select>
+                                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <th style="width: 5%;">#</th>
+                    <th style="width: 22%;">Tên người dùng</th>
+                    <th style="width: 11%;">Số lượng sản phẩm</th>
+                    <th style="width: 15%;">Thành tiền</th>
+                    <th style="width: 8%;">Thời gian mua</th>
+                    <th style="width: 21%;">Ghi chú</th>
+                    <th style="width: 13%;">Trạng thái</th>
+                    <th style="width: 5%;"></th>
+                </tr>
                 <?php
-                if ($trangThai == 0) { ?>
-                    <span>Chưa xử lý</span>
-                <?php } elseif ($trangThai == 1) { ?>
-                    <span>Đã duyệt</span>
-                <?php }
+                                $stt = (($current_page - 1) * $limitPage) + 1;
+                                foreach ($dataOrder as $key => $value) {
+                                    extract($value);
+                                    switch ($trangThai) {
+                                        case '0':
+                                            $status = "Chờ xác nhận";
+                                            break;
+                                        case '1':
+                                            $status = "Đã xác nhận";
+                                            break;
+                                        case '2':
+                                            $status = "Đang giao hàng";
+                                            break;
+                                        case '3':
+                                            $status = "Đơn hàng thành công";
+                                            break;
+                                        case '4':
+                                            $status = "Đơn hàng thất bại";
+                                            break;
+                                        default:
+                                            $status = '';
+                                            break;
+                                    }
+                                    ?>
+                <tr class="list__content">
+                    <td><?= $stt ?></td>
+                    <td>
+                        <div class="list__hidden-text"><?= $tenTaiKhoan ?></div>
+                    </td>
+                    <td>
+                        <div class="list__hidden-text"><?= $count ?></div>
+                    </td>
+                    <td>
+                        <div class="list__hidden-text"><?=number_format($thanhTien, 0, '.', '.') ?><span id="vnd" style="font-weight: 500; font-size: 17px;">&#8363;</span></div>
+                    </td>
+                    <td>
+                        <div class="list__hidden-text"><?= date("d-m-Y", strtotime($thoiGian)) ?></div>
+                    </td>
+                    <td>
+                        <div class="list__hidden-text"><?= $ghiChu ?></div>
+                    </td>
+                    <td>
+                        <div class="list__hidden-text"><?= $status ?></div>
+                    </td>
+                    <td>
+                        <div>
+                            <a href="index.php?page=detailbill&id=<?=$maDonHang?>"><button class="list__action-open-edit" type="button"><i class="fa-solid fa-eye list__icon-edit"></i></button></a>
+                            <button class="list__action-btn" type="button" data-id="<?= $maDonHang ?>"><i
+                                title="Xóa sản phẩm" class="fa-solid fa-trash list__icon-del"></i></button>
+                        </div>
+                    </td>
+                </tr>
+                <?php $stt++;
+                                } ?>
+        </table>
+        <div class="list__paging">
+            <div>
+                <?php
+                if ($total_page > 1) {
+                    if ($current_page > 3) {
+                        echo '<a href="index.php?page=listbills&pageNumber=1"> <button><i class="fa-solid fa-angles-left"></i></button></a>';
+                    }
+                    if ($current_page > 1) {
+                        echo ' <a href="index.php?page=listbills&pageNumber=' . ($current_page - 1) . '"><button><i class="fa-solid fa-angle-left"></i></button></a>';
+                    }
+                    for ($i = 1; $i <= $total_page; $i++) {
+                        if ($i != $current_page) {
+                            if ($i > $current_page - 3 && $i < $current_page + 3) {
+                                echo '<a href="index.php?page=listbills&pageNumber=' . $i . '"><button class="button">' . $i . '</button></a>';
+                            }
+                        } else {
+                            echo '<a href="index.php?page=listbills&pageNumber=' . $i . '" class="button-current"><button class="button" >' . $i . '</button></a>';
+                        }
+                    }
+                    if ($current_page < $total_page) {
+                        echo '<a href="index.php?page=listbills&pageNumber=' . ($current_page + 1) . '"> <button><i class="fa-solid fa-angle-right"></i></button></a>';
+                    }
+                    if ($current_page < $total_page - 2) {
+                        echo '<a href="index.php?page=listbills&pageNumber=' . ($total_page) . '"><button><i class="fa-solid fa-angles-right"></i></button></a>';
+                    }
+                }
                 ?>
-            </td>
-            <td class="edit">
-                <a href="index.php?page=detailbill&id=<?= $maDonHang ?>" title='Xem chi tiết'> <i
-                        class="fa-solid fa-pen-to-square"></i></a>
-                <form style='display: inline;' action="" method='post'
-                    onsubmit="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này?');">
-                    <input type="hidden" name='idOrder' value="<?= $maDonHang ?>">
-                    <button type='submit' name='del-order' title='Xoá đơn hàng' class="btn-submit" style="background: none; border: none"> <i
-                            class="fa-solid fa-delete-left fa-rotate-180"></i> </button>
-                </form>
-            </td>
-        </tr>
-        <?php $autoSTT++;
-    } ?>
-</table>
+            </div>
+
+            <?php if ($_SESSION['search-order'] != '') { ?>
+                <span>Từ khóa đã tìm kiếm: <span><?= $_SESSION['search-order'] ?></span></span>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+<script src="../src/js/admin/order/delOrder.js"></script>

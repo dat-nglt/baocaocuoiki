@@ -6,6 +6,18 @@ function getNameClassify($conn){
     return $rs;
 }
 
+function getNameClassifyAdmin($conn,$search){
+    $sql = "select * from phanloai where tenLoai = '%$search%'";
+    $rs = mysqli_query($conn,$sql);
+    return $rs;
+}
+
+function getAllClassifyAdmin($conn,$search,$sort,$start,$limit){
+    $sql = "SELECT * FROM phanloai where tenLoai like '%$search%' ORDER BY maLoai $sort limit $start, $limit";
+    $rs = mysqli_query($conn,$sql);
+    return $rs;
+}
+
 function getAllClassify($conn){
     $sql = "SELECT p.* FROM phanloai p,sanpham s where p.maLoai = s.maLoai GROUP by p.maLoai ORDER BY COUNT(s.maSanPham) desc";
     $rs = mysqli_query($conn,$sql);
@@ -27,11 +39,6 @@ function getClassify($conn,$name,$sort){
     return $rs;
 }
 
-function addClassfity($conn,$name,$img){
-    $sql = "insert into phanloai values('','".$name."','".$img."')";
-    $rs = mysqli_query($conn,$sql);
-    return $rs;
-}
 
 function getOneClassify($conn,$id){
     $sql = "select * from phanloai where maLoai = '".$id."'";

@@ -8,13 +8,27 @@ function submitProduct() {
     var name = $("#input-name").val();
     var price = $("#input-price").val();
     var count = $("#input-count").val();
-    var des = $("#input-des").val();
     var brand = $("#category-product-add").val();
+    var file = $("#newImg")[0].files[0];
+
+    var editor = CKEDITOR.instances['input-des'];
+    var des = editor.getData();
+
 
     if (brand === "") {
         Swal.fire({
             title: "Thông báo",
             text: "Vui lòng nhập thương hiệu",
+            icon: "warning",
+            showConfirmButton: true,
+        });
+        return;
+    }
+
+    if(file === undefined){
+        Swal.fire({
+            title: "Thông báo",
+            text: "Vui lòng thêm ảnh sản phẩm",
             icon: "warning",
             showConfirmButton: true,
         });
@@ -35,42 +49,6 @@ function submitProduct() {
         return;
     }
 
-    var file = $("#newImg")[0].files[0];
-    if (file === undefined) {
-        var data = {
-            name,
-            price,
-            count,
-            brand,
-            des,
-        };console.log(data);
-        $.ajax({
-            type: "POST",
-            url: "../src/services/admin/addProduct.php",
-            dataType: "json",
-            data: data,
-            success: function (result) {
-                Swal.fire({
-                    title: "Thông báo",
-                    text: result.msg,
-                    icon: result.status,
-                    showConfirmButton: true,
-                }).then(function () {
-                    window.location.assign(result.path);
-                });
-            },
-            error: function () {
-                Swal.fire({
-                    title: "Thông báo",
-                    text: "Thêm sản phẩm không thành công 2",
-                    icon: "error",
-                    showConfirmButton: true,
-                }).then(function () {
-                    window.location.assign("index.php?page=listproducts");
-                });
-            },
-        });
-    } else {
         var formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", "quanlikhohang");
@@ -131,4 +109,3 @@ function submitProduct() {
             },
         });
     }
-}

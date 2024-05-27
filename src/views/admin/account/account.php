@@ -43,12 +43,12 @@
                     <th style="width: 13%;">Tên tài khoản</th>
                     <th style="width: 8%;">Địa chỉ</th>
                     <th style="width: 8%;">Số điện thoại</th>
-                    <th style="width: 10%;">Email</th>
+                    <th style="width: 13%;">Email</th>
                     <th style="width: 7%;">Giới tính</th>
                     <th style="width: 8%;">Ngày sinh</th>
                     <th style="width: 9%;">Ngày tham gia</th>
                     <th style="width: 8%;">Trạng thái</th>
-                    <th style="width: 8%;"></th>
+                    <th style="width: 5%;"></th>
                 </tr>
                 <?php
                                 $stt = (($current_page - 1) * $limitPage) + 1;
@@ -86,10 +86,12 @@
                         <div class="list__hidden-text"><?= $gender ?></div>
                     </td>
                     <td>
-                        <div class="list__hidden-text"><?= date("d-m-Y", strtotime($ngaySinh)) ?></div>
+                        <?php if(strtotime($ngaySinh) != '0000-00-00'){ ?>
+                            <div class="list__hidden-text"><?= date("d-m-Y", strtotime($ngaySinh)) ?></div>
+                        <?php }else{ ?>
+                            <div class="list__hidden-text"></div>
+                        <?php }?>
                     </td>
-
-
                     <td>
                         <div class="list__hidden-text"><?= date("d-m-Y", strtotime($ngayThamGia)) ?></div>
                     </td>

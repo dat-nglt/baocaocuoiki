@@ -40,6 +40,12 @@
                                     echo 'selected' ?>>Cũ
                                         nhất
                                     </option>
+                                    <option value="0" <?php if ($_SESSION['sort-product'] === '0')
+                                    echo 'selected' ?>>Giá tăng dần
+                                    </option>
+                                    <option value="1" <?php if ($_SESSION['sort-product'] === '1')
+                                    echo 'selected' ?>>Giá giảm dần
+                                    </option>
                                 </select>
                                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </form>
@@ -50,15 +56,14 @@
             <table>
                 <tr>
                     <th style="width: 5%;">#</th>
-                    <th style="width: 20%;">Tên sản phẩm</th>
-                    <th style="width: 8%;">Giá tiền</th>
-                    <th style="width: 10%;">Hình ảnh</th>
+                    <th style="width: 30%;">Tên sản phẩm</th>
+                    <th style="width: 10%;">Giá tiền (VNĐ)</th>
+                    <th style="width: 8%;">Hình ảnh</th>
                     <th style="width: 7%;">Số lượng</th>
-                    <th style="width: 6%;">Giảm giá</th>
+                    <th style="width: 8%;">Giảm giá (%)</th>
                     <th style="width: 10%;">Ngày hết hạn giảm</th>
                     <th style="width: 8%;">Thương hiệu</th>
-                    <th style="width: 9%;">Mô tả</th>
-                    <th style="width: 8%;"></th>
+                    <th style="width: 5%;"></th>
                 </tr>
                 <?php
                                 $stt = (($current_page - 1) * $limitPage) + 1;
@@ -71,15 +76,11 @@
                         <div class="list__hidden-text" style="-webkit-line-clamp: 2;"><?= $tenSanPham ?></div>
                     </td>
                     <td>
-                        <div class="list__hidden-text" style="-webkit-line-clamp: 2;"><?= $giaTien ?></div>
+                        <div class="list__hidden-text" style="-webkit-line-clamp: 2;"><?=number_format($giaTien, 0, '.', '.') ?></div>
                     </td>
                     <td>
                         <div style="display: flex; align-items: center; justify-content: center">
-                            <?php if ($hinhAnh === '') { ?>
-                                <img style="height: 80%; width: 80%" src="./upload/book.png" alt="<?= $tenSanPham ?>">
-                            <?php } else { ?>
-                                <img style="height: 80%; width: 80%" src="<?= $hinhAnh ?>" alt="<?= $tenSanPham ?>">
-                            <?php } ?>
+                                <img style="height: 80px; width: 70px" src="<?= $hinhAnh ?>" alt="<?= $tenSanPham ?>">
                         </div>
                     </td>
                     <td>
@@ -89,24 +90,25 @@
                         <div class="list__hidden-text"><?= $giaGiam ?><?php if($giaGiam != 0) echo '%'; ?></div>
                     </td>
                     <td>
-                        <div class="list__hidden-text"><?= $ngayHetHanGiam ?></div>
+                    <?php if( $ngayHetHanGiam != '0000-00-00'){ ?>
+                            <div class="list__hidden-text"><?= date("d-m-Y", strtotime($ngayHetHanGiam)) ?></div>
+                        <?php }else{ ?>
+                            <div class="list__hidden-text"><?php $ngayHetHanGiam ?></div>
+                        <?php }?>
                     </td>
                     <td>
                         <div class="list__hidden-text"><?= $tenLoai ?></div>
                     </td>
                     <td>
-                        <div class="list__hidden-text" style="-webkit-line-clamp: 2;"><?= $moTa ?>
-                        </div>
-                    </td>
-                    <td>
                         <div>
                             <button class="list__action-open-edit" type="button" data-id="<?= $maSanPham ?>"><i
                                 title="Chỉnh sửa sản phẩm" class="fa-solid fa-pen-to-square list__icon-edit"></i></button>
+                            </button>
                             <button class="list__action-btn" type="button" data-id="<?= $maSanPham ?>">
-                                <?php if ($trangThai === '1') {
-                                    echo '<i title="Ẩn sản phẩm" class="fa-solid fa-eye-slash list__icon-del"></i>';
-                                } else {
-                                    echo '<i title="Hiện sản phẩm" class="fa-solid fa-eye list__icon-edit"></i>';
+                                <?php if ($maSanPham === '1') {
+                                    echo '<i class="fa-solid fa-eye-slash list__icon-del"></i>';
+                                } else{
+                                    echo '<i class="fa-solid fa-eye list__icon-edit"></i>';
                                 } ?>
                             </button>
                             <button class="list__action-btn" type="button" data-id="<?= $maSanPham ?>"><i
