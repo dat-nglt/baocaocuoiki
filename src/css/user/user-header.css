@@ -17,11 +17,12 @@
 }
 
 .user-header {
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     rgba(35, 35, 250, 1) 22%,
     rgb(47 169 247) 100%
-  );
+  ); */
+  background: linear-gradient(180deg, rgb(88 152 247) 22%, rgb(44 66 91) 100%);
   display: flex;
   justify-content: space-around;
   position: fixed;

@@ -1,270 +1,308 @@
 .detail-product {
-    padding: 10px 15px;
-    border-radius: 5px;
+  padding: 10px 15px;
+  border-radius: 5px;
 }
 
 .content {
-    background-color: #f1eded;
-    padding: 20px 30px;
+  background-color: #ffffff;
+  border-radius: 5px 5px 0 0;
+}
+
+.detail-des {
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 30px 30px 0 30px;
+}
+
+.box-contentDetail {
+  box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.3);
 }
 
 .list-menuBack {
-    width: 100%;
-    display: flex;
-    margin: 0 auto;
-    position: sticky;
-    top: 89px;
-    padding: 10px 350px;
-    background: rgb(216, 216, 216);
-    font-weight: 700;
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  position: sticky;
+  top: 89px;
+  padding: 10px 350px;
+  background: rgb(255, 255, 255);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: rgb(95, 95, 95);
+  z-index: 100;
+  align-items: center;
+
+  a {
     font-size: 1.2rem;
     color: rgb(95, 95, 95);
-    z-index: 100;
-    align-items: center;
+  }
 
-    a {
-        font-size: 1.2rem;
-        color: rgb(95, 95, 95);
-    }
+  a:hover {
+    color: var(--blue-dark-cl);
+  }
 
-    a:hover {
-        color: var(--blue-dark-cl);
-        transition: all 300ms ease;
-    }
-
-    span {
-        font-size: 1.2rem;
-        padding: 0 7px;
-    }
+  span {
+    font-size: 1.2rem;
+    padding: 0 7px;
+  }
 }
 
 .s {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    font-size: 1.5rem;
-    line-height: 40px;
-    gap: 30px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  font-size: 1.5rem;
+  line-height: 40px;
 }
 
 .c,
 .ccc,
 .ss {
-    display: flex;
+  display: flex;
 }
 
+.s > div {
+  padding: 20px 30px;
+}
 .ss button {
-    margin-top: 1%;
-    padding: 0.3% 7%;
-    border: 1px black solid;
-    border-radius: 5px;
-    margin-left: 5%;
-    cursor: pointer;
-    background-color: white;
+  margin-top: 1%;
+  padding: 0.3% 7%;
+  border: 1px black solid;
+  border-radius: 5px;
+  margin-left: 5%;
+  cursor: pointer;
+  background-color: white;
 }
 
 .content img {
-    width: 100%;
-    height: auto;
-    border: 1px #d9d9d9 solid;
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.3);
+  width: 100%;
+  height: auto;
+  border: 1px #d9d9d9 solid;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(22, 19, 69, 0.13);
 }
 
 .sss {
-    color: #e30019;
-    padding: 1% 0;
-    font-size: 3.2rem;
-    font-weight: 600;
-    line-height: 40px;
-    padding: 30px 0;
+  color: #e30019;
+  padding: 1% 0;
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 40px;
+  padding: 30px 0;
+}
+
+.ssss {
+  padding: 20px;
+  border-left: 2px lightgrey solid;
 }
 
 .ssss h2 {
-    border-bottom: 1px #666 solid;
-    width: 95%;
-    padding: 10px 0 0 5px;
-    font-size: 2.4rem;
+  width: 95%;
+  font-size: 2.4rem;
 }
 
 .c {
-    margin-left: 1%;
-    align-items: center;
+  margin-left: 1%;
+  align-items: center;
 }
 
 .c i {
-    cursor: pointer;
-    font-size: 13px;
+  cursor: pointer;
+  font-size: 13px;
 }
 
 .c i:hover {
-    color: #e69720;
+  color: #e69720;
 }
 
 .c div {
-    display: flex;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .c i,
 .c input {
-    margin: 0 1%;
+  margin: 0 1%;
 }
 
 .c input[type="text"] {
-    border: 1px black solid;
-    width: 20%;
-    font-size: 14px;
-    outline: 0;
-    text-align: center;
-    padding: 5px;
+  border: 1px black solid;
+  width: 20%;
+  font-size: 14px;
+  outline: 0;
+  text-align: center;
+  padding: 5px;
 }
 
 .cc {
-    margin-top: 1%;
-    display: flex;
-    align-items: center;
+  margin-top: 1%;
+  display: flex;
+  align-items: center;
+}
+
+.service-gift {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  /* width: 650px; */
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f3f3f3;
+  border: 1px lightgrey solid;
+  justify-items: center;
 }
 
 .motasp h1 {
-    padding: 1%;
+  padding: 1%;
 }
 
 .ttmota {
-    font-size: 1.6rem;
-    line-height: 27px;
+  display: flex;
+  font-size: 1.6rem;
+  flex-direction: column;
+
+  .name-des {
+    border: 1px solid #eeeeee;
+    border-radius: 5px 5px 0 0;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 10px;
+    background: #f3f3f3;
+    border-bottom: none;
+  }
 }
 
 .category-group {
-    background: white;
-    display: flex;
-    margin: 20px 0;
-    gap: 20px;
-    padding: 20px;
-    justify-content: center;
+  background: white;
+  display: flex;
+  margin: 20px 0;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
 }
 
 .category-group .category-product {
-    border-radius: 5px;
-    background-color: rgb(242, 242, 240);
-    width: fit-content;
+  border-radius: 5px;
+  background-color: rgb(242, 242, 240);
+  width: fit-content;
 }
 
 .category-group .category-product img {
-    width: 250px;
-    height: 300px;
+  width: 250px;
+  height: 300px;
 }
 
 .name-product {
-    width: 250px;
-    height: 30px;
-    overflow: hidden;
-    display: -webkit-box;
-    line-height: 1.5;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  width: 250px;
+  height: 30px;
+  overflow: hidden;
+  display: -webkit-box;
+  line-height: 1.5;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .slider-form {
-    border-radius: 5px;
-    margin-top: 20px;
-    background: white;
-    box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.3);
+  border-radius: 5px;
+  margin-top: 20px;
+  background: white;
+  box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.3);
 }
 
 .slider {
-    /* margin-top: 20px; */
-    width: 100%;
-    padding: 20px;
+  /* margin-top: 20px; */
+  width: 100%;
+  padding: 20px;
 }
 
 .slick-track {
-    display: flex !important;
-    gap: 30px;
+  display: flex !important;
+  gap: 30px;
 }
 
 .slider .mx-2 {
-    background: rgb(242, 242, 240);
-    float: left;
+  background: rgb(242, 242, 240);
+  float: left;
 }
 
 .slider .mx-2 img {
-    width: 100%;
-    border-radius: 5px 5px 0 0;
-    margin-bottom: 10px;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 10px;
 }
 
 .slick-prev {
-    left: 10px;
+  left: 10px;
 }
 
 h2.pt-2.fw-bold {
-    font-size: 1.2rem;
-    width: fit-content;
-    height: 30px;
-    overflow: hidden;
-    display: -webkit-box;
-    line-height: 1.3;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+  font-size: 1.2rem;
+  width: fit-content;
+  height: 30px;
+  overflow: hidden;
+  display: -webkit-box;
+  line-height: 1.3;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .slick-initialized .slick-slide {
-    border-radius: 5px;
-    box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.3);
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.3);
 }
 
 .product-price {
-    color: red;
-    font-weight: 600;
-    font-size: 1.2rem;
-    padding: 5px 0;
+  color: red;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 5px 0;
 }
 
 .sold {
-    font-size: 1.1rem;
-    font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 button.slick-next.slick-arrow {
-    background: none;
-    right: 25px;
-    cursor: pointer;
+  background: none;
+  right: 25px;
+  cursor: pointer;
 }
 
 button.slick-prev.slick-arrow {
-    background: none;
-    left: 15px;
-    cursor: pointer;
+  background: none;
+  left: 15px;
+  cursor: pointer;
 }
 
 button.slick-next.slick-arrow::after {
-    content: "\21DD";
-    font-size: 5rem;
-    color: black;
+  content: "\21DD";
+  font-size: 5rem;
+  color: black;
 }
 
 button.slick-prev.slick-arrow::before {
-    content: "\21DC";
-    font-size: 5rem;
-    color: black;
+  content: "\21DC";
+  font-size: 5rem;
+  color: black;
 }
 
 .slick-initialized .slick-slide:hover {
-    background: rgb(47 169 247);
+  background: rgb(47 169 247);
 }
 
 .gift-title {
-    width: fit-content;
-    border-bottom: 2px solid;
-    color: #e30019;
-    font-weight: 600;
-    font-size: 2rem;
-    line-height: 1.2;
-    padding: 5px 0;
+  width: fit-content;
+  border-bottom: 2px solid;
+  color: #e30019;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 0.8;
+  padding: 5px 0;
+  margin-bottom: 10px;
 }
 
 .gift-product > p,
 .service-product > p {
-    font-weight: 600;
+  font-weight: 600;
 }

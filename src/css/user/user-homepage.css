@@ -66,7 +66,7 @@
     display: flex;
     justify-content: space-between;
     padding: 15px;
-    background: linear-gradient(to right, rgb(216, 43, 69), rgb(91, 159, 236));
+    background: linear-gradient(to right, rgb(43 43 43), rgb(91, 159, 236));
     border-radius: 5px 5px 0 0;
 }
 
