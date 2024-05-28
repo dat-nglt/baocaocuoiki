@@ -74,7 +74,7 @@
             border-radius: 50%;
             top: -3px;
             left: 20px;">'. count($_SESSION['cart']) .'</span></a>';
-            echo '<div id="profile"><a href="index.php?page=profile"><i title="Hồ sơ" class="fa-solid fa-circle-user" id="profile-icon" style="color: rgb(255, 255, 255); cursor: pointer"></i></a>
+            echo '<div id="profile"><a href="index.php?page=profile"><i title="Hồ sơ" class="fa-solid fa-user" id="profile-icon" style="color: rgb(255, 255, 255); cursor: pointer"></i></a>
                     <ul class="menu-user">' ?>
             <?php if (isset($_SESSION['user']) && $_SESSION['user']['quyenTruyCap'] == '2') {
                 echo '<li> <a target="_blank" href="http://localhost/baocaocuoiki/admin/index.php">Quản Trị Viên</a> </li>';
@@ -86,7 +86,7 @@
                     </ul>
                 </div>';
         } else { ?>
-            <a href="index.php?page=login"><i class="fa-solid fa-circle-user" style="color: rgb(255, 255, 255);"></i></a>
+            <a href="index.php?page=login"><i class="fa-solid fa-user" style="color: rgb(255, 255, 255);"></i></a>
         <?php } ?>
     </div>
 </header>

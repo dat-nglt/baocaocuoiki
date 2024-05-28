@@ -96,13 +96,13 @@ li {
   color: #0f79e6;
   padding: 6px 18px;
   font-size: 1.5rem;
-  background-color: rgb(242, 242, 240);
+  background-color: rgb(255 255 255 / 69%);
   border-radius: 5px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 #more-product:hover {
-  scale: 1.03;
+  scale: 1.02;
 }
 
 :root {
@@ -173,7 +173,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .current-page {
   li,
   span {
-    color: var(--purple-white-cl) !important;
+    color: var(--blue-white-cl) !important;
   }
 }
 
@@ -239,4 +239,8 @@ input[type="number"]::-webkit-outer-spin-button {
   position: relative;
   height: auto !important;
   transition: all 500ms ease;
+}
+
+.swal2-popup {
+  font-size: 18px !important;
 }

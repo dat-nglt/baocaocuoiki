@@ -25,6 +25,7 @@
     include ("./model/account.php");
     include ("./model/product.php");
     include ("./model/classify.php");
+    include ("./model/logistics.php");
     include ("./model/bill.php");
     include ("./message.php");
     include ("./views/user/user-header.php");
@@ -93,3 +94,4 @@
 </body>
 
 </html>
+

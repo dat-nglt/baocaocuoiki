@@ -30,6 +30,7 @@
     include ("../src/model/account.php");
     include ("../src/model/product.php");
     include ("../src/model/classify.php");
+    include ("../src/model/logistics.php");
     include ("../src/model/bill.php");
     include ("../src/message.php");
     include ("../src/views/admin/admin-header.php");
@@ -39,6 +40,9 @@
         switch ($page) {
             case 'listaccounts':
                 include "../src/controllers/adminControllers/accountControllers/listAccount.php";
+                break;
+            case 'logistics':
+                include "../src/controllers/adminControllers/logisticsControllers/logistics.php";
                 break;
             case 'listproducts':
                 include "../src/controllers/adminControllers/productControllers/listProduct.php";

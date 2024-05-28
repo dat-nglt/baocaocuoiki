@@ -4,7 +4,7 @@
     padding: 15px;
     background: linear-gradient(to right, rgb(43 43 43), rgb(91, 159, 236));
     border-radius: 5px 5px 0 0;">
-        Thông tin sản phẩm
+        Giỏ hàng
     </div>
     <div style="padding: 20px;">
         <div class="product-cart">

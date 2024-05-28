@@ -122,7 +122,7 @@
     <div class="slider-form">
         <div class="sale-prodoct-header">
             <div id="title">
-                Sản phẩn cùng thương hiệu
+                Sản phẩm cùng thương hiệu
             </div>
         </div>
         <div class="slider">
