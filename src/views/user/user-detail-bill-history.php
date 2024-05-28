@@ -16,7 +16,7 @@
             extract($value);
             ?>
             <div class="detail-product-cart" style="grid-template-columns: 25% 75%">
-            <img src="img/Product/<?= $product[$value[2]]['hinhAnh']?>" alt="">
+            <img src="<?= $product[$value[2]]['hinhAnh']?>" alt="">
             <div class="info-product">
                 <div class="info-product-name">
                     <?= $product[$value[2]]['tenSanPham']?>

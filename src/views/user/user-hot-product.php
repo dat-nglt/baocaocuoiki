@@ -1,11 +1,13 @@
-<div class="container category-product main">
-    <div class="list-menu">
-        <a href="index.php">Z3G</a>
+<div class="list-menuBack">
+    <div class="content-menuBack">
+        <a href="index.php"><i class="fa-solid fa-house" style="margin-right: 5px;"></i> Trang chủ</a>
         <span class="separator"> > </span>
-        <span style="font-size: 18px;">
+        <span>
             Sản phẩm bán chạy
         </span>
     </div>
+</div>
+<div class="container category-product main">
     <div class="category-product">
         <div class="category-product-list">
             <div class="category-sidebar">
@@ -34,9 +36,9 @@
                     extract($value);
                     $maSanPham1 = $value[0];
                     $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
-                    if($value[6]!=0 && (strtotime($value[7]) > strtotime(date('Y-m-d')))){
-                        $price = ($value[3] - ($value[3]*($value[6]/100))) ; 
-                    }else{
+                    if ($value[6] != 0 && (strtotime($value[7]) > strtotime(date('Y-m-d')))) {
+                        $price = ($value[3] - ($value[3] * ($value[6] / 100)));
+                    } else {
                         $price = $value[3];
                     }
                     ?>
@@ -50,7 +52,7 @@
                                 <div class="product-price">
                                     <?= number_format($price, 0, '.', '.') ?><span id="vnd">&#8363;</span>
                                 </div>
-                                <div class="sold">Đã bán: <?=$value[9]?></div>
+                                <div class="sold">Đã bán: <?= $value[9] ?></div>
                             </div>
                         </div>
                     </a>

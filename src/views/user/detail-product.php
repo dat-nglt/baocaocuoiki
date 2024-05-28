@@ -1,13 +1,26 @@
+<!-- <style>
+    .ttmota > table td {
+        padding: 10px 0;
+    }
+    background-color: #ffffff;
+    /* border-radius: 5px; */
+    padding: 10px 30px 10px;
+    border-top: 1px solid;
+    margin-top: 10px
+</style> -->
+
 <div class="list-menuBack">
-    <a href="index.php"><i class="fa-solid fa-house"></i> Trang chủ</a>
-    <span class="separator"> <i class="fa-solid fa-angle-right"></i> </span>
-    <a href="index.php?page=category-product&id=<?= $detailProduct['maLoai'] ?>">
-        <?php echo $detailProduct['tenLoai']; ?>
-    </a>
-    <span> <i class="fa-solid fa-angle-right"></i> </span>
-    <strong style="color: var();">
-        <?php echo $detailProduct['tenSanPham']; ?>
-    </strong>
+    <div class="content-menuBack">
+        <a href="index.php"><i class="fa-solid fa-house" style="margin-right: 5px;"></i> Trang chủ</a>
+        <span class="separator"> <i class="fa-solid fa-angle-right"></i> </span>
+        <a href="index.php?page=category-product&id=<?= $detailProduct['maLoai'] ?>">
+            <?php echo $detailProduct['tenLoai']; ?>
+        </a>
+        <span> <i class="fa-solid fa-angle-right"></i> </span>
+        <strong style="color: var();">
+            <?php echo $detailProduct['tenSanPham']; ?>
+        </strong>
+    </div>
 </div>
 <div class="container detail-product main">
     <div class="box-contentDetail">
@@ -33,15 +46,17 @@
                     <h2>
                         <?php echo $detailProduct['tenSanPham']; ?>
                     </h2>
-                    <?php if ($price != $detailProduct['giaTien']) { ?>
-                        <div class="sss" style="padding:0; color:black;">
-                            <span
-                                style="text-decoration: line-through;"><?php echo number_format($detailProduct['giaTien'], 0, '.', '.'); ?></span><span
-                                id="vnd">&#8363;</span>(-<?= $detailProduct['giaGiam'] ?>%)
-                        </div>
-                    <?php } ?>
                     <div class="sss">
-                        <?php echo number_format($price, 0, '.', '.'); ?><span id="vnd">&#8363;</span>
+                        <?php if ($price != $detailProduct['giaTien']) { ?>
+                            <div class="" style="padding:0; color: grey; font-size: 1.4rem;">
+                                <span
+                                    style="text-decoration: line-through; color: grey;"><?php echo number_format($detailProduct['giaTien'], 0, '.', '.'); ?></span><span
+                                    id="vnd">&#8363;</span> (-<?= $detailProduct['giaGiam'] ?>%)
+                            </div>
+                        <?php } ?>
+                        <div style="font-size: 2rem;">
+                            <?php echo number_format($price, 0, '.', '.'); ?><span id="vnd">&#8363;</span>
+                        </div>
                     </div>
                     <div>Tình trạng :
                         <?php if ($detailProduct['soLuong'] > 0) { ?> <b style="color: green">Còn hàng</b>
@@ -52,14 +67,30 @@
                         <input type="hidden" name="tensanpham" value="<?= $detailProduct['tenSanPham'] ?>">
                         <input type="hidden" name="giasanpham" value="<?= $price ?>">
                         <input type="hidden" name="hinhanh" value="<?= $detailProduct['hinhAnh'] ?>">
-                        <button class="button-buy" <?php if ($detailProduct['soLuong'] <= 0) {
-                            echo ' disabled style="background-color: gray; width: 400px;"';
-                        } else {
-                            echo 'style="background: seagreen; width: 400px; cursor: pointer; margin-top: 10px;"';
-                        } ?> id="button-buy-now" type="submit" name="addtocart">
-                            MUA NGAY <p style="font-size: 1.4rem; margin-top: 3px; font-weight: 400;">Giao tận nơi hoặc
-                                nhận
-                                tại cửa hàng</p></button>
+                        <?php if (isset($_SESSION['user'])) { ?>
+                            <button class="button-buy" <?php if ($detailProduct['soLuong'] <= 0) {
+                                echo ' disabled style="background-color: gray; width: 400px;"';
+                            } else {
+                                echo 'style="background: seagreen; width: 400px; cursor: pointer; margin-top: 10px;"';
+                            } ?> id="button-buy-now" type="submit"
+                                name="addtocart">
+                                MUA NGAY <p style="font-size: 1.4rem; margin-top: 3px; font-weight: 400;">Giao tận nơi hoặc
+                                    nhận
+                                    tại cửa hàng</p></button>
+                        <?php } else { ?>
+                            <a href="http://localhost/baocaocuoiki/src/index.php?page=login">
+                                <button class="button-buy" <?php if ($detailProduct['soLuong'] <= 0) {
+                                    echo ' disabled style="background-color: gray; width: 400px;"';
+                                } else {
+                                    echo 'style="background: seagreen; width: 400px; cursor: pointer; margin-top: 10px;"';
+                                } ?> id="button-buy-now"
+                                    type="button" name="addtocart">
+                                    MUA NGAY <p style="font-size: 1.4rem; margin-top: 3px; font-weight: 400;">Giao tận nơi
+                                        hoặc
+                                        nhận
+                                        tại cửa hàng</p></button>
+                            </a>
+                        <?php } ?>
                         <div class="service-gift">
                             <div class="service-product">
                                 <p class="gift-title">Ưu đãi:</p>

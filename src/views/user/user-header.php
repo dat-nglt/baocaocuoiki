@@ -21,13 +21,59 @@
     </div>
 
     <div class="user">
+        <style>
+            #search-user-header>fieldset {
+                border: 1px solid #fff;
+                border-radius: 5px;
+                padding: 5px 5px 5px 0;
+                display: flex;
+            }
+
+            #search-user-header>fieldset>input {
+                background: transparent;
+                outline: none;
+                border: none;
+                color: #fff;
+                padding-left: 10px;
+            }
+
+            #search-user-header>fieldset>input::placeholder {
+                color: #fff;
+                font-size: 12px;
+                font-style: italic;
+            }
+
+            #search-user-header>fieldset>button {
+                cursor: pointer;
+                background: transparent;
+                border: none;
+                font-size: 15px;
+                padding: 2px 10px;
+            }
+        </style>
         <form action="index.php?page=allproduct" method="post" id="search-user-header">
-            <input type="text" name="name-product" id="" placeholder="Tìm kiếm">
-            <button type="submit" name="search-product"><i class="fa-solid fa-magnifying-glass"
-                    style="color: rgb(255, 255, 255); cursor: pointer"></i></button>
+            <fieldset>
+                <!-- <legend>Tìm kiếm sản phẩm</legend> -->
+                <input type="text" name="name-product" id="" placeholder="Tìm kiếm sản phẩm">
+                <button type="submit" name="search-product"><i class="fa-solid fa-magnifying-glass"
+                        style="color: rgb(255, 255, 255); cursor: pointer"></i></button>
+            </fieldset>
         </form>
         <?php if (isset($_SESSION['user'])) {
-            echo '<a href="index.php?page=cart"><i class="fa-solid fa-cart-shopping" style="color: rgb(255, 255, 255);"></i></a>';
+            echo '<a href="index.php?page=cart"
+            style="position: relative;"
+            ><i class="fa-solid fa-cart-shopping" style="color: rgb(255, 255, 255);"></i> <span style="
+            position: absolute;
+            font-size: 14px;
+            background: #f90000;
+            width: 20px;
+            height: 19px;
+            text-align: center;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 50%;
+            top: -3px;
+            left: 20px;">'. count($_SESSION['cart']) .'</span></a>';
             echo '<div id="profile"><a href="index.php?page=profile"><i title="Hồ sơ" class="fa-solid fa-circle-user" id="profile-icon" style="color: rgb(255, 255, 255); cursor: pointer"></i></a>
                     <ul class="menu-user">' ?>
             <?php if (isset($_SESSION['user']) && $_SESSION['user']['quyenTruyCap'] == '2') {

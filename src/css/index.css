@@ -93,12 +93,12 @@ li {
 }
 
 #more-product {
-  color: white;
-  padding: 10px 15px;
+  color: #0f79e6;
+  padding: 6px 18px;
   font-size: 1.5rem;
-  background-color: rgb(230 150 30);
+  background-color: rgb(242, 242, 240);
   border-radius: 5px;
-  transition: scale 0.2s ease;
+  font-weight: 600;
 }
 
 #more-product:hover {

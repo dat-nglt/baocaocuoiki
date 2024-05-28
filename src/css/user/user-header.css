@@ -17,12 +17,7 @@
 }
 
 .user-header {
-  /* background: linear-gradient(
-    180deg,
-    rgba(35, 35, 250, 1) 22%,
-    rgb(47 169 247) 100%
-  ); */
-  background: linear-gradient(180deg, rgb(88 152 247) 22%, rgb(44 66 91) 100%);
+  background: linear-gradient(180deg, rgb(0 69 171) 22%, rgb(110 178 255) 100%);
   display: flex;
   justify-content: space-around;
   position: fixed;
@@ -61,11 +56,7 @@
   font-size: 2.5rem;
   gap: 30px;
 }
-
-.user-header .user > form {
-  display: flex;
-}
-
+/* 
 .user-header .user button {
   position: relative;
   right: 20px;
@@ -76,7 +67,7 @@
 
 .user-header .user input {
   width: 250px;
-  padding: 5px 10px;
+  padding: 5px 23px 5px 0;
   color: rgb(255, 255, 255);
   border: 2px solid rgb(255, 255, 255);
   border-style: none none solid none;
@@ -93,7 +84,7 @@
 .user-header .user button:hover i,
 .filter a:hover {
   color: hsl(0, 0%, 73%) !important;
-}
+} */
 
 .menu-user {
   display: none;
@@ -102,11 +93,22 @@
   top: 45px;
   right: -10px;
   border-radius: 5px;
-  background-color: hsl(36, 80%, 51%);
+  background-color: #0f79e6;
+}
+
+.menu-user li a {
+  display: block;
+  font-weight: 600;
+  padding: 10px;
+  min-width: 100px;
+  border-radius: 5px;
+  text-align: left;
+  font-size: 1.2rem;
+  color: white;
 }
 
 .menu-user li a:hover {
-  color: hsl(36, 80%, 51%);
+  color: #0f79e6;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
@@ -117,19 +119,9 @@
   right: 7px;
   border-left: 13px solid transparent; /* Điều chỉnh độ rộng tam giác */
   border-right: 13px solid transparent; /* Điều chỉnh độ rộng tam giác */
-  border-bottom: 13px solid hsl(36, 80%, 51%);
+  border-bottom: 13px solid #0f79e6;
 }
 
 #profile:hover .menu-user {
   display: block;
-}
-
-.menu-user li a {
-  display: block;
-  padding: 10px;
-  min-width: 100px;
-  border-radius: 5px;
-  text-align: left;
-  font-size: 1.2rem;
-  color: white;
 }

@@ -80,4 +80,3 @@ function createAccount($conn, $username, $password, $name, $email, $tel, $male, 
     $rs = mysqli_query($conn, $sql);
     return $rs;
 }
-?>

@@ -51,4 +51,3 @@ function delOneClassify($conn,$id){
     $rs = mysqli_query($conn,$sql);
     return $rs;
 }
-?>

@@ -1,11 +1,13 @@
-<div class="container category-product main">
-    <div class="list-menu">
-        <a href="index.php">Z3G</a>
-        <span class="separator"> > </span>
-        <span style="font-size: 16px;">
+<div class="list-menuBack">
+    <div class="content-menuBack">
+        <a href="index.php"><i class="fa-solid fa-house"></i> Trang chủ</a>
+        <span class="separator"> <i class="fa-solid fa-angle-right"></i> </span>
+        <span>
             <?= $nameClassify ?>
         </span>
     </div>
+</div>
+<div class="container category-product main">
     <div class="category-product">
         <div class="category-product-list">
             <div class="category-sidebar">

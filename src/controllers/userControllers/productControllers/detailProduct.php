@@ -22,6 +22,7 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
             array_push($_SESSION['cart'], $addcart);
             updateQuantityProduct($conn, 1, $idProduct);
         }
+        success('Thêm vào giỏ hàng thành công', 'index.php?page=details-product&id='.$idProduct);
     }
 }
 $listProduct = getAllProductOfClassify($conn, $detailProduct['maLoai']);

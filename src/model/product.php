@@ -3,19 +3,19 @@ function getAllProduct($conn, $search, $sort, $classify, $startPage, $limit)
 {
     $sql = "SELECT s.*, p.tenLoai FROM sanpham AS s JOIN phanloai AS p ON s.maLoai = p.maloai where 1";
     if ($search != '') {
-        $sql .= " and tenSanPham like '%$search%'";
+        $sql .= " and s.tenSanPham like '%$search%'";
     }
     if ($classify != 0) {
-        $sql .= " and maLoai = '$classify'";
+        $sql .= " and s.maLoai = '$classify'";
     }
     if ($sort == "asc" || $sort == "desc") {
-        $sql .= " order by maSanPham $sort";
+        $sql .= " order by s.maSanPham $sort";
     }
     if ($sort == "0") {
-        $sql .= " order by giaTien asc";
+        $sql .= " order by s.giaTien asc";
     }
     if ($sort == "1") {
-        $sql .= " order by giaTien desc";
+        $sql .= " order by s.giaTien desc";
     }
     if ($startPage != '') {
         $sql .= " limit $startPage, $limit";
@@ -71,5 +71,3 @@ function getCountProduct($conn){
     $resultData = mysqli_query($conn, $sql);
     return $resultData;
 }
-
-?>

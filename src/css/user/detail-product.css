@@ -1,7 +1,7 @@
-.detail-product {
+/* .detail-product {
   padding: 10px 15px;
   border-radius: 5px;
-}
+} */
 
 .content {
   background-color: #ffffff;
@@ -24,26 +24,39 @@
   margin: 0 auto;
   position: sticky;
   top: 89px;
-  padding: 10px 350px;
+  padding: 10px;
   background: rgb(255, 255, 255);
   font-weight: 700;
   font-size: 1.2rem;
   color: rgb(95, 95, 95);
   z-index: 100;
   align-items: center;
+  /* width: 100%;
+  display: flex;
+  margin: 0 auto;
+  padding: 10px;
+  background: rgb(255, 255, 255);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: rgb(95, 95, 95);
+  align-items: center; */
 
-  a {
-    font-size: 1.2rem;
-    color: rgb(95, 95, 95);
-  }
+  .content-menuBack {
+    margin: 0 auto;
+    width: 1200px;
+    a {
+      font-size: 1.2rem;
+      color: rgb(95, 95, 95);
+    }
 
-  a:hover {
-    color: var(--blue-dark-cl);
-  }
+    a:hover {
+      color: var(--blue-dark-cl);
+    }
 
-  span {
-    font-size: 1.2rem;
-    padding: 0 7px;
+    span {
+      font-size: 1.2rem;
+      padding: 0 7px;
+    }
   }
 }
 
@@ -83,11 +96,9 @@
 
 .sss {
   color: #e30019;
-  padding: 1% 0;
-  font-size: 3.2rem;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 40px;
-  padding: 30px 0;
+  padding: 15px 0;
 }
 
 .ssss {

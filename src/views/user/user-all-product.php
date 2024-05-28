@@ -1,13 +1,16 @@
-<div class="container category-product main">
-    <div class="list-menu">
-        <a href="index.php">Z3G</a>
-        <span class="separator"> > </span>
-        <span style="font-size: 16px;">
-            Tất cả sản phẩm
+
+<div class="list-menuBack">
+    <div class="content-menuBack">
+        <a href="index.php"><i class="fa-solid fa-house" style="margin-right: 5px;"></i>Trang chủ</a>
+        <span class="separator"> <i class="fa-solid fa-angle-right"></i> </span>
+        <span>
+            Tất cả sản phẩm    
             <?php if ($_SESSION['search-product'] != '')
-                echo '> Từ khóa tìm kiếm: ' . $_SESSION['search-product']; ?>
+                echo '<span class="separator"> <i class="fa-solid fa-angle-right"></i> </span> Từ khóa tìm kiếm: ' . $_SESSION['search-product']; ?>
         </span>
     </div>
+</div>
+<div class="container category-product main">
     <div class="category-product">
         <div class="category-product-list">
             <div class="category-sidebar">

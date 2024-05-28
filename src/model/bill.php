@@ -111,5 +111,3 @@ function getBillSuccess($conn)
     $resultData = mysqli_query($conn, $sql);
     return $resultData;
 }
-
-?>

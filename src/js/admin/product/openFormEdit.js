@@ -1,37 +1,83 @@
 $(document).on("click", ".list__action-open-edit", function () {
-    var id = $(this).data('id');
-    var name = $(this).closest("tr").find("td:eq(1)").text().trim();
-    var price = $(this).closest("tr").find("td:eq(2)").text().trim();
-    var image = $(this).closest("tr").find("td:eq(3) img").attr("src");
-    var count = $(this).closest("tr").find("td:eq(4)").text().trim();
-    var sale = $(this).closest("tr").find("td:eq(5)").text().trim();
-    var dateSale = $(this).closest("tr").find("td:eq(6)").text().trim();
-    var category = $(this).closest("tr").find("td:eq(7)").text().trim();
-    var des = $(this).closest("tr").find("td:eq(8)").text().trim();
+  var id = $(this).data("id");
+  var name = $(this).closest("tr").find("td:eq(1)").text().trim();
+  var price = $(this).closest("tr").find("td:eq(2)").text().trim();
+  var image = $(this).closest("tr").find("td:eq(3) img").attr("src");
+  var count = $(this).closest("tr").find("td:eq(4)").text().trim();
+  var sale = $(this).closest("tr").find("td:eq(5)").text().trim();
+  var dateSale = $(this).closest("tr").find("td:eq(6)").text().trim();
+  var category = $(this).closest("tr").find("td:eq(7)").text().trim();
+  var des;
 
-    if(dateSale != ''){
-        var parts = dateSale.split("-");
-        var convertedDateSale = parts[2] + "-" + parts[1] + "-" + parts[0];
+  $.ajax({
+    url: "../src/services/admin/editForm.php",
+    type: "POST",
+    dataType: "json",
+    data: {
+      id,
+    },
+    success: function (result) {
+      addForm(
+        image,
+        name,
+        price,
+        count,
+        optionCategoryEdit,
+        sale,
+        convertedDateSale,
+        id,
+        result.data
+      );
+    },
+    error: function (xhr, error) {
+      Swal.fire({
+        title: "Thông báo",
+        text: error,
+        icon: "error",
+        showConfirmButton: true,
+      });
+    },
+  });
+
+  if (dateSale != "") {
+    var parts = dateSale.split("-");
+    var convertedDateSale = parts[2] + "-" + parts[1] + "-" + parts[0];
+  }
+
+  var optionCategoryEdit = "";
+
+  if (selectCategory.options.length > 1) {
+    for (var i = 1; i < selectCategory.options.length; i++) {
+      var option = selectCategory.options[i];
+      if (option.text === category) {
+        optionCategoryEdit +=
+          '<option value="' +
+          option.value +
+          '" selected>' +
+          option.text +
+          "</option>";
+      } else {
+        optionCategoryEdit +=
+          '<option value="' + option.value + '">' + option.text + "</option>";
+      }
     }
-
-    var optionCategoryEdit = '';
-
-    if(selectCategory.options.length>1){
-        for (var i = 1; i < selectCategory.options.length; i++) {
-            var option = selectCategory.options[i];
-            if(option.text === category){
-                optionCategoryEdit += '<option value="' + option.value + '" selected>' + option.text + '</option>';
-            }else{
-                optionCategoryEdit += '<option value="' + option.value + '">' + option.text + '</option>';
-            }
-          }
-    }
-
-    var bodyContainer = document.querySelector(".body__container");
-    bodyContainer.classList.add("form-add-is-open");
-    var addFormEdit = document.createElement("div");
-    addFormEdit.className = "list__form";
-    bodyContainer.appendChild(addFormEdit);
+  }
+  var bodyContainer = document.querySelector(".body__container");
+  bodyContainer.classList.add("form-add-is-open");
+  var addFormEdit = document.createElement("div");
+  addFormEdit.className = "list__form";
+  bodyContainer.appendChild(addFormEdit);
+  function addForm(
+    image,
+    name,
+    price,
+    count,
+    optionCategoryEdit,
+    sale,
+    convertedDateSale,
+    id,
+    des
+  ) {
     addFormEdit.innerHTML = `
             <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 720px;">
                 <div class="list__form-title">
@@ -101,6 +147,6 @@ $(document).on("click", ".list__action-open-edit", function () {
                     <button type="button" onclick="submitProductEdit()">Chỉnh sửa</button>
                 </div>
             </form>`;
-            CKEDITOR.replace('input-des');
+    CKEDITOR.replace("input-des");
+  }
 });
-

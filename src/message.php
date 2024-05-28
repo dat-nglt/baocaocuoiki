@@ -55,5 +55,3 @@ function warning($msg, $link)
         });
     </script>';
 }
-
-?>

@@ -29,5 +29,5 @@ if ($current_page > $total_page) {
 }
 $listNameClassify = getNameClassify($conn);
 $start = ($current_page - 1) * $limitPage;
-$dataProduct = getAllproduct($conn, $_SESSION['search-product'], $_SESSION['sort-product'],$_SESSION['sort-classify-product'], $start, $limitPage); //Lấy dữ liệu từ vị trí của start với số dòng dữ liệu là limitPage
+$dataProduct = getAllproduct($conn, $_SESSION['search-product'], $_SESSION['sort-product'],$_SESSION['sort-classify-product'], $start, $limitPage);
 include('../src/views/admin/product/product.php');

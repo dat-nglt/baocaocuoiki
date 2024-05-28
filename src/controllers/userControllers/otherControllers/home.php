@@ -27,4 +27,3 @@ foreach ($listProduct as $key => $value) {
     $arrayProductFlashSaleSold[$maSanPham1] = mysqli_fetch_assoc(countSold($conn,$maSanPham1));
 }
 include("./views/user/user-homepage.php");
-?>

@@ -52,6 +52,9 @@
             case 'detailbill':
                 include "../src/controllers/adminControllers/productControllers/detailBill.php";
                 break;
+            case 'charts':
+                include "../src/controllers/adminControllers/thongKeController.php";
+                break;
         }
     } else {
         include "../src/controllers/adminControllers/thongKeController.php";
