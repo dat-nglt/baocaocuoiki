@@ -474,11 +474,12 @@
         <span>Danh sách nhập xuất</span><button onclick="openFormAdd()" id="list__add-btn" type="button">Nhập / Xuất Sản
           Phẩm</button>
       </div>
+
       <div style="display:flex; gap: 5px; justify-content: center; padding: 0 0 5px;align-items: center;">
         <fieldset>
           <legend>Tìm kiếm</legend>
           <form action="" method="post" class="admin__form-search">
-            <input type="text" name="search-product" placeholder="Tên sản phẩm" autocomplete="off">
+            <input type="text" name="search__logistics" placeholder="Tên sản phẩm" autocomplete="off">
             <select name="sort__in__out" id="sort__in__out">
               <option value="" <?php if ($_SESSION['sort__in__out'] === "")
                 echo 'selected' ?>>
@@ -594,3 +595,169 @@
     <?php } ?>
   </div>
 </div>
+
+
+<script>
+  var bodyContainer = document.querySelector(".body__container");
+  var selectCategory = document.querySelector("#sort-classify-product");
+
+  function openFormAdd() {
+    var productData =
+      <?php echo json_encode($productData); ?>;
+    var optionCategory = "";
+
+    productData.map((item, index) => {
+      optionCategory +=
+        '<option value="' +
+        item[1] +
+        '">' +
+        item[1] +
+        ' - ' +
+        item[0] +
+        "</option>";
+    })
+    bodyContainer.classList.add("form-add-is-open");
+    var addFormAdd = document.createElement("div");
+    addFormAdd.className = "list__form";
+    bodyContainer.appendChild(addFormAdd);
+    addFormAdd.innerHTML = `
+            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 550px;">
+            <div class="list__form-title">
+                <span><i class="fa-solid fa-book icon"></i>Nhập Xuất Sản Phẩm</span><i class="fa-solid fa-xmark close-icon"
+                onclick="closeFormAdd()"></i>
+            </div>
+            <div class="list__form-content"style="display: block">
+                <div class="list__add-handmade" style="display: block">
+                    <div class="list__form-box">
+                        <label class="list__form-label">Sản phẩm</label>
+                            <select id="logistics__product__name">
+                            ${optionCategory}
+                            </select>
+                    </div>
+                </div>
+                <div class="list__add-handmade">
+                    <div class="list__form-box">
+                        <label class="list__form-label">Trạng thái</label>
+                            <select id="logistics__product__status">
+                            <option value="1">Nhập sản phẩm</option>
+                            <option value="0">Xuất sản phẩm</option>
+                            </select>
+                    </div>
+                    <div class="list__form-box">
+                    <label for="input-count" class="list__form-label">Số lượng <span>*</span></label>
+                        <input type="number" class="list__form-input" id="logistics__product__quantity" required
+                            placeholder="Nhập số lượng" inputmode="numeric" pattern="[0-9]*">
+                    </div>
+
+                </div>
+                <div class="list__add-handmade" style="display:flex; padding: 10px 15px 0 15px;">
+                    <div class="list__form-box" style="flex: 1;">
+                        <label for="input-des" class="list__form-label">Địa chỉ</label>
+                        <textarea id="input-des" placeholder="Nhập địa chỉ nhập xuất hàng hóa"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="list__form-btn">
+                <button type="button" class="close-btn" onclick="closeFormAdd()">Đóng</button>
+                <button type="button" onclick="submitLogistics()" name="add-book" >Thêm</button>
+            </div>
+        </form>`;
+    CKEDITOR.replace('input-des');
+  }
+</script>
+
+<script>
+  function closeFormAdd() {
+    bodyContainer.lastChild.remove();
+    bodyContainer.classList.remove("form-add-is-open");
+  }
+
+  bodyContainer.addEventListener("click", function (e) {
+    if (bodyContainer.classList.contains("form-add-is-open")) {
+      var formAdd = document.querySelector(".list__form");
+      var formAdd1 = document.querySelector(".list__form-add");
+      formAdd.addEventListener("click", function (e) {
+        if (!formAdd1.contains(e.target)) {
+          closeFormAdd();
+        }
+      });
+      formAdd.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+    }
+  });
+
+</script>
+
+<script>
+  function submitLogistics() {
+    var productID = $("#logistics__product__name").val();
+    var statusLogistics = $("#logistics__product__status").val();
+    var quantityLogistics = $("#logistics__product__quantity").val();
+
+    var editor = CKEDITOR.instances['input-des'];
+    var des = editor.getData();
+
+    console.log(productID, statusLogistics, quantityLogistics);
+
+    if (
+      quantityLogistics === ""
+    ) {
+      Swal.fire({
+        title: "Thông báo",
+        text: "Vui lòng nhập số lượng sản phẩm",
+        icon: "warning",
+        showConfirmButton: true,
+      });
+      return;
+    }
+
+    if (
+      productID === "" ||
+      statusLogistics === "" ||
+      quantityLogistics === ""
+    ) {
+      Swal.fire({
+        title: "Thông báo",
+        text: "Vui lòng nhập các thông tin bắt buộc",
+        icon: "warning",
+        showConfirmButton: true,
+      });
+      return;
+    }
+
+    $.ajax({
+      url: "../src/services/admin/logisticsProduct.php",
+      type: "POST",
+      dataType: "json",
+      data: {
+        productID,
+        statusLogistics,
+        quantityLogistics
+      },
+      success: function (result) {
+        Swal.fire({
+          title: "Thông báo",
+          text: result.msg,
+          icon: result.status,
+          showConfirmButton: true,
+        }).then(function () {
+          window.location.assign(result.path);
+        });
+      },
+      error: function (xhr) {
+        console.log(xhr);
+        Swal.fire({
+          title: "Thông báo",
+          text: "Nhập sản phẩm không thành công",
+          icon: "error",
+          showConfirmButton: true,
+        }).then(function () {
+          window.location.assign(
+            "index.php?page=logistics"
+          );
+        });
+      }
+    });
+  };
+</script>
