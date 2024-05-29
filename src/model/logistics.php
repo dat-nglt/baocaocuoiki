@@ -15,7 +15,7 @@ function getAllLogistics($conn, $searchLogistics = null, $sortStatus = null, $so
     $sql .= " AND sanpham.tenSanPham LIKE '%$searchLogistics%'";
   }
 
-  if (!empty($sortStatus)) {
+  if ($sortStatus != '') {
     $sql .= " AND logistics.statusLogistics = '$sortStatus'";
   }
   ;
@@ -31,7 +31,7 @@ function getAllLogistics($conn, $searchLogistics = null, $sortStatus = null, $so
 
 function getAllProductLogistics($conn)
 {
-  $sql = "SELECT s.tenSanPham, s.maSanPham, p.tenLoai FROM sanpham AS s JOIN phanloai AS p ON s.maLoai = p.maloai where 1";
+  $sql = "SELECT s.tenSanPham, s.maSanPham, s.soLuong, p.tenLoai FROM sanpham AS s JOIN phanloai AS p ON s.maLoai = p.maloai where 1";
   $resultData = mysqli_query($conn, $sql);
   return $resultData;
 }

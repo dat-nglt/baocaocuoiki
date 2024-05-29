@@ -2,7 +2,8 @@
 
 function success($msg, $link)
 {
-    echo '<script>
+    if ($link) {
+        echo '<script>
         Swal.fire({
             title: "Thông báo",
             text: "' . $msg . '",
@@ -12,6 +13,18 @@ function success($msg, $link)
             window.location.assign("' . $link . '");
         });
     </script>';
+    } else {
+        echo '<script>
+        Swal.fire({
+            title: "Thông báo",
+            text: "' . $msg . '",
+            icon: "success",
+            showConfirmButton: true,
+        });
+        return;
+    </script>';
+    }
+
 }
 function successAdmin($msg, $adminLink, $homeLink)
 {
@@ -30,7 +43,8 @@ function successAdmin($msg, $adminLink, $homeLink)
 
 function error($msg, $link)
 {
-    echo '<script>
+    if ($link) {
+        echo '<script>
         Swal.fire({
             title: "Thông báo",
             text: "' . $msg . '",
@@ -40,11 +54,23 @@ function error($msg, $link)
             window.location.assign("' . $link . '");
         });
     </script>';
+    } else {
+        echo '<script>
+        Swal.fire({
+            title: "Thông báo",
+            text: "' . $msg . '",
+            icon: "error",
+            showConfirmButton: true,
+        });
+        return;
+    </script>';
+    }
 }
 
 function warning($msg, $link)
 {
-    echo '<script>
+    if ($link) {
+        echo '<script>
         Swal.fire({
             title: "Thông báo",
             text: "' . $msg . '",
@@ -54,4 +80,15 @@ function warning($msg, $link)
             window.location.assign("' . $link . '");
         });
     </script>';
+    } else {
+        echo '<script>
+        Swal.fire({
+            title: "Thông báo",
+            text: "' . $msg . '",
+            icon: "warning",
+            showConfirmButton: true,
+        });
+        return;
+    </script>';
+    }
 }

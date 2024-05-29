@@ -465,6 +465,17 @@
   .cke_contents {
     height: 130px !important;
   }
+
+  .item__add__logistics {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 10px;
+    background: var(--gray-white-cl);
+    border-radius: 5px;
+    color: var(--blue-cl);
+    border: 1px solid var(--blue-cl);
+  }
 </style>
 
 <div class="body__container">
@@ -560,7 +571,6 @@
               } ?>
     </table>
   </div>
-
   <div class="list__paging">
     <div>
       <?php
@@ -608,20 +618,14 @@
 
     productData.map((item, index) => {
       optionCategory +=
-        '<option value="' +
-        item[1] +
-        '">' +
-        item[1] +
-        ' - ' +
-        item[0] +
-        "</option>";
+        '<option class="option__product" value="' + item[1] + '" data-count="' + item[2] + '" data-name="' + item[0] + '">' + item[1] + ' - ' + item[0] + '</option>'
     })
     bodyContainer.classList.add("form-add-is-open");
     var addFormAdd = document.createElement("div");
     addFormAdd.className = "list__form";
     bodyContainer.appendChild(addFormAdd);
     addFormAdd.innerHTML = `
-            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 550px;">
+            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 540px;">
             <div class="list__form-title">
                 <span><i class="fa-solid fa-book icon"></i>Nhập Xuất Sản Phẩm</span><i class="fa-solid fa-xmark close-icon"
                 onclick="closeFormAdd()"></i>
@@ -629,7 +633,7 @@
             <div class="list__form-content"style="display: block">
                 <div class="list__add-handmade" style="display: block">
                     <div class="list__form-box">
-                        <label class="list__form-label">Sản phẩm</label>
+                        <label class="list__form-label">Sản phẩm <span>*</span></label>
                             <select id="logistics__product__name">
                             ${optionCategory}
                             </select>
@@ -637,7 +641,7 @@
                 </div>
                 <div class="list__add-handmade">
                     <div class="list__form-box">
-                        <label class="list__form-label">Trạng thái</label>
+                        <label class="list__form-label">Trạng thái <span>*</span></label>
                             <select id="logistics__product__status">
                             <option value="1">Nhập sản phẩm</option>
                             <option value="0">Xuất sản phẩm</option>
@@ -646,23 +650,45 @@
                     <div class="list__form-box">
                     <label for="input-count" class="list__form-label">Số lượng <span>*</span></label>
                         <input type="number" class="list__form-input" id="logistics__product__quantity" required
-                            placeholder="Nhập số lượng" inputmode="numeric" pattern="[0-9]*">
+                            placeholder="Nhập số lượng..." inputmode="numeric" pattern="[0-9]*">
                     </div>
 
                 </div>
                 <div class="list__add-handmade" style="display:flex; padding: 10px 15px 0 15px;">
                     <div class="list__form-box" style="flex: 1;">
-                        <label for="input-des" class="list__form-label">Địa chỉ</label>
-                        <textarea id="input-des" placeholder="Nhập địa chỉ nhập xuất hàng hóa"></textarea>
+                        <label for="input-des" class="list__form-label">Địa chỉ <span>*</span></label>
+                        <input id="address__logistics" placeholder="Nhập địa chỉ..."></input>
+                    </div>
+                    <div class="list__form-box" style="flex: 1;">
+                        <label for="input-des" class="list__form-label">Ghi chú</label>
+                        <input id="note__logistics" placeholder="Nhập ghi chú..."></input>
+                    </div>
+                </div>
+                <div class="list__add-handmade" style="display:flex; padding: 10px 15px 0 15px;">
+                    <div class="list__form-box" style="flex: 1;">
+                        <label for="input-des" class="list__form-label">Danh sách nhập / xuất</label>
+                        <div  id="container__list__logistics" style="width: 100%;
+                        border: 1px solid #333;
+                        height: 150px;
+                        border-radius: 5px;
+                        overflow: scroll;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        padding: 5px;
+                        overflow-x: hidden;
+                        ">
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="list__form-btn">
                 <button type="button" class="close-btn" onclick="closeFormAdd()">Đóng</button>
-                <button type="button" onclick="submitLogistics()" name="add-book" >Thêm</button>
+                <button type="button" class="close-btn" onclick="addListLogstics()" style="background-color: blue;">Thêm</button>
+                <button type="button" onclick="submitLogistics()" name="add-book" >Xác nhận</button>
             </div>
         </form>`;
-    CKEDITOR.replace('input-des');
+    // CKEDITOR.replace('input-des');
   }
 </script>
 
@@ -690,15 +716,25 @@
 </script>
 
 <script>
-  function submitLogistics() {
+
+</script>
+
+<script>
+  var listDataLogistics = [];
+  function addListLogstics() {
     var productID = $("#logistics__product__name").val();
+    var productName = $(".option__product:selected").data('name');
+    var productQuantityInStock = $(".option__product:selected").data('count');
     var statusLogistics = $("#logistics__product__status").val();
     var quantityLogistics = $("#logistics__product__quantity").val();
+    var addressLogistics = $("#address__logistics").val();
+    var noteLogistics = $("#note__logistics").val();
 
-    var editor = CKEDITOR.instances['input-des'];
-    var des = editor.getData();
+    var itemListDataLogistics = [productID, quantityLogistics, addressLogistics, noteLogistics, statusLogistics];
 
-    console.log(productID, statusLogistics, quantityLogistics);
+    listDataLogistics.push(itemListDataLogistics);
+
+    console.log(listDataLogistics);
 
     if (
       quantityLogistics === ""
@@ -713,7 +749,20 @@
     }
 
     if (
+      quantityLogistics > productQuantityInStock && statusLogistics == '0'
+    ) {
+      Swal.fire({
+        title: "Thông báo",
+        text: `Số lượng tồn kho không đủ để xuất sản phẩm`,
+        icon: "warning",
+        showConfirmButton: true,
+      });
+      return;
+    }
+
+    if (
       productID === "" ||
+      addressLogistics === "" ||
       statusLogistics === "" ||
       quantityLogistics === ""
     ) {
@@ -726,14 +775,32 @@
       return;
     }
 
+    statusLogistics = statusLogistics === '1' ? 'Nhập sản phẩm' : 'Xuất sản phẩm';
+    var newItem = $(`<div class="item__add__logistics">` +
+      `<strong>${productName}</strong>` +
+      `<strong>Số lượng: ${quantityLogistics}</strong>` +
+      `<strong>Trạng thái: ${statusLogistics}</strong>` +
+      `</div>`);
+    var containerDataListLogistics = $('#container__list__logistics');
+    containerDataListLogistics.append(newItem);
+  }
+
+  function submitLogistics() {
+    if (listDataLogistics.length <= 0) {
+      Swal.fire({
+        title: "Thông báo",
+        text: "Không có dữ liệu nhập xuất",
+        icon: "warning",
+        showConfirmButton: true,
+      });
+      return;
+    }
     $.ajax({
       url: "../src/services/admin/logisticsProduct.php",
       type: "POST",
       dataType: "json",
       data: {
-        productID,
-        statusLogistics,
-        quantityLogistics
+        listDataLogistics
       },
       success: function (result) {
         Swal.fire({
@@ -742,13 +809,14 @@
           icon: result.status,
           showConfirmButton: true,
         }).then(function () {
-          window.location.assign(result.path);
+          window.location.assign(
+            result.path
+          );
         });
       },
       error: function (xhr) {
-        console.log(xhr);
         Swal.fire({
-          title: "Thông báo",
+          title: "Warning",
           text: "Nhập sản phẩm không thành công",
           icon: "error",
           showConfirmButton: true,
