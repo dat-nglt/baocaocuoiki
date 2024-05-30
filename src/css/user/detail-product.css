@@ -276,24 +276,24 @@ h2.pt-2.fw-bold {
 
 button.slick-next.slick-arrow {
   background: none;
-  right: 25px;
+  right: 20px;
   cursor: pointer;
 }
 
 button.slick-prev.slick-arrow {
   background: none;
-  left: 15px;
+  left: 20px;
   cursor: pointer;
 }
 
 button.slick-next.slick-arrow::after {
-  content: "\21DD";
+  content: "\276F";
   font-size: 5rem;
   color: black;
 }
 
 button.slick-prev.slick-arrow::before {
-  content: "\21DC";
+  content: "\276E";
   font-size: 5rem;
   color: black;
 }

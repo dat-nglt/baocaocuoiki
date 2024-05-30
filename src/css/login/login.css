@@ -10,18 +10,24 @@
   justify-content: center;
 }
 
-#form-login {
-  display: block;
+#form-forget,
+#form-login,
+#form-signin {
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
 }
 
+#form-login {
+  display: block;
+}
+
 #form-signin {
   display: none;
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
+}
+
+#form-forget {
+  display: none;
 }
 
 #login__title {

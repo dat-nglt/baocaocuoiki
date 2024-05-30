@@ -67,29 +67,20 @@
                         <input type="hidden" name="tensanpham" value="<?= $detailProduct['tenSanPham'] ?>">
                         <input type="hidden" name="giasanpham" value="<?= $price ?>">
                         <input type="hidden" name="hinhanh" value="<?= $detailProduct['hinhAnh'] ?>">
-                        <?php if (isset($_SESSION['user'])) { ?>
-                            <button class="button-buy" <?php if ($detailProduct['soLuong'] <= 0) {
-                                echo ' disabled style="background-color: gray; width: 400px;"';
-                            } else {
-                                echo 'style="background: seagreen; width: 400px; cursor: pointer; margin-top: 10px;"';
-                            } ?> id="button-buy-now" type="submit"
-                                name="addtocart">
-                                MUA NGAY <p style="font-size: 1.4rem; margin-top: 3px; font-weight: 400;">Giao tận nơi hoặc
+                        <?php if ($detailProduct['soLuong'] <= 0) { ?>
+                            <button class="button-buy" disabled
+                                style="background-color: gray; width: 400px; margin-top: 10px;" id="button-buy-now"
+                                    name="addtocart">
+                                LIÊN HỆ <p style="font-size: 1.4rem; margin-top: 3px; font-weight: 400;">(1900 2601) để nhận
+                                    thông tin khi có hàng!</p></button>
+                        <?php } else { ?>
+                            <button class="button-buy"
+                                style="background: seagreen; width: 400px; cursor: pointer; margin-top: 10px;" ;
+                                id="button-buy-now" type="submit" name="addtocart">
+                                MUA NGAY <p style="font-size: 1.4rem; margin-top: 3px; font-weight: 400;">Giao tận nơi
+                                    hoặc
                                     nhận
                                     tại cửa hàng</p></button>
-                        <?php } else { ?>
-                            <a href="http://localhost/baocaocuoiki/src/index.php?page=login">
-                                <button class="button-buy" <?php if ($detailProduct['soLuong'] <= 0) {
-                                    echo ' disabled style="background-color: gray; width: 400px;"';
-                                } else {
-                                    echo 'style="background: seagreen; width: 400px; cursor: pointer; margin-top: 10px;"';
-                                } ?> id="button-buy-now"
-                                    type="button" name="addtocart">
-                                    MUA NGAY <p style="font-size: 1.4rem; margin-top: 3px; font-weight: 400;">Giao tận nơi
-                                        hoặc
-                                        nhận
-                                        tại cửa hàng</p></button>
-                            </a>
                         <?php } ?>
                         <div class="service-gift">
                             <div class="service-product">

@@ -1,6 +1,6 @@
 <footer class="container footer">
     <div class="footer-item introduce"><span>Giới thiệu</span>
-        <a href="index.php"><img src="./img/logo.png" alt=""></a>
+        <a href="index.php"><img src="./img/logo-footer.png" alt=""></a>
         <a href="#"><b>Z3G - Tech</b> Thế giới công nghệ </a>
         <a href="#"><b>Địa chỉ: </b>482/17 Đường 30/4 Phường Hưng Lợi, Quận Ninh Kiều, Tp Cần Thơ</a>
     </div>

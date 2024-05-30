@@ -10,7 +10,7 @@
         <div class="product-cart">
             <?php
             if (count($_SESSION['cart']) < 1) { ?>
-                <div id="meme">Không có sản phẩm trong giỏ hàng</div>
+                <div id="meme">Bạn chưa thêm bất kì sản phẩm nào!</div>
             <?php } else {
                 foreach ($_SESSION['cart'] as $key => $value) {
                     ?>

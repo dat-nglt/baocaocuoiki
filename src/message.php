@@ -2,7 +2,7 @@
 
 function success($msg, $link)
 {
-    if ($link) {
+    if ($link != '') {
         echo '<script>
         Swal.fire({
             title: "Thông báo",
@@ -43,7 +43,7 @@ function successAdmin($msg, $adminLink, $homeLink)
 
 function error($msg, $link)
 {
-    if ($link) {
+    if ($link != '') {
         echo '<script>
         Swal.fire({
             title: "Thông báo",
@@ -69,7 +69,7 @@ function error($msg, $link)
 
 function warning($msg, $link)
 {
-    if ($link) {
+    if ($link != '') {
         echo '<script>
         Swal.fire({
             title: "Thông báo",

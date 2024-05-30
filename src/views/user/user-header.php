@@ -59,25 +59,21 @@
                         style="color: rgb(255, 255, 255); cursor: pointer"></i></button>
             </fieldset>
         </form>
+        <a href="index.php?page=cart" style="position: relative;">
+            <i class="fa-solid fa-cart-shopping" style="color: rgb(255, 255, 255);"></i>
+            <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) { ?>
+                <span
+                    style="position: absolute; font-size: 14px; background: #f90000; width: 20px; height: 19px; text-align: center; color: #fff; font-weight: 600; border-radius: 50%; top: -3px; left: 20px;">
+                    <?php echo count($_SESSION['cart']); ?>
+                </span>
+            <?php } ?>
+        </a>
         <?php if (isset($_SESSION['user'])) {
-            echo '<a href="index.php?page=cart"
-            style="position: relative;"
-            ><i class="fa-solid fa-cart-shopping" style="color: rgb(255, 255, 255);"></i> <span style="
-            position: absolute;
-            font-size: 14px;
-            background: #f90000;
-            width: 20px;
-            height: 19px;
-            text-align: center;
-            color: #fff;
-            font-weight: 600;
-            border-radius: 50%;
-            top: -3px;
-            left: 20px;">'. count($_SESSION['cart']) .'</span></a>';
+
             echo '<div id="profile"><a href="index.php?page=profile"><i title="Hồ sơ" class="fa-solid fa-user" id="profile-icon" style="color: rgb(255, 255, 255); cursor: pointer"></i></a>
                     <ul class="menu-user">' ?>
             <?php if (isset($_SESSION['user']) && $_SESSION['user']['quyenTruyCap'] == '2') {
-                echo '<li> <a target="_blank" href="http://localhost/baocaocuoiki/admin/index.php">Quản Trị Viên</a> </li>';
+                echo '<li> <a target="_blank" href="http://localhost/baocaocuoiki/admin/index.php?page=charts">Quản Trị Viên</a> </li>';
             } ?>
             <?php
             echo '          <li> <a href="index.php?page=profile">Hồ Sơ Cá Nhân</a> </li>

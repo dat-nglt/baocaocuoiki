@@ -467,14 +467,14 @@
   }
 
   .item__add__logistics {
+    font-size: 12px;
     display: flex;
     flex-direction: column;
     text-align: left;
-    padding: 10px;
-    background: var(--gray-white-cl);
+    padding: 6px;
     border-radius: 5px;
     color: var(--blue-cl);
-    border: 1px solid var(--blue-cl);
+    border: 2px solid var(--blue-cl);
   }
 </style>
 
@@ -732,10 +732,6 @@
 
     var itemListDataLogistics = [productID, quantityLogistics, addressLogistics, noteLogistics, statusLogistics];
 
-    listDataLogistics.push(itemListDataLogistics);
-
-    console.log(listDataLogistics);
-
     if (
       quantityLogistics === ""
     ) {
@@ -759,6 +755,10 @@
       });
       return;
     }
+
+    listDataLogistics.push(itemListDataLogistics);
+
+    console.log(statusLogistics);
 
     if (
       productID === "" ||

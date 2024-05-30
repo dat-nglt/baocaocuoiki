@@ -7,6 +7,9 @@
         <!-- <a href="?controller=admin&action=dashboard">
             <li><i class="fa-solid fa-house icon"></i>Trang chủ</li>
         </a> -->
+        <a href="index.php?page=charts">
+            <li><i class="fa-solid fa-chart-simple icon"></i> <span>Thống kê</span></li>
+        </a>
         <a href="index.php?page=listaccounts">
             <li><i class="fa-solid fa-user-group icon"></i><span>Tài khoản</span></li>
         </a>
@@ -22,9 +25,7 @@
         <a href="index.php?page=logistics">
             <li><i class="fa-solid fa-database icon"></i> <span>Nhập xuất</span></li>
         </a>
-        <a href="index.php?page=charts">
-            <li><i class="fa-solid fa-chart-simple icon"></i> <span>Thống kê</span></li>
-        </a>
+
         <a href="http://localhost/baocaocuoiki/src/index.php">
             <li><i class="fa-solid fa-right-to-bracket fa-rotate-180 icon"></i>Trang chủ</li>
         </a>
