@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 29, 2024 lúc 06:19 AM
+-- Thời gian đã tạo: Th5 30, 2024 lúc 07:28 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -24,59 +24,71 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `logistics`
+-- Cấu trúc bảng cho bảng `donhang`
 --
 
-CREATE TABLE `logistics` (
-  `id` int(11) NOT NULL,
-  `idProduct` int(11) NOT NULL,
-  `quantityLogistics` int(11) NOT NULL,
-  `timeLogistics` datetime NOT NULL DEFAULT current_timestamp(),
-  `addessLogistics` varchar(500) NOT NULL,
-  `noteLogistics` varchar(500) NOT NULL,
-  `statusLogistics` int(11) NOT NULL
+CREATE TABLE `donhang` (
+  `maDonHang` int(11) NOT NULL,
+  `maNguoiDung` int(11) NOT NULL,
+  `thoiGian` date NOT NULL,
+  `trangThai` tinyint(1) NOT NULL DEFAULT 0,
+  `thanhTien` int(15) NOT NULL DEFAULT 0,
+  `diaChi` varchar(255) NOT NULL,
+  `hoTen` varchar(255) NOT NULL,
+  `soDienThoai` varchar(15) NOT NULL,
+  `ghiChu` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `logistics`
+-- Đang đổ dữ liệu cho bảng `donhang`
 --
 
-INSERT INTO `logistics` (`id`, `idProduct`, `quantityLogistics`, `timeLogistics`, `addessLogistics`, `noteLogistics`, `statusLogistics`) VALUES
-(1, 43, 20, '2024-05-29 00:46:33', 'a', 'a', 1),
-(2, 43, 30, '2024-05-29 11:09:35', 'AAA', 'aaaa', 1),
-(3, 12, 1, '2024-05-29 11:13:30', 'AAA', 'aaaa', 1),
-(4, 12, 1, '2024-05-29 11:18:26', 'AAA', 'aaaa', 0);
+INSERT INTO `donhang` (`maDonHang`, `maNguoiDung`, `thoiGian`, `trangThai`, `thanhTien`, `diaChi`, `hoTen`, `soDienThoai`, `ghiChu`) VALUES
+(26, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(27, 169, '2024-05-27', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(28, 169, '2024-05-26', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(29, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(30, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(31, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(32, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(33, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(34, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(35, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(36, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(37, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(38, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng'),
+(39, 169, '2024-05-28', 0, 244594000, 'Mỹ Tho', 'Người già', '0836752977', 'Bom hàng');
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Chỉ mục cho bảng `logistics`
+-- Chỉ mục cho bảng `donhang`
 --
-ALTER TABLE `logistics`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_logistics_product` (`idProduct`);
+ALTER TABLE `donhang`
+  ADD PRIMARY KEY (`maDonHang`),
+  ADD KEY `thanhTienNguoiDung` (`maNguoiDung`) USING BTREE;
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT cho bảng `logistics`
+-- AUTO_INCREMENT cho bảng `donhang`
 --
-ALTER TABLE `logistics`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `donhang`
+  MODIFY `maDonHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Các ràng buộc cho bảng `logistics`
+-- Các ràng buộc cho bảng `donhang`
 --
-ALTER TABLE `logistics`
-  ADD CONSTRAINT `fk_logistics_product` FOREIGN KEY (`idProduct`) REFERENCES `sanpham` (`maSanPham`) ON DELETE CASCADE;
+ALTER TABLE `donhang`
+  ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`maNguoiDung`) REFERENCES `nguoidung` (`maNguoiDung`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

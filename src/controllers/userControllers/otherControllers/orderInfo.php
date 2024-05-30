@@ -18,8 +18,6 @@ if (count($_SESSION['cart']) > 0) {
                 addDetailBill($conn, $last_id, $_SESSION['cart'][$key][0], $_SESSION['cart'][$key][3], $_SESSION['cart'][$key][4], $_SESSION['cart'][$key][5]);
             }
             unset($_SESSION['cart']);
-            if ($add) {
-            } 
             exit();
         }
     } else {

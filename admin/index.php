@@ -34,6 +34,7 @@
     include ("../src/model/classify.php");
     include ("../src/model/logistics.php");
     include ("../src/model/bill.php");
+    include ("../src/model/chart.php");
     include ("../src/message.php");
     include ("../src/views/admin/admin-header.php");
     $limitPage = 15;

@@ -1,6 +1,10 @@
 <div class="container user-cart">
+    <div class="sale-prodoct-header">
+        <div id="title">
+            Thông tin sản phẩm
+        </div>
+    </div>
     <div class="product-cart">
-        <div class="pay-title">Danh Sách Sản Phẩm Đã Thêm</div>
         <?php
         foreach ($_SESSION['cart'] as $key => $value) {
             ?>
@@ -56,9 +60,10 @@
             </div>
             <div class="total-pay">
                 <label for="">Tạm tính:</label>
-                <div class="price"><?=number_format($thanhtien, 0, '.', '.')?> <span id="vnd"> &#8363;</span></div>
+                <div class="price"><?= number_format($thanhtien, 0, '.', '.') ?> <span id="vnd"> &#8363;</span></div>
             </div>
-            <button id="orderButton" type="submit" name="order-btn" style="background-color: #ff9a00;" class="button-buy">Đặt hàng</button>
+            <button id="orderButton" type="submit" name="order-btn" style="background-color: #ff9a00;"
+                class="button-buy">Đặt hàng</button>
         </form>
     </div>
 </div>

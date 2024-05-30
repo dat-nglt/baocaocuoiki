@@ -17,7 +17,11 @@
 }
 
 .user-header {
-  background: linear-gradient(180deg, rgb(0 69 171) 22%, rgb(110 178 255) 100%);
+  background: linear-gradient(
+    180deg,
+    rgb(0 69 171) 22%,
+    rgb(110 178 255) 100%
+  );
   display: flex;
   justify-content: space-around;
   position: fixed;
@@ -26,7 +30,8 @@
   right: 0;
   z-index: 1000;
   padding: 0 50px;
-  box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 2);
+  box-shadow: 0px 0px 5px 1px
+    rgba(88, 88, 83, 2);
 }
 
 .user-header .menu {
@@ -56,6 +61,14 @@
   font-size: 2.5rem;
   gap: 30px;
 }
+
+.user-header .user a:hover i,
+.user-header a:hover,
+.user-header .user button:hover i,
+.filter a:hover {
+  color: hsl(0, 0%, 73%) !important;
+}
+
 /* 
 .user-header .user button {
   position: relative;
@@ -77,13 +90,6 @@
 
 .user-header .user input::placeholder {
   color: rgb(255, 255, 255);
-}
-
-.user-header .user a:hover i,
-.user-header a:hover,
-.user-header .user button:hover i,
-.filter a:hover {
-  color: hsl(0, 0%, 73%) !important;
 } */
 
 .menu-user {
@@ -109,11 +115,16 @@
 
 .menu-user li a:hover {
   color: #0f79e6;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  );
 }
 
 .menu-user::after {
-  content: "";
+  content: '';
   position: absolute;
   top: -8px;
   right: 7px;

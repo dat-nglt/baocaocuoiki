@@ -299,7 +299,7 @@ button.slick-prev.slick-arrow::before {
 }
 
 .slick-initialized .slick-slide:hover {
-  background: rgb(47 169 247);
+  background: rgb(194, 226, 247);
 }
 
 .gift-title {
