@@ -69,8 +69,7 @@
                         <input type="hidden" name="hinhanh" value="<?= $detailProduct['hinhAnh'] ?>">
                         <?php if ($detailProduct['soLuong'] <= 0) { ?>
                             <button class="button-buy" disabled
-                                style="background-color: gray; width: 400px; margin-top: 10px;" id="button-buy-now"
-                                    name="addtocart">
+                                style="background-color: gray; width: 400px; margin-top: 10px;">
                                 LIÊN HỆ <p style="font-size: 1.4rem; margin-top: 3px; font-weight: 400;">(1900 2601) để nhận
                                     thông tin khi có hàng!</p></button>
                         <?php } else { ?>

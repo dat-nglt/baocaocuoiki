@@ -12,6 +12,14 @@
                     <span class="error_message">Địa chỉ Email không được để trống &lowast;</span>
                 </fieldset>
             </div>
+            <div class="login__input__box">  
+                <fieldset class="fieldset-login">
+                    <legend>Địa chỉ Email</legend>
+                    <input class="input_login" type="email" id="forgot-password-input"
+                        placeholder="Email đăng kí tài khoản hiện tại..." />
+                    <span class="error_message">Địa chỉ Email không được để trống &lowast;</span>
+                </fieldset>
+            </div>
             <button onclick="sendOTPEmail()" type="button" class="submit_login_btn" id="submit-forgot-input"
                 name="login">
                 Gửi
@@ -295,9 +303,9 @@
 
 </script>
 
-<!-- <script src="./js/login.js">
-</script> -->
-<!-- <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+<script src="./js/login.js">
+</script>
+<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="text/javascript">
     (function () {
@@ -331,4 +339,34 @@
                 console.log('Failed to send email:', error);
             });
     }
-</script> -->
+</script>
+<script>
+    const button = document.getElementById('submit-forgot-input');
+
+let timeRemaining = 0;
+let intervalId;
+
+button.addEventListener('click', () => {
+  if (timeRemaining === 0) {
+    timeRemaining = 60;
+    updateTimeRemainingDisplay();
+    intervalId = setInterval(decrementTimeRemaining, 1000);
+    button.disabled = true;
+  }
+});
+
+function decrementTimeRemaining() {
+  timeRemaining--;
+  updateTimeRemainingDisplay();
+
+  if (timeRemaining === 0) {
+    clearInterval(intervalId);
+    button.disabled = false;
+    button.textContent = 'Gửi lại';
+  }
+}
+
+function updateTimeRemainingDisplay() {
+    button.textContent = `Vui lòng chờ ${timeRemaining} giây`;
+}
+</script>

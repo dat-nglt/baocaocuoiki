@@ -23,7 +23,7 @@ if (!$conn) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $accountSignIn = $_POST['accountSignIn'];
   $emailSignIn = $_POST['emailSignIn'];
-  $passwordSignInConfirm = $_POST['passwordSignInConfirm'];
+  $passwordSignInConfirm = password_hash($_POST['passwordSignInConfirm'], PASSWORD_DEFAULT);
 
   $checkAccountSQL = "SELECT * FROM nguoidung WHERE tenTaiKhoan = '$accountSignIn'";
   $checkEmailSQL = "SELECT * FROM nguoidung WHERE email = '$emailSignIn'";

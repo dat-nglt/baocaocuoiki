@@ -70,7 +70,7 @@
     </div>
     <div id="title_chart"></div>
     <div class="chart_container">
-      <div id="chart_logistics"></div>
+      <canvas width="1100px" height="400px" id="myChart"></canvas>
     </div>
   </div>
 
@@ -78,36 +78,32 @@
 
 <style>
   #title_chart {
-    margin: 20px auto 10px;
+    margin: 20px auto 30px;
     font-size: 20px;
     font-weight: 600;
     color: var(--blue-white-cl);
     text-transform: uppercase;
-    width: 90%;
+    width: 1100px;
 
   }
 
   .chart_container {
+    /* position: relative; */
     display: flex !important;
     height: 400px;
     flex-direction: column !important;
-    width: 90%;
+    width: 1100px;
     margin: 0 auto;
   }
 
-
-  #chart_logistics {
-    flex: 1;
-  }
-
-  .canvasjs-chart-canvas {}
-
-  .canvasjs-chart-credit {
-    display: none !important;
+  canvas#myChart {
+    width: 1100px !important;
   }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>\
 <script>
+
   window.onload = function () {
     const titleChart = $('.option_filt_chart:selected').text();
     const optionChart = $('#filt_option_chart').val();
@@ -128,62 +124,57 @@
   }
 
   function chartBills(billChartData) {
-    var chart = new CanvasJS.Chart("chart_logistics", {
-      animationEnabled: true,
-      theme: "light2", // "light1", "light2", "dark1", "dark2"
-      title: {
-        text: "Đơn hàng"
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: billChartData.map((bill) => bill[1]),
+        datasets: [{
+          color: 'rgba(255, 255, 255, 1)',
+          label: 'Đơn hàng',
+          data: billChartData.map((bill) => bill[0]),
+          borderWidth: 1
+        }]
       },
-      axisY: {
-        title: "Số lượng đơn hàng đã bán",
-        suffix: "đơn"
-      },
-      axisX: {
-        title: "Thời gian"
-      },
-      data: [{
-        type: "column",
-        yValueFormatString: "#,###\" đơn hàng\"",
-        dataPoints:
-          billChartData.map((bill, index) => {
-            return { label: bill[1], y: parseInt(bill[0]) }
-          })
-      }]
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            color: 'red'
+          }
+        }
+      }
     });
-    chart.render();
   }
   function chartLogistics(inLogistics = 0, outLogistics = 0) {
-    var chart = new CanvasJS.Chart("chart_logistics", {
-      exportEnabled: true,
-      animationEnabled: true,
-      title: {
-        text: "Logistics"
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Tháng 1', 'Tháng 2', 'Tháng 3'],
+        datasets: [{
+          label: 'Nhập',
+          data: [12, 13, 15],
+          borderWidth: 1
+        }, {
+          label: 'Xuất',
+          data: [19, 11, 18],
+          borderWidth: 1
+        }],
       },
-      legend: {
-        cursor: "pointer",
-        itemclick: explodePie
-      },
-      data: [{
-        type: "pie",
-        showInLegend: true,
-        toolTipContent: "{name}: <strong>{y}%</strong>",
-        indexLabel: "{name} - {y}%",
-        dataPoints: [
-          { y: inLogistics, name: "Nhập sản phẩm" },
-          { y: outLogistics, name: "Xuất sản phẩm" },
-        ]
-      }]
-    });
-    chart.render();
-    function explodePie(e) {
-      if (typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
-        e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
-      } else {
-        e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Chart.js Floating Bar Chart'
+          }
+        }
       }
-      e.chart.render();
-
-    }
+    });
   }
 
 </script>

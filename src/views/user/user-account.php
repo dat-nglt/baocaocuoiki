@@ -56,21 +56,27 @@
         <button id="submit-info-account" type="submit" name="save-profile">Lưu Thông Tin</button>
     </form>
     
-    <form action="" method="post" id="info-password-form" style="display:none">
+    <form action="" method="post" id="info-password-form" style="display:none; text-align: center;">
         <div class="info-user-form" style="display:block">
             <div class="info-field-account">
-                <label style="min-width:200px">Mật Khẩu Mới</label>
+                <label style="min-width:200px; text-align: left;">Mật khẩu cũ</label>
+                <input id="password-current" type="password" required name="password-current">
+            </div>
+        </div>
+        <div class="info-user-form" style="display:block">
+            <div class="info-field-account">
+                <label style="min-width:200px; text-align: left;">Mật khẩu mới</label>
                 <input id="password-field" type="password" required name="password-field">
             </div>
         </div>
         <div class="info-user-form" style="display:block">
             <div class="info-field-account">
-                <label style="min-width:200px">Xác Nhận Mật Khẩu Mới</label>
+                <label style="min-width:200px; text-align: left;">Xác nhận mật khẩu mới</label>
                 <input id="repassword-field" type="password" required name="repassword-field">
             </div>
         </div>
         <span id="warning-pass" style="color: red; margin-left: 20px; display: none">Mật khẩu không trùng khớp</span>
-        <button id="submit-pass-account" type="submit" name="save-password">Lưu Thông Tin</button>
+        <button id="submit-pass-account" type="submit" name="save-password">Xác nhận</button>
     </form>
 </div>
 <script src="./js/homepage.js"></script>

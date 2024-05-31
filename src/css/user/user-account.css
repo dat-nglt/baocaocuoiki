@@ -2,7 +2,7 @@
   position: relative;
   top: 110px;
   width: 1100px;
-  height: 360px;
+  height: fit-content;
   margin: auto;
   padding: 20px;
   background-color: rgb(255, 255, 255);
@@ -38,7 +38,6 @@
 #check-sex {
   display: inline-block;
   min-width: 150px;
-  text-transform: capitalize;
   margin-bottom: 5px;
   font-weight: bold;
   font-size: 1.5rem;
@@ -67,7 +66,7 @@
 #submit-info-account {
   cursor: pointer;
   color: #fff;
-  text-transform: capitalize;
+  text-transform: uppercase;
   font-weight: bold;
   display: block;
   width: 30%;
@@ -75,7 +74,7 @@
   border-radius: 5px;
   border: none;
   background-color: rgb(9, 86, 186);
-  margin: 5px auto;
+  margin: 10px auto;
   transition: scale 0.2s ease;
 }
 

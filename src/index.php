@@ -91,8 +91,7 @@
         include "./controllers/userControllers/otherControllers/home.php";
     }
 
-    include ("./views/user/user-footer.php");
-    ?>
+    include ("./views/user/user-footer.php"); ?>
 </body>
 
 </html>
