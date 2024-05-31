@@ -89,6 +89,9 @@
             case 'forgot-password':
                 include "./controllers/userControllers/accountControllers/forgotPassword.php";
                 break;
+            case 'reset-password':
+                include "./controllers/userControllers/accountControllers/resetPassword.php";
+                break;
             default:
                 include "./controllers/userControllers/otherControllers/home.php";
                 break;

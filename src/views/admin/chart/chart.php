@@ -88,7 +88,6 @@
   }
 
   .chart_container {
-    /* position: relative; */
     display: flex !important;
     height: 400px;
     flex-direction: column !important;
@@ -124,6 +123,36 @@
         <?php echo json_encode($billChartData); ?>;
       chartBills(billChartData)
     }
+    else if (optionChart == 'sales') {
+      var salesChartData =
+        <?php echo json_encode($salesChartData); ?>;
+      chartSales(salesChartData)
+    }
+  }
+
+
+  function chartSales(salesChartData) {
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: salesChartData.map((bill) => bill[1]),
+        datasets: [{
+          color: 'rgba(255, 255, 255, 1)',
+          label: 'Doanh thu (VND)',
+          data: salesChartData.map((bill) => bill[0]),
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            color: 'red'
+          }
+        }
+      }
+    });
   }
 
   function chartBills(billChartData) {
@@ -150,7 +179,6 @@
     });
   }
   function chartLogistics(maxDate = [], additionQuantityChart = [], minusQuantityChart = []) {
-
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
       type: 'bar',

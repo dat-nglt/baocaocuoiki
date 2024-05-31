@@ -50,3 +50,24 @@ function getLogisticsQuantity($conn, $time, $status)
   return $resultData;
 }
 
+function salesLogistics($conn, $time)
+{
+  $sql = "SELECT SUM(donhang.thanhTien), donhang.thoiGian, donhang.trangThai 
+  FROM donhang 
+  WHERE donhang.trangThai = 0 
+  AND DATE(donhang.thoiGian) 
+  BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE()
+  GROUP BY donhang.thoiGian";
+  if ($time > 30) {
+    $sql = "SELECT SUM(donhang.thanhTien),  DATE_FORMAT(donhang.thoiGian, '%Y-%m') AS monthLogistics, donhang.thoiGian, donhang.trangThai 
+    FROM donhang 
+    WHERE donhang.trangThai = 0 
+    AND DATE(donhang.thoiGian) 
+    BETWEEN DATE_SUB(CURDATE(), INTERVAL $time DAY) AND CURDATE()
+    GROUP BY monthLogistics;";
+  }
+
+  $resultData = mysqli_query($conn, $sql);
+  return $resultData;
+}
+

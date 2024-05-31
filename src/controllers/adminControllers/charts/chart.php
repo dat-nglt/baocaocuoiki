@@ -7,7 +7,11 @@ $_SESSION['sort_chart_date'] = isset($_POST['sort_chart_date']) ? $_POST['sort_c
 
 $minusQuantityChart = mysqli_fetch_all(getLogisticsQuantity($conn, $_SESSION['sort_chart_date'], 0));
 $additionQuantityChart = mysqli_fetch_all(getLogisticsQuantity($conn, $_SESSION['sort_chart_date'], 1));
+
 $billChartData = mysqli_fetch_all(billChart($conn, $_SESSION['sort_chart_date']));
+
+$salesChartData = mysqli_fetch_all(salesLogistics($conn, $_SESSION['sort_chart_date']));
+
 
 
 require_once '../src/views/admin/chart/chart.php';

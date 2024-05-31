@@ -103,6 +103,18 @@
 </div>
 
 <script>
+    const submitLoginBtn = $('#submit-login-input');
+    const inputLoginCheck = document.querySelectorAll(".input_login");
+    inputLoginCheck.forEach((input) => {
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                submitLoginBtn.click();
+            }
+        });
+    });
+</script>
+
+<script>
 
     var login_or_register = true;
     var show = false;

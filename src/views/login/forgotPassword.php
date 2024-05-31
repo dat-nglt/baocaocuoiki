@@ -44,31 +44,66 @@
         });
     }
 
-    function setTimeCD(){
-        const buttonSendAgain = document.querySelector('.button-send-again');
-            let timeRemaining = 0;
-            let intervalId;
+    function confirmOTP() {
+        const inputOTPCode = $('#input-OTP').val();
+        const sessionOTP = sessionStorage.getItem('passOTP');
+        const sessionEmail = sessionStorage.getItem('emailForgot');
+        if (sessionOTP == inputOTPCode && sessionEmail) {
+            $.ajax({
+                url: "../src/services/OTPsessionService.php",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    sessionOTP,
+                },
+                success: function (result) {
+                    window.location.assign("http://localhost/baocaocuoiki/src/index.php?page=reset-password");
+                },
+                error: function (xhr, error) {
+                    notification({
+                        status: "error",
+                        msg: "Đã có lỗi xảy ra",
+                        path: "",
+                    });
+                    return;
+                },
+            });
+        }
+        else {
+            notification({
+                status: "warning",
+                msg: "Mã OTP không chính xác!",
+                path: "",
+            });
+            return;
+        }
+    }
+    function setTimeCD() {
+        const buttonSendAgain = $('.button-send-again');
+        let timeRemaining = 0;
+        let intervalId;
+        if (timeRemaining === 0) {
+            timeRemaining = 60;
+            updateTimeRemainingDisplay();
+            intervalId = setInterval(decrementTimeRemaining, 1000);
+            buttonSendAgain.disabled = true;
+        }
+        function decrementTimeRemaining() {
+            timeRemaining--;
+            updateTimeRemainingDisplay();
             if (timeRemaining === 0) {
-                timeRemaining = 60;
-                updateTimeRemainingDisplay();
-                intervalId = setInterval(decrementTimeRemaining, 1000);
-                buttonSendAgain.disabled = true;
+                clearInterval(intervalId);
+                buttonSendAgain.disabled = false;
+                buttonSendAgain.textContent = 'Gửi lại';
             }
-            function decrementTimeRemaining() {
-                timeRemaining--;
-                updateTimeRemainingDisplay();
-                if (timeRemaining === 0) {
-                    clearInterval(intervalId);
-                    buttonSendAgain.disabled = false;
-                    buttonSendAgain.textContent = 'Gửi lại';
-                }
-            }
-            function updateTimeRemainingDisplay() {
-                buttonSendAgain.textContent = `Gửi lại(${timeRemaining}s)`;
-            }
+        }
+        function updateTimeRemainingDisplay() {
+            buttonSendAgain.textContent = `Gửi lại(${timeRemaining}s)`;
+        }
     }
 
     function sendOTPEmail() {
+        console.log(1);
         const emailForgot = $("#forgot-password-input").val();
         const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
@@ -92,33 +127,38 @@
 
         const randomOTP = Math.floor(100000 + Math.random() * 900000);
         const infoUserForgot = {
-        to_email: emailForgot,
-        otp_code: randomOTP
+            to_email: emailForgot,
+            otp_code: randomOTP
         };
 
         emailjs.send('service_wb0cp5n', 'template_dbfvt7a', infoUserForgot)
-        .then(function () {
-        const inputOTP = document.getElementById('input-form-OTP');
-        const fieldsetLogin = inputOTP.querySelector('.fieldset-login');
-
-        if (!fieldsetLogin) {
-            inputOTP.innerHTML = `<fieldset class="fieldset-login">
+            .then(function () {
+                sessionStorage.setItem('passOTP', infoUserForgot.otp_code);
+                sessionStorage.setItem('emailForgot', infoUserForgot.emailForgot);
+                const inputOTPbox = document.getElementById('input-form-OTP');
+                const fieldsetLogin = inputOTPbox.querySelector('.fieldset-login');
+                const confirmOPTBtn = document.querySelector('#submit-forgot-input');
+                if (!fieldsetLogin) {
+                    inputOTPbox.innerHTML = `<fieldset class="fieldset-login">
                     <legend>Mã OTP</legend>
                     <input class="input_login" style="width: 80%" maxlength="6" type="number" id="input-OTP"
                         placeholder="Nhập mã OTP nhận được..." />
                     <button class="button-send-again" onclick="reSendOTP()">Gửi lại</button>
                     <span class="error_message">Địa chỉ Email không được để trống &lowast;</span>
                 </fieldset>`;
-                setTimeCD()
-        }
-        }, function (error) {
-            notification({
-                status: "error",
-                msg: "Không thể gửi gmail",
-                path: "",
+                    setTimeCD();
+                }
+                confirmOPTBtn.onclick = function () {
+                    confirmOTP();
+                };
+            }, function (error) {
+                notification({
+                    status: "error",
+                    msg: "Không thể gửi gmail",
+                    path: "",
+                });
+                return;
             });
-            return;
-        });
     }
 
     function reSendOTP() {
@@ -144,21 +184,21 @@
         }
 
         setTimeCD()
-        
+
         const randomOTP = Math.floor(100000 + Math.random() * 900000);
         const infoUserForgot = {
-        to_email: emailForgot,
-        otp_code: randomOTP
+            to_email: emailForgot,
+            otp_code: randomOTP
         };
 
         emailjs.send('service_wb0cp5n', 'template_dbfvt7a', infoUserForgot)
-        .then(function () {}, function (error) {
-            notification({
-                status: "error",
-                msg: "Không thể gửi gmail",
-                path: "",
-            });
-            return;
-        })
+            .then(function () { }, function (error) {
+                notification({
+                    status: "error",
+                    msg: "Không thể gửi gmail",
+                    path: "",
+                });
+                return;
+            })
     }
 </script>
