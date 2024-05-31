@@ -83,6 +83,9 @@
             case 'detailbill':
                 include "./controllers/userControllers/otherControllers/detailbill.php";
                 break;
+            case 'forgot-password':
+                include "./controllers/userControllers/accountControllers/forgotPassword.php";
+                break;
             default:
                 include "./controllers/userControllers/otherControllers/home.php";
                 break;

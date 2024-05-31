@@ -1,31 +1,4 @@
 <div class="login main" id="login-main">
-    <form action="" id="form-forget">
-        <div id="login__title">
-            Quên mật khẩu
-        </div>
-        <div class="login__input">
-            <div class="login__input__box">
-                <fieldset class="fieldset-login">
-                    <legend>Địa chỉ Email</legend>
-                    <input class="input_login" type="email" id="forgot-password-input"
-                        placeholder="Email đăng kí tài khoản hiện tại..." />
-                    <span class="error_message">Địa chỉ Email không được để trống &lowast;</span>
-                </fieldset>
-            </div>
-            <div class="login__input__box">  
-                <fieldset class="fieldset-login">
-                    <legend>Địa chỉ Email</legend>
-                    <input class="input_login" type="email" id="forgot-password-input"
-                        placeholder="Email đăng kí tài khoản hiện tại..." />
-                    <span class="error_message">Địa chỉ Email không được để trống &lowast;</span>
-                </fieldset>
-            </div>
-            <button onclick="sendOTPEmail()" type="button" class="submit_login_btn" id="submit-forgot-input"
-                name="login">
-                Gửi
-            </button>
-        </div>
-    </form>
     <form action="" id="form-login">
         <div id="login__title">
             Đăng Nhập
@@ -58,9 +31,8 @@
             </div> -->
 
             <p class="check-text" style="text-align: left;">
-                <span class="" id="change__forget__form">Quên mật khẩu?</span>
+                <a href="index.php?page=forgot-password" style="color: var(--blue-cl)">Quên mật khẩu?</a>
             </p>
-
             <button onclick="submitLogin()" type="button" class="submit_login_btn" id="submit-login-input" name="login">
                 Đăng nhập
             </button>
@@ -135,9 +107,7 @@
     var login_or_register = true;
     var show = false;
     const changeBtn = document.querySelectorAll(".change-form");
-    const changeForgetForm = document.querySelector("#change__forget__form");
     const formLogin = document.querySelector("#form-login");
-    const formForget = document.querySelector("#form-forget");
     const formSignin = document.querySelector("#form-signin");
 
     // Các phần tử chuyển type password
@@ -148,10 +118,6 @@
     // Phần tử để validation cho form
     const inputLogin = document.querySelectorAll(".input_login");
 
-    changeForgetForm.addEventListener("click", () => {
-        formLogin.style.display = "none";
-        formForget.style.display = "block";
-    });
 
     // module chuyển form
     changeBtn.forEach((ChangeFormElement, index) => {
@@ -303,70 +269,4 @@
 
 </script>
 
-<script src="./js/login.js">
-</script>
-<script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script type="text/javascript">
-    (function () {
-        emailjs.init({
-            publicKey: "tMdvyY9GHRPfbn7TI",
-        });
-    })();
-</script>
-<script>
-    function sendOTPEmail() {
-        const emailForgot = $("#forgot-password-input").val();
-
-        if (!emailForgot) {
-            notification({
-                status: "warning",
-                msg: "Vui lòng nhập email lấy lại tài khoản!",
-                path: "",
-            });
-            return;
-        }
-        const randomOTP = Math.floor(100000 + Math.random() * 900000);
-        const infoUserForgot = {
-            to_email: emailForgot,
-            otp_code: randomOTP
-        };
-
-        emailjs.send('service_wb0cp5n', 'template_dbfvt7a', infoUserForgot)
-            .then(function () {
-                console.log('Success to send email:');
-            }, function (error) {
-                console.log('Failed to send email:', error);
-            });
-    }
-</script>
-<script>
-    const button = document.getElementById('submit-forgot-input');
-
-let timeRemaining = 0;
-let intervalId;
-
-button.addEventListener('click', () => {
-  if (timeRemaining === 0) {
-    timeRemaining = 60;
-    updateTimeRemainingDisplay();
-    intervalId = setInterval(decrementTimeRemaining, 1000);
-    button.disabled = true;
-  }
-});
-
-function decrementTimeRemaining() {
-  timeRemaining--;
-  updateTimeRemainingDisplay();
-
-  if (timeRemaining === 0) {
-    clearInterval(intervalId);
-    button.disabled = false;
-    button.textContent = 'Gửi lại';
-  }
-}
-
-function updateTimeRemainingDisplay() {
-    button.textContent = `Vui lòng chờ ${timeRemaining} giây`;
-}
-</script>
+<!-- <script src="./js/login.js"> -->

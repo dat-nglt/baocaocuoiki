@@ -2,9 +2,7 @@ var login_or_register = true;
 var show = false;
 // các phần tử chuyển form đăng kí đăng nhập
 const changeBtn = document.querySelectorAll(".change-form");
-const changeForgetForm = document.querySelector("#change__forget__form");
 const formLogin = document.querySelector("#form-login");
-const formForget = document.querySelector("#form-forget");
 const formSignin = document.querySelector("#form-signin");
 
 // Các phần tử chuyển type password
@@ -14,11 +12,6 @@ const passwordInput = document.querySelectorAll(".input_login_password");
 
 // Phần tử để validation cho form
 const inputLogin = document.querySelectorAll(".input_login");
-
-changeForgetForm.addEventListener("click", () => {
-  formLogin.style.display = "none";
-  formForget.style.display = "block";
-});
 
 // module chuyển form
 changeBtn.forEach((ChangeFormElement, index) => {

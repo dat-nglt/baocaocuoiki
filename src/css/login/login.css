@@ -26,8 +26,23 @@
   display: none;
 }
 
-#form-forget {
-  display: none;
+.button-send-again{
+  border: 0;
+  outline: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: -10px;
+  width: 80px;
+  background-color: var(--blue-cl);
+  color: var(--white-cl);
+
+  &:hover{
+    cursor: pointer;
+    background-color: var(--blue-white-cl);
+  }
 }
 
 #login__title {
