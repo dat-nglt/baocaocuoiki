@@ -36,6 +36,9 @@
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
+    if (isset($_SESSION['OTP'])) {
+        var_dump($_SESSION['OTP']);
+    }
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
         switch ($page) {

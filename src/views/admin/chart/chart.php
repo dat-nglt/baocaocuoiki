@@ -3,8 +3,8 @@
     <div style="flex: 1;display:flex;justify-content: flex-end">
 
       <?php
-      var_dump($logisticsDataChart);
-      echo $_SESSION['sort_chart_date'];
+      // var_dump($logisticsDataChart);
+      // echo $_SESSION['sort_chart_date'];
       ?>
 
       <div style="display:flex; gap: 5px; justify-content: center; padding: 0 0 5px;align-items: center;">
@@ -109,12 +109,15 @@
     const optionChart = $('#filt_option_chart').val();
     $('#title_chart').text(titleChart);
     if (optionChart == 'logistics') {
-      var logisticsDataChart =
-        <?php echo json_encode($logisticsDataChart); ?>;
-      const sumLogistics = parseInt(logisticsDataChart[0][1]) + parseInt(logisticsDataChart[1][1]);
-      const inLogistics = parseInt(logisticsDataChart[0][1]) / sumLogistics * 100;
-      const outLogistics = parseInt(logisticsDataChart[1][1]) / sumLogistics * 100;
-      chartLogistics(inLogistics, outLogistics);
+      var minusQuantityChart =
+        <?php echo json_encode($minusQuantityChart); ?>;
+      var additionQuantityChart =
+        <?php echo json_encode($additionQuantityChart); ?>;
+
+      const maxDate = additionQuantityChart.length > minusQuantityChart.length
+        ? additionQuantityChart
+        : minusQuantityChart;
+      chartLogistics(maxDate, additionQuantityChart, minusQuantityChart);
     }
     else if (optionChart == 'bills') {
       var billChartData =
@@ -146,19 +149,20 @@
       }
     });
   }
-  function chartLogistics(inLogistics = 0, outLogistics = 0) {
+  function chartLogistics(maxDate = [], additionQuantityChart = [], minusQuantityChart = []) {
+
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Tháng 1', 'Tháng 2', 'Tháng 3'],
+        labels: maxDate.map((date, index) => date[1]),
         datasets: [{
-          label: 'Nhập',
-          data: [12, 13, 15],
+          label: 'Số sản phẩm nhập kho',
+          data: additionQuantityChart.map((add, index) => add[0]),
           borderWidth: 1
         }, {
-          label: 'Xuất',
-          data: [19, 11, 18],
+          label: 'Số sản phẩm xuất bán',
+          data: minusQuantityChart.map((minus, index) => minus[0]),
           borderWidth: 1
         }],
       },
@@ -168,10 +172,6 @@
           legend: {
             position: 'top',
           },
-          title: {
-            display: true,
-            text: 'Chart.js Floating Bar Chart'
-          }
         }
       }
     });

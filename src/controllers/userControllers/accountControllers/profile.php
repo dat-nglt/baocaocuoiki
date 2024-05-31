@@ -2,19 +2,21 @@
 if (isset($_SESSION['user'])) {
     if (isset($_POST['save-profile'])) {
         updateAccount($conn, $_SESSION['user']['maNguoiDung'], $_POST['user-name'], $_POST['name'], $_POST['email'], $_POST['tel'], $_POST['check-sex'], $_POST['address'], $_POST['date']);
-        $_SESSION['user'] = mysqli_fetch_assoc(checkAccount($conn, $_POST['user-name'], $_POST['pass'], 'login'));
+        // $_SESSION['user'] = mysqli_fetch_assoc(checkAccount($conn, $_POST['user-name'], $_POST['pass'], 'login'));
     }
     if (isset($_POST['save-password'])) {
         $passwordDB = $_SESSION['user']['matKhau'];
-        // $passwordCurrent = password_hash($_POST['password-current'], PASSWORD_DEFAULT);
         $passwordCurrent = $_POST['password-current'];
-        $password = password_hash($_POST['repassword-field'], PASSWORD_DEFAULT);
+        $password = $_POST['password-field'];
+        $passwordConfirm = $_POST['repassword-field'];
 
-        if (password_verify($passwordDB, $passwordCurrent)) {
-            updatePassword($conn, $_SESSION['user']['maNguoiDung'], $password);
-            echo 'aaa';
+        if ($password === $passwordConfirm && password_verify($passwordCurrent, $passwordDB)) {
+            $passwordHash = password_hash($_POST['password-field'], PASSWORD_DEFAULT);
+            updatePassword($conn, $_SESSION['user']['maNguoiDung'], $passwordHash);
+            $_SESSION['user']['matKhau'] = $passwordHash;
+            successTimeout('Đổi mật khẩu thành công', 'index.php?page=profile');
         } else {
-            echo 'hihi';
+            errorTimeout('Đổi mật khẩu thất bại', 'index.php?page=profile');
         }
     }
     include ("./views/user/user-account.php");

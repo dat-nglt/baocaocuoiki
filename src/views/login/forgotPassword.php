@@ -31,78 +31,134 @@
     })();
 </script>
 <script>
-    let timeRemaining = 0;
+    function notification(result) {
+        Swal.fire({
+            title: "Thông báo",
+            text: result.msg,
+            icon: result.status,
+            showConfirmButton: true,
+        }).then(function () {
+            if (result.path != "") {
+                window.location.assign(result.path);
+            }
+        });
+    }
+
+    function setTimeCD(){
+        const buttonSendAgain = document.querySelector('.button-send-again');
+            let timeRemaining = 0;
+            let intervalId;
+            if (timeRemaining === 0) {
+                timeRemaining = 60;
+                updateTimeRemainingDisplay();
+                intervalId = setInterval(decrementTimeRemaining, 1000);
+                buttonSendAgain.disabled = true;
+            }
+            function decrementTimeRemaining() {
+                timeRemaining--;
+                updateTimeRemainingDisplay();
+                if (timeRemaining === 0) {
+                    clearInterval(intervalId);
+                    buttonSendAgain.disabled = false;
+                    buttonSendAgain.textContent = 'Gửi lại';
+                }
+            }
+            function updateTimeRemainingDisplay() {
+                buttonSendAgain.textContent = `Gửi lại(${timeRemaining}s)`;
+            }
+    }
+
     function sendOTPEmail() {
         const emailForgot = $("#forgot-password-input").val();
+        const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+        if (!emailForgot) {
+            notification({
+                status: "warning",
+                msg: "Vui lòng nhập email lấy lại tài khoản!",
+                path: "",
+            });
+            return;
+        }
+
+        if (emailForgot !== "" && !emailPattern.test(emailForgot)) {
+            notification({
+                status: "warning",
+                msg: "Địa chỉ Email không đúng định dạng!",
+                path: "",
+            });
+            return;
+        }
+
+        const randomOTP = Math.floor(100000 + Math.random() * 900000);
+        const infoUserForgot = {
+        to_email: emailForgot,
+        otp_code: randomOTP
+        };
+
+        emailjs.send('service_wb0cp5n', 'template_dbfvt7a', infoUserForgot)
+        .then(function () {
         const inputOTP = document.getElementById('input-form-OTP');
-        inputOTP.innerHTML = `<fieldset class="fieldset-login">
+        const fieldsetLogin = inputOTP.querySelector('.fieldset-login');
+
+        if (!fieldsetLogin) {
+            inputOTP.innerHTML = `<fieldset class="fieldset-login">
                     <legend>Mã OTP</legend>
-                    <input class="input_login" type="number" id="input-OTP"
+                    <input class="input_login" style="width: 80%" maxlength="6" type="number" id="input-OTP"
                         placeholder="Nhập mã OTP nhận được..." />
-                    <button class="button-send-again">Gửi lại</button>
+                    <button class="button-send-again" onclick="reSendOTP()">Gửi lại</button>
                     <span class="error_message">Địa chỉ Email không được để trống &lowast;</span>
-                </fieldset>`
-        const buttonSendAgain = document.querySelector('.button-send-again');
-        let intervalId;
-        let intervalId1;
-        if (timeRemaining === 0) {
-            updateCD();
-        } else {
-            updateTimeRemainingDisplay();  
-            buttonSendAgain.disabled = true;
-            intervalId1 = setInterval(decrementTimeRemaining1, 1000);
-            
+                </fieldset>`;
+                setTimeCD()
         }
-        function updateCD() {
-            timeRemaining = 60;
-            updateTimeRemainingDisplay();
-            intervalId = setInterval(decrementTimeRemaining, 1000);
-            buttonSendAgain.disabled = true;
+        }, function (error) {
+            notification({
+                status: "error",
+                msg: "Không thể gửi gmail",
+                path: "",
+            });
+            return;
+        });
+    }
+
+    function reSendOTP() {
+        const emailForgot = $("#forgot-password-input").val();
+        const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+        if (!emailForgot) {
+            notification({
+                status: "warning",
+                msg: "Vui lòng nhập email lấy lại tài khoản!",
+                path: "",
+            });
+            return;
         }
-      function decrementTimeRemaining() {
-            timeRemaining--;
-            updateTimeRemainingDisplay();
-            if (timeRemaining === 0) {
-                clearInterval(intervalId);
-                buttonSendAgain.disabled = false;
-                buttonSendAgain.textContent = 'Gửi lại';
-            }
+
+        if (emailForgot !== "" && !emailPattern.test(emailForgot)) {
+            notification({
+                status: "warning",
+                msg: "Địa chỉ Email không đúng định dạng!",
+                path: "",
+            });
+            return;
         }
-        function decrementTimeRemaining1() {
-            timeRemaining--;
-            updateTimeRemainingDisplay();
-            if (timeRemaining === 0) {
-                clearInterval(intervalId);
-                buttonSendAgain.disabled = false;
-                buttonSendAgain.textContent = 'Gửi lại';
-            }
-        }
- 
-        function updateTimeRemainingDisplay() {
-            buttonSendAgain.textContent = `Gửi lại (${timeRemaining}s)`;
-        }
-        function updateTimeRemainingDisplay1() {
-            buttonSendAgain.textContent = `Gửi lại (${timeRemaining}s)`;
-        }
+
+        setTimeCD()
+        
+        const randomOTP = Math.floor(100000 + Math.random() * 900000);
+        const infoUserForgot = {
+        to_email: emailForgot,
+        otp_code: randomOTP
+        };
+
+        emailjs.send('service_wb0cp5n', 'template_dbfvt7a', infoUserForgot)
+        .then(function () {}, function (error) {
+            notification({
+                status: "error",
+                msg: "Không thể gửi gmail",
+                path: "",
+            });
+            return;
+        })
     }
 </script>
-// if (!emailForgot) {
-        //     notification({
-        //         status: "warning",
-        //         msg: "Vui lòng nhập email lấy lại tài khoản!",
-        //         path: "",
-        //     });
-        //     return;
-        // }
-// const randomOTP = Math.floor(100000 + Math.random() * 900000);
-// const infoUserForgot = {
-// to_email: emailForgot,
-// otp_code: randomOTP
-// };
-
-// emailjs.send('service_wb0cp5n', 'template_dbfvt7a', infoUserForgot)
-// .then(function () {
-// console.log('Success to send email:')
-// }, function (error) {
-// console.log('Failed to send email:', error);
-// });

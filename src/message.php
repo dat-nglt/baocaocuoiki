@@ -92,3 +92,59 @@ function warning($msg, $link)
     </script>';
     }
 }
+
+function successTimeout($msg, $link)
+{
+    if ($link != '') {
+        echo '<script>
+        Swal.fire({
+            title: "Thông báo",
+            text: "' . $msg . '",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1300,
+        }).then(function(){
+            window.location.assign("' . $link . '");
+        });
+    </script>';
+    } else {
+        echo '<script>
+        Swal.fire({
+            title: "Thông báo",
+            text: "' . $msg . '",
+            icon: "success",
+            timer: 1300,
+            showConfirmButton: false,
+        });
+    </script>';
+    }
+
+}
+
+function errorTimeout($msg, $link)
+{
+    if ($link != '') {
+        echo '<script>
+        Swal.fire({
+            title: "Thông báo",
+            text: "' . $msg . '",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 1300,
+        }).then(function(){
+            window.location.assign("' . $link . '");
+        });
+    </script>';
+    } else {
+        echo '<script>
+        Swal.fire({
+            title: "Thông báo",
+            text: "' . $msg . '",
+            icon: "error",
+            timer: 1300,
+            showConfirmButton: false,
+        });
+    </script>';
+    }
+
+}

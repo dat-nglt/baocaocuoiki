@@ -35,13 +35,13 @@
   right: 0;
   bottom: 0;
   top: -10px;
-  width: 80px;
-  background-color: var(--blue-cl);
+  width: 90px;
+  background-color: var(--blue-white-cl);
   color: var(--white-cl);
 
   &:hover{
     cursor: pointer;
-    background-color: var(--blue-white-cl);
+    background-color: var(--blue-cl);
   }
 }
 
