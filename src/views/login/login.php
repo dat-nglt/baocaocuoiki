@@ -102,7 +102,7 @@
     </form>
 </div>
 
-<script>
+<!-- <script>
     const submitLoginBtn = $('#submit-login-input');
     const inputLoginCheck = document.querySelectorAll(".input_login");
     inputLoginCheck.forEach((input) => {
@@ -112,7 +112,7 @@
             }
         });
     });
-</script>
+</script> -->
 
 <script>
 
@@ -234,6 +234,15 @@
             return;
         }
 
+        if (passwordSignIn !== "" && !passwordPattern.test(passwordSignIn)) {
+            notification({
+                status: "warning",
+                msg: "Mật khẩu tối thiểu 8 kí tự, bao gồm chữ hoa, số và kí tự đặc biệt !",
+                path: "",
+            });
+            return;
+        }
+
         if (passwordSignIn !== passwordSignInConfirm) {
             notification({
                 status: "warning",
@@ -249,6 +258,7 @@
             dataType: "json",
             data: {
                 accountSignIn,
+                passwordSignIn,
                 passwordSignInConfirm,
                 emailSignIn,
             },

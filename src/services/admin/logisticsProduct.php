@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       foreach ($listDataLogistics as $item) {
         $sqlCheckQuantity = "SELECT sanpham.soLuong 
         FROM sanpham 
-        WHERE sanpham.maSanPham = '12';";
+        WHERE sanpham.maSanPham = '$item[0]';";
         $quantityInStock = mysqli_fetch_assoc(mysqli_query($conn, $sqlCheckQuantity));
         if ($quantityInStock["soLuong"] < $item[1] && $item[4] == '0') {
           continue;
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           if ($result) {
             $sqlUpdateQuantity = "UPDATE sanpham 
             SET soLuong = soLuong + ('$quantityUpdate')
-            WHERE sanpham.maSanPham = 12;";
+            WHERE sanpham.maSanPham = '$item[0]';";
             mysqli_query($conn, $sqlUpdateQuantity);
           }
         }

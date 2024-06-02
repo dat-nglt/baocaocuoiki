@@ -125,8 +125,9 @@
             return;
         }
 
-        const randomOTP = Math.floor(100000 + Math.random() * 900000);
-        const infoUserForgot = {
+        const randomOTP = Math.floor(100000 + Math.random() * 900000); //Mã OTP tạo tự động
+
+        const infoUserForgot = { //Thông tin gửi đến mail
             to_email: emailForgot,
             otp_code: randomOTP
         };

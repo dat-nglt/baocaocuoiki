@@ -23,19 +23,23 @@ if (!$conn) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $accountSignIn = $_POST['accountSignIn'];
   $emailSignIn = $_POST['emailSignIn'];
-  $passwordSignInConfirm = password_hash($_POST['passwordSignInConfirm'], PASSWORD_DEFAULT);
+  $passwordSignInConfirm = $_POST['passwordSignInConfirm'];
+  $passwordSignIn = $_POST['passwordSignIn'];
 
-  $checkAccountSQL = "SELECT * FROM nguoidung WHERE tenTaiKhoan = '$accountSignIn'";
-  $checkEmailSQL = "SELECT * FROM nguoidung WHERE email = '$emailSignIn'";
-  $signInSQL = "INSERT INTO 
-  nguoidung(tenTaiKhoan, email, matKhau) 
-  VALUES ('" . $accountSignIn . "','" . $emailSignIn . "','" . $passwordSignInConfirm . "')";
 
-  if (empty($accountSignIn) || empty($passwordSignInConfirm) || empty($emailSignIn)) {
+  if (empty($accountSignIn) || empty($passwordSignInConfirm) || empty($emailSignIn) || empty($passwordSignIn)) {
     responseMessage('warning', 'Vui lòng điền đầy đủ thông tin đăng kí!', '');
   } else {
+    $passwordHashed = password_hash($passwordSignInConfirm, PASSWORD_DEFAULT);
+    $checkAccountSQL = "SELECT * FROM nguoidung WHERE tenTaiKhoan = '$accountSignIn'";
+    $checkEmailSQL = "SELECT * FROM nguoidung WHERE email = '$emailSignIn'";
+    $signInSQL = "INSERT INTO 
+    nguoidung(tenTaiKhoan, email, matKhau) 
+    VALUES ('" . $accountSignIn . "','" . $emailSignIn . "','" . $passwordHashed . "')";
+
     $resultCheckAccount = mysqli_fetch_assoc(mysqli_query($conn, $checkAccountSQL));
     $resultCheckEmail = mysqli_fetch_assoc(mysqli_query($conn, $checkEmailSQL));
+
     if (!isset($resultCheckAccount)) {
       if (!isset($resultCheckEmail)) {
         mysqli_query($conn, $signInSQL);
