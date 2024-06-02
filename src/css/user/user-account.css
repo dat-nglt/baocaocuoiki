@@ -6,7 +6,8 @@
   margin: auto;
   padding: 20px;
   background-color: rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0.16) 5px 5px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.16) 5px
+    5px 8px 0px;
   border-radius: 5px;
 }
 
@@ -50,11 +51,11 @@
   gap: 15px;
 }
 
-.info-user-form input[type="text"],
-.info-user-form input[type="number"],
-.info-user-form input[type="email"],
-.info-user-form input[type="password"],
-.info-user-form input[type="date"] {
+.info-user-form input[type='text'],
+.info-user-form input[type='number'],
+.info-user-form input[type='email'],
+.info-user-form input[type='password'],
+.info-user-form input[type='date'] {
   outline: none;
   width: 300px;
   padding: 10px;

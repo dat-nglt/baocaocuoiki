@@ -27,7 +27,7 @@
         </a>
 
         <a href="http://localhost/baocaocuoiki/src/index.php">
-            <li><i class="fa-solid fa-right-to-bracket fa-rotate-180 icon"></i>Trang chủ</li>
+            <li><i class="fa-solid fa-right-to-bracket fa-rotate-180 icon"></i> Trang chủ</li>
         </a>
     </ul>
 </header>

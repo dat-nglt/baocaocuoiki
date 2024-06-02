@@ -1,8 +1,14 @@
 <?php
 if (isset($_SESSION['user'])) {
     if (isset($_POST['save-profile'])) {
-        updateAccount($conn, $_SESSION['user']['maNguoiDung'], $_POST['user-name'], $_POST['name'], $_POST['email'], $_POST['tel'], $_POST['check-sex'], $_POST['address'], $_POST['date']);
-        // $_SESSION['user'] = mysqli_fetch_assoc(checkAccount($conn, $_POST['user-name'], $_POST['pass'], 'login'));
+        $name = preg_replace('/\s+/', ' ', trim($_POST['name']));
+        $update = updateAccount($conn, $_SESSION['user']['maNguoiDung'], $_SESSION['user']['tenTaiKhoan'], $name, $_POST['email'], $_POST['tel'], $_POST['check-sex'], $_POST['address'], $_POST['date']);
+        $_SESSION['user'] = mysqli_fetch_assoc(checkAccountWithUsername($conn, $_SESSION['user']['maNguoiDung']));
+        if($update){
+            success('Thay đổi thông tin cá nhân thành công', 'index.php?page=profile');
+        }else{
+            error('Thay đổi thông tin cá nhân thất bại', 'index.php?page=profile');
+        }
     }
     if (isset($_POST['save-password'])) {
         $passwordDB = $_SESSION['user']['matKhau'];

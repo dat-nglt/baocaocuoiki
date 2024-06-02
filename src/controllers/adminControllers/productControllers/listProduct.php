@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['search-product'])) {
-    $_SESSION['search-product'] = $_POST['search-product'];
+    $_SESSION['search-product'] = preg_replace('/\s+/', ' ', trim($_POST['search-product']));
 }
 if (isset($_POST['sort-product'])) {
     $_SESSION['sort-product'] = $_POST['sort-product'];

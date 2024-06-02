@@ -13,5 +13,7 @@ var links = document.querySelectorAll('.header__nav a');
             else if(currentURL.includes('?page=listbills&pageNumber=') || currentURL.includes('?page=detailbill&id=')){
                 links[4].classList.add("current-page");
             }
-            
+            else {
+                links[0].classList.add("current-page");
+            }
         }

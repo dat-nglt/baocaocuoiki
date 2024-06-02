@@ -1,32 +1,11 @@
-<?php
-$serverName = "localhost";
-$userName = "root";
-$passWord = "";
-$database = "laptop_z3g";
-session_start();
-$conn = mysqli_connect($serverName, $userName, $passWord, $database);
-
-function responseMessage($status, $msg, $path)
-{
-  $response = array(
-    'status' => $status,
-    'msg' => $msg,
-    'path' => $path
-  );
-  echo json_encode($response);
-}
-
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+'<?php
+include ("./serviceAjax.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $accountSignIn = $_POST['accountSignIn'];
+  $accountSignIn = preg_replace('/\s+/', '', $_POST['accountSignIn']);
   $emailSignIn = $_POST['emailSignIn'];
   $passwordSignInConfirm = $_POST['passwordSignInConfirm'];
   $passwordSignIn = $_POST['passwordSignIn'];
-
-
   if (empty($accountSignIn) || empty($passwordSignInConfirm) || empty($emailSignIn) || empty($passwordSignIn)) {
     responseMessage('warning', 'Vui lòng điền đầy đủ thông tin đăng kí!', '');
   } else {

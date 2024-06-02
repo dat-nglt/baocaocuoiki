@@ -114,7 +114,7 @@
 }
 
 .menu-user li a:hover {
-  color: #0f79e6;
+  color: #0f79e6 !important; 
   background-color: rgba(
     255,
     255,

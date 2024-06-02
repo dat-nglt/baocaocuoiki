@@ -15,7 +15,7 @@
     <div class="menu">
         <a href="index.php"><img src="./img/logo.png" alt=""></a>
         <a href="index.php">Trang chủ</a>
-        <a href="#">Về chúng tôi</a>
+        <a href="index.php?page=introduce">Về chúng tôi</a>
         <a href="index.php?page=allproduct">Sản Phẩm</a>
         <a href="index.php?page=flashsale">Flash Sale</a>
     </div>

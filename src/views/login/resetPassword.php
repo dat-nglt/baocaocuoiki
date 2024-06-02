@@ -93,6 +93,7 @@
       type: "POST",
       dataType: "json",
       data: {
+        password,
         passwordConfirm,
         emailForget
       },

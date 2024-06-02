@@ -1,29 +1,16 @@
 <?php
-$serverName = "localhost";
-$userName = "root";
-$passWord = "";
-$database = "laptop_z3g";
-session_start();
-$conn = mysqli_connect($serverName, $userName, $passWord, $database);
-function responseMessage($status, $msg, $path)
-{
-  $response = array(
-    'status' => $status,
-    'msg' => $msg,
-    'path' => $path
-  );
-  echo json_encode($response);
-}
+include ("./serviceAjax.php");
 
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $password = $_POST['password'];
   $passwordConfirm = $_POST['passwordConfirm'];
-  $emailForget = 'dat.nglt@gmail.com';
+  $emailForget = $_POST['emailForget'];
 
-  if (empty($passwordConfirm) || empty($emailForget)) { //Validation mật khẩu mới và email đăng kí
-    responseMessage('warning', 'Tên tài khoản và mật khẩu không được để trống!', '');
+  if (empty($passwordConfirm) || empty($emailForget) || empty($password)) { //Validation mật khẩu mới và email đăng kí
+    responseMessage('warning', 'Vui lòng nhập đầy đủ thông tin!', '');
   } else {
     $newPassword = password_hash($passwordConfirm, PASSWORD_DEFAULT);
     $updatePasswordSQL = "UPDATE nguoidung 

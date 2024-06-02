@@ -8,7 +8,7 @@
         <?php
         foreach ($_SESSION['cart'] as $key => $value) {
             ?>
-            <div class="detail-product-cart" style="grid-template-columns: 25% 75%">
+            <div class="detail-product-cart" style="grid-template-columns: 15% 85%">
                 <img src="<?= $value[2] ?>" alt="">
                 <div class="info-product">
                     <div class="info-product-name">
@@ -67,3 +67,5 @@
         </form>
     </div>
 </div>
+
+  

@@ -37,7 +37,7 @@
     include ("../src/model/chart.php");
     include ("../src/message.php");
     include ("../src/views/admin/admin-header.php");
-    $limitPage = 15;
+    $limitPage = 10;
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
         switch ($page) {

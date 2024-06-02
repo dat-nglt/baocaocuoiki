@@ -57,12 +57,9 @@ function updateAccount($conn, $id, $username, $name, $email, $tel, $male, $addre
     return $rs;
 }
 
-function checkAccountWithUsername($conn, $username, $password = '')
+function checkAccountWithUsername($conn, $id)
 {
-    $sql = "select * from nguoidung where tenTaiKhoan = '$username'";
-    // if ($password !== '') {
-    //     $sql .= " and password = '$password'";
-    // }
+    $sql = "select * from nguoidung where maNguoiDung = '$id'";
     $rs = mysqli_query($conn, $sql);
     return $rs;
 }

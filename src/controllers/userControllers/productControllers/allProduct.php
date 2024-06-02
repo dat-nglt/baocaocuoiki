@@ -4,7 +4,7 @@ if (isset($_POST['all-product'])) {
 }
 
 if (isset($_POST['search-product'])) {
-    $_SESSION['search-product'] = $_POST['name-product'];
+    $_SESSION['search-product'] = preg_replace('/\s+/', ' ', trim($_POST['name-product']));
 }
 $_SESSION['search-product'] = isset($_SESSION['search-product']) ? $_SESSION['search-product'] : '';
 
@@ -24,7 +24,7 @@ if ($current_page > $total_page) {
     $current_page = $total_page;
 }
 $start = ($current_page - 1) * $limitPage;
-
+var_dump($_SESSION['search-product']);
 $listClassify = getAllClassify($conn); // Lấy tất cả danh mục
 $listProduct = getAllProduct($conn, $_SESSION['search-product'], 'desc', '0', $start, $limitPage);
 $arrayProductFlashSaleSold = array();

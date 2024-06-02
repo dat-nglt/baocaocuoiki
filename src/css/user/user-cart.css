@@ -1,10 +1,11 @@
 .user-cart {
   position: relative;
-  top: 100px;
+  top: 110px;
   width: 800px;
   margin: auto;
   background-color: rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0.16) 5px 5px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.16) 5px
+    5px 8px 0px;
   border-radius: 5px;
 }
 
@@ -15,12 +16,12 @@
 
 .product-cart {
   min-height: 200px;
-  padding: 0px 10px 10px 10px;
+  padding: 0 20px 20px;
   border-bottom: 1px solid #333;
 }
 
 .detail-product-cart {
-  margin-bottom: 10px;
+  margin: 10px 0;
   border: 1px solid blue;
   padding: 10px;
   display: grid;
@@ -28,11 +29,13 @@
   box-sizing: content-box;
   border-radius: 5px;
   background-color: rgb(255, 255, 255);
-  box-shadow: rgba(19, 47, 207, 0.16) 5px 5px 8px 0px;
+  box-shadow: rgba(19, 47, 207, 0.16)
+    5px 5px 8px 0px;
 }
 
 .detail-product-cart img {
-  width: 100%;
+  width: 120px;
+  height: 100px;
   aspect-ratio: 1 / 1;
   border-radius: 5px;
 }
@@ -43,7 +46,7 @@
 .info-product-name {
   text-align: justify;
   line-height: 1.5;
-  overflow: hidden; 
+  overflow: hidden;
   padding: 5px 15px;
   font-weight: bold;
   font-size: 1.5rem;
@@ -188,23 +191,23 @@
   background-color: #ff9a00;
 }
 
-.list-history-bill{
-  width:100%;
+.list-history-bill {
+  width: 100%;
   border-spacing: 0;
   text-align: center;
   border-collapse: collapse;
 }
 
-.list-history-bill th{
+.list-history-bill th {
   padding: 1% 0;
   border: 1px solid black;
 }
 
-.list-history-bill td{
+.list-history-bill td {
   border: 1px solid black;
   padding: 2% 0;
 }
 
-.list-history-bill a{
+.list-history-bill a {
   color: blue;
 }

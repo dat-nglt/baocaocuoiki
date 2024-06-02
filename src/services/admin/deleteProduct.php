@@ -17,19 +17,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
   $sql = "select * from chitietdonhang where maSanPham = '$itemId'";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) < 1) {
-    $sql = "delete from sanpham where maSanPham = '$itemId'";
+    $sql = "select * from logistics where idProduct = '$itemId'";
     $result = mysqli_query($conn, $sql);
-    if ($result) {
-      $response = array(
-        'status' => 'success',
-        'msg' => 'Xóa thành công.',
-        'path' => "index.php?page=listproducts"
-      );
-      echo json_encode($response);
-    } else {
+    if (mysqli_num_rows($result) < 1) {
+      $sql = "delete from sanpham where maSanPham = '$itemId'";
+      $result = mysqli_query($conn, $sql);
+      if ($result) {
+        $response = array(
+          'status' => 'success',
+          'msg' => 'Xóa thành công.',
+          'path' => "index.php?page=listproducts"
+        );
+        echo json_encode($response);
+      } else {
+        $response = array(
+          'status' => 'error',
+          'msg' => 'Xóa không thành công.',
+          'path' => "index.php?page=listproducts"
+        );
+        echo json_encode($response);
+      }
+    }else{
       $response = array(
         'status' => 'error',
-        'msg' => 'Xóa không thành công.',
+        'msg' => 'Xóa không thành công. Sản phẩm có thuộc nhập/xuất',
         'path' => "index.php?page=listproducts"
       );
       echo json_encode($response);
@@ -37,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
   } else {
     $response = array(
       'status' => 'error',
-      'msg' => 'Xóa không thành công. Vui lòng đảm bảo sản phẩm không thuộc đơn hàng',
+      'msg' => 'Xóa không thành công. Sản phẩm có thuộc đơn hàng',
       'path' => "index.php?page=listproducts"
     );
     echo json_encode($response);

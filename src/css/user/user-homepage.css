@@ -85,6 +85,7 @@
   display: grid;
   gap: 25px;
   grid-template-columns: repeat(5, 1fr);
+  justify-content: center;
 }
 
 .sale-product-content .product {
@@ -96,8 +97,9 @@
 }
 
 .sale-product-content .product img {
-  width: 100%;
-  /* height: 230px; */
+  background: white;
+  width: 195px;
+  height: 180px;
   border-radius: 5px 5px 0 0;
 }
 

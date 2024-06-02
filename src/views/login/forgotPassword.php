@@ -20,7 +20,8 @@
         </div>
     </form>
 </div>
-</script>
+
+
 <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script type="text/javascript">
@@ -31,6 +32,7 @@
     })();
 </script>
 <script>
+
     function notification(result) {
         Swal.fire({
             title: "Thông báo",
@@ -55,6 +57,7 @@
                 dataType: "json",
                 data: {
                     sessionOTP,
+                    sessionEmail
                 },
                 success: function (result) {
                     window.location.assign("http://localhost/baocaocuoiki/src/index.php?page=reset-password");
@@ -78,8 +81,10 @@
             return;
         }
     }
+
+    //Thiết lập thời gian được phép gửi lại OTP
     function setTimeCD() {
-        const buttonSendAgain = $('.button-send-again');
+        const buttonSendAgain = document.querySelector('.button-send-again');
         let timeRemaining = 0;
         let intervalId;
         if (timeRemaining === 0) {
@@ -103,7 +108,6 @@
     }
 
     function sendOTPEmail() {
-        console.log(1);
         const emailForgot = $("#forgot-password-input").val();
         const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
@@ -134,13 +138,13 @@
 
         emailjs.send('service_wb0cp5n', 'template_dbfvt7a', infoUserForgot)
             .then(function () {
-                sessionStorage.setItem('passOTP', infoUserForgot.otp_code);
-                sessionStorage.setItem('emailForgot', infoUserForgot.emailForgot);
-                const inputOTPbox = document.getElementById('input-form-OTP');
-                const fieldsetLogin = inputOTPbox.querySelector('.fieldset-login');
+                sessionStorage.setItem('passOTP', infoUserForgot.otp_code); //tạo session cho OTP
+                sessionStorage.setItem('emailForgot', infoUserForgot.emailForgot); //tạo session cho email xác thực
+                const formOTP = document.getElementById('input-form-OTP');
+                const fieldsetLogin = formOTP.querySelector('.fieldset-login');
                 const confirmOPTBtn = document.querySelector('#submit-forgot-input');
                 if (!fieldsetLogin) {
-                    inputOTPbox.innerHTML = `<fieldset class="fieldset-login">
+                    formOTP.innerHTML = `<fieldset class="fieldset-login">
                     <legend>Mã OTP</legend>
                     <input class="input_login" style="width: 80%" maxlength="6" type="number" id="input-OTP"
                         placeholder="Nhập mã OTP nhận được..." />

@@ -1,11 +1,13 @@
 <div class="container user-cart">
-    <div id="title" style="    display: flex;
+    <!-- <div id="title" style="    display: flex;
     justify-content: space-between;
     padding: 15px;
     background: linear-gradient(to right, rgb(43 43 43), rgb(91, 159, 236));
     border-radius: 5px 5px 0 0;">
         Giỏ hàng
-    </div>
+    </div> -->
+    <h1 class="title-form_account" style="padding: 20px 20px 0;">GIỎ HÀNG</h1>
+
     <div style="padding: 20px;">
         <div class="product-cart">
             <?php

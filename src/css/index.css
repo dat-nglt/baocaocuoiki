@@ -8,6 +8,7 @@
 @import "./user/form-message.css";
 @import "./user/detail-product.css";
 @import "./user/category-product.css";
+@import "./user/user-webIntro.css";
 @import "./login/login.css";
 
 html {

@@ -9,8 +9,7 @@
                     <legend>Tài khoản</legend>
                     <input class="input_login" type="text" name="name-login" id="account-name-login-input"
                         placeholder="Tên đăng nhập..." />
-                    <span class="error_message">Tài khoản không được để
-                        trống &lowast;</span>
+                    <span class="error_message">Tài khoản </span>
                 </fieldset>
             </div>
             <div class="login__input__box">
@@ -19,8 +18,7 @@
                     <legend>Mật khẩu...</legend>
                     <input class="input_login input_login_password" type="password" autocomplete=""
                         name="password-login" id="account-password-login-input" placeholder="Mật khẩu" />
-                    <span class="error_message">Mật khẩu không được để
-                        trống &lowast;</span>
+                    <span class="error_message">Mật khẩu </span>
                     <i class="fa-regular fa-eye-slash eye"></i>
                 </fieldset>
             </div>
@@ -54,8 +52,7 @@
                     <legend>Tài khoản</legend>
                     <input class="input_login" type="text" name="name-signin" id="account-name-signin-input"
                         placeholder="Tên đăng nhập..." />
-                    <span class="error_message">Tài khoản không được để
-                        trống &lowast;</span>
+                    <span class="error_message">Tài khoản </span>
                 </fieldset>
             </div>
             <div class="login__input__box">
@@ -63,9 +60,7 @@
                     <legend>Email</legend>
                     <input class="input_login" type="email" name="email-signin" id="account-email-signin-input"
                         placeholder="Tài khoản Email..." />
-                    <span class="error_message">Địa chỉ email không
-                        được để trống
-                        &lowast;</span>
+                    <span class="error_message">Địa chỉ email </span>
                 </fieldset>
             </div>
             <div class="login__input__box">
@@ -74,8 +69,7 @@
                     <input class="input_login input_login_password" type="password" autocomplete=""
                         name="password-signin" id="account-password-signin-input" placeholder="Mật khẩu..." />
                     <i class="eye fa-regular fa-eye-slash"></i>
-                    <span class="error_message">Mật khẩu không được để
-                        trống &lowast;</span>
+                    <span class="error_message">Mật khẩu </span>
                 </fieldset>
                 <fieldset>
                     <legend>
@@ -85,8 +79,7 @@
                         name="re-password-signin" id="account-re-password-signin-input"
                         placeholder="Nhập lại mật khẩu..." />
                     <i class="eye fa-regular fa-eye-slash"></i>
-                    <span class="error_message">Mật khẩu không được để
-                        trống &lowast;</span>
+                    <span class="error_message">Mật khẩu </span>
                 </fieldset>
             </div>
             <button onclick="submitSignIn()" type="button" class="submit_login_btn" id="submit-signin-input"
@@ -145,12 +138,20 @@
         });
     });
 
+    inputLogin.forEach((input, index) => {
+        input.addEventListener("input", function () {
+            input.value = /\s/.test(input.value) ? input.value.replace(/\s+/g, "") : input.value;
+        });
+    });
+
     // module check empty value
     inputLogin.forEach((input, index) => {
+        errorInfo[index].innerHTML += "không được để trống"
         input.addEventListener("blur", function () {
             errorInfo[index].style.display = input.value === "" ? "block" : "none";
         });
     });
+
 
     // module chuyển type password
     eyes.forEach((eye, index) => {
@@ -166,8 +167,8 @@
         const passwordPattern =
             /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
 
-        const account = $("#account-name-login-input").val();
-        const password = $("#account-password-login-input").val();
+        const account = $("#account-name-login-input").val().replace(/\s+/g, "");
+        const password = $("#account-password-login-input").val().replace(/\s+/g, "");
 
         if (!account || !password) {
             notification({
@@ -190,6 +191,7 @@
                 notification(result);
             },
             error: function (xhr, error) {
+                console.log(error);
                 notification({
                     status: "error",
                     msg: "Đã có lỗi xảy ra",
@@ -206,10 +208,10 @@
 
         const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-        const accountSignIn = $("#account-name-signin-input").val();
-        const passwordSignIn = $("#account-password-signin-input").val();
-        const passwordSignInConfirm = $("#account-re-password-signin-input").val();
-        const emailSignIn = $("#account-email-signin-input").val();
+        const accountSignIn = $("#account-name-signin-input").val().replace(/\s+/g, "");
+        const passwordSignIn = $("#account-password-signin-input").val().replace(/\s+/g, "");
+        const passwordSignInConfirm = $("#account-re-password-signin-input").val().replace(/\s+/g, "");
+        const emailSignIn = $("#account-email-signin-input").val().replace(/\s+/g, "");
 
         if (
             !accountSignIn ||
@@ -273,6 +275,7 @@
                 });
                 return;
             },
+
         });
     }
 

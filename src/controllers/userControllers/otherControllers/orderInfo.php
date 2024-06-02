@@ -7,10 +7,10 @@ if (count($_SESSION['cart']) > 0) {
     if (isset($_SESSION['user'])) {
         include ("./views/user/user-order-info.php");
         if (isset($_POST['order-btn'])) {
-            $name = $_POST['order-name'];
-            $tel = $_POST['order-number'];
-            $address = $_POST['order-address'];
-            $note = $_POST['order-note'];
+            $name = preg_replace('/\s+/', ' ', trim($_POST['order-name']));
+            $tel = preg_replace('/\s+/', '', trim($_POST['order-number']));
+            $address = preg_replace('/\s+/', ' ', trim($_POST['order-address']));
+            $note = preg_replace('/\s+/', ' ', trim($_POST['order-note']));
             $time = date('Y-m-d');
             $add = addBill($conn, $_SESSION['user']['maNguoiDung'], $time, $thanhtien, $address, $name, $tel, $note);
             $last_id = mysqli_insert_id($conn);

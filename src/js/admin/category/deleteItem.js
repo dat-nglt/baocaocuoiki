@@ -2,7 +2,7 @@ $(document).ready(function () {
   $('.list__action-btn').on('click', function () {
     Swal.fire({
       title: 'Xác nhận',
-      text: 'Bạn có xóa danh mục này!',
+      text: 'Bạn có xóa thương hiệu này!',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#d33',

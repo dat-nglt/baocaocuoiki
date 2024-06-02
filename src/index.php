@@ -36,9 +36,6 @@
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
-    if (isset($_SESSION['OTP'])) {
-        var_dump($_SESSION['OTP']);
-    }
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
         switch ($page) {
@@ -88,6 +85,9 @@
                 break;
             case 'forgot-password':
                 include "./controllers/userControllers/accountControllers/forgotPassword.php";
+                break;
+            case 'introduce':
+                include("./views/user/user-webIntro.php");
                 break;
             case 'reset-password':
                 include "./controllers/userControllers/accountControllers/resetPassword.php";

@@ -1,23 +1,7 @@
 <?php
-$serverName = "localhost";
-$userName = "root";
-$passWord = "";
-$database = "laptop_z3g";
-session_start();
-$conn = mysqli_connect($serverName, $userName, $passWord, $database);
-function responseMessage($status, $msg, $path)
-{
-  $response = array(
-    'status' => $status,
-    'msg' => $msg,
-    'path' => $path
-  );
-  echo json_encode($response);
-}
+include ("./serviceAjax.php");
 
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $account = $_POST['account'];
   $password = $_POST['password'];
@@ -33,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if (password_verify($password, $resultCheckAccount['matKhau'])) {
         $_SESSION['user'] = $resultCheckAccount;
         if ($_SESSION['user']['quyenTruyCap'] == 2) {
-          responseMessage('success', 'Đăng nhập thành công!', 'http://localhost/baocaocuoiki/admin/');
+          responseMessage('success', 'Đăng nhập thành công!', 'http://localhost/baocaocuoiki/admin/index.php?page=charts');
         } else {
           responseMessage('success', 'Đăng nhập thành công!', 'http://localhost/baocaocuoiki/src/');
         }

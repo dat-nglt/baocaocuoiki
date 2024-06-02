@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['search-classify'])) {
-    $_SESSION['search-classify'] = $_POST['search-classify'];
+    $_SESSION['search-classify'] = preg_replace('/\s+/', ' ', trim($_POST['search-classify']));
 }
 if (isset($_POST['sort-classify'])) {
     $_SESSION['sort-classify'] = $_POST['sort-classify'];

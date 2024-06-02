@@ -103,8 +103,8 @@
                     <td>
                         <div>
                             <a href="index.php?page=detailbill&id=<?=$maDonHang?>"><button class="list__action-open-edit" type="button"><i class="fa-solid fa-eye list__icon-edit"></i></button></a>
-                            <button class="list__action-btn" type="button" data-id="<?= $maDonHang ?>"><i
-                                title="Xóa sản phẩm" class="fa-solid fa-trash list__icon-del"></i></button>
+                            <!-- <button class="list__action-btn" type="button" data-id="<?= $maDonHang ?>"><i
+                                title="Xóa sản phẩm" class="fa-solid fa-trash list__icon-del"></i></button> -->
                         </div>
                     </td>
                 </tr>

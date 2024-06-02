@@ -1,6 +1,6 @@
 <?php
 
-function getAllLogistics($conn, $searchLogistics = null, $sortStatus = null, $sortTime = 'asc')
+function getAllLogistics($conn, $searchLogistics = null, $sortStatus = null, $sortTime = 'asc', $start = '', $limit = '')
 {
   $sql = "SELECT logistics.id, 
   sanpham.tenSanPham, 
@@ -21,6 +21,10 @@ function getAllLogistics($conn, $searchLogistics = null, $sortStatus = null, $so
   ;
 
   $sql .= " ORDER BY logistics.timeLogistics $sortTime";
+
+  if ($start != '' && $limit != '') {
+    $sql .= " LIMIT $start, $limit";
+  }
 
   $result = mysqli_query(
     $conn,
