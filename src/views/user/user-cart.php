@@ -1,12 +1,17 @@
+<div class="list-menuBack">
+    <div class="content-menuBack">
+        <a href="index.php"><i class="fa-solid fa-house" style="margin-right: 5px;"></i> Trang chủ</a>
+        <span class="separator"><i class="fa-solid fa-angle-right"></i></span>
+        <span style="padding: 0px">Giỏ hàng</span>
+    </div>
+</div>
+
 <div class="container user-cart">
-    <!-- <div id="title" style="    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background: linear-gradient(to right, rgb(43 43 43), rgb(91, 159, 236));
-    border-radius: 5px 5px 0 0;">
-        Giỏ hàng
-    </div> -->
-    <h1 class="title-form_account" style="padding: 20px 20px 0;">GIỎ HÀNG</h1>
+    <div class="sale-prodoct-header">
+        <div id="title">
+            Giỏ hàng
+        </div>
+    </div>
     <div style="padding: 20px;">
         <div class="product-cart">
             <?php
@@ -56,9 +61,9 @@
             } ?>
         </div>
         <div class="button-box">
-            <a class="button-buy" href="index.php?page=allproduct">Tiếp tục mua hàng</a>
+            <a class="button-buy continue" href="index.php?page=allproduct">Tiếp tục mua hàng</a>
             <?php if (count($_SESSION['cart']) > 0) { ?>
-                <a class="button-buy" href="index.php?page=orderinfo">Đặt hàng</a>
+                <a class="button-buy buyCart" href="index.php?page=orderinfo">Đặt hàng</a>
             <?php } ?>
         </div>
     </div>

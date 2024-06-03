@@ -1,0 +1,32 @@
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  top: 49.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.overlay i {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.banner-sub:hover .overlay {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.image-wrapper {
+    position: relative;
+  }

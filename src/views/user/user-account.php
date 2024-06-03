@@ -224,6 +224,13 @@
 </script>
 
 <script>
+    $('#profile-email-input').on('input', function () {
+        var inputValue = $(this).val();
+        if (/\s/.test(inputValue)) {
+            $(this).val(inputValue.replace(/\s+/g, ''));
+        }
+    });
+    
     $('#submit-info-account').on('click', function () {
         let profileFullname = $('#profile-fullname-input').val().replace(/\s+/g, ' ');
         let profileAddress = $('#profile-address-input').val().replace(/\s+/g, ' ');

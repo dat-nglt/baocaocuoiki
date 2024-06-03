@@ -1,7 +1,7 @@
 <div class="list-menuBack">
     <div class="content-menuBack">
         <a href="index.php"><i class="fa-solid fa-house" style="margin-right: 5px;"></i> Trang chủ</a>
-        <span class="separator"> > </span>
+        <span class="separator"> <i class="fa-solid fa-angle-right"></i> </span>
         <span>
             Sản phẩm bán chạy
         </span>
@@ -31,39 +31,41 @@
                     <?php } ?>
                 </ul>
             </div>
-            <div class="category-product-content">
+            <div class="category-product-content product">
                 <?php foreach ($listProduct as $key => $value) {
                     extract($value);
-                    $maSanPham1 = $value[0];
+                    $maSanPham1 = $maSanPham;
                     $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
-                    $price = ($value[3] - ($value[3] * ($value[6] / 100)));
+                    $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                     ?>
-                    <div class="category-product">
+                    <div class="category-product product">
                         <a href="<?= $linkProduct ?>">
-                            <img class="imgProduct" src="<?= $value[2] ?>" alt="">
+                            <img class="imgProduct" src="<?= $hinhAnh ?>" alt="">
                             <div class="info-product">
                                 <div class="name-product">
-                                    <?= $value[1] ?>
+                                    <?= $tenSanPham ?>
                                 </div>
                                 <div class="price__sale" style="display: flex; gap: 15px; align-items: center;">
                                     <div class="price-product"><?= number_format($price, 0, '.', '.') ?><span
                                             id="vnd">&#8363;</span></div>
-                                    <?php if ($price != $value[3]) {
+                                    <?php if ($price != $giaTien) {
                                         echo '<div class="price-product"
-                                            style="color: #888;text-decoration: line-through; font-size: 11px;">' . number_format($value[3], 0, '.', '.') . '<span
-                                            id="vnd">&#8363;</span></div>';
+                                        style="color: #888;text-decoration: line-through; font-size: 11px;">' . number_format($giaTien, 0, '.', '.') . '<span
+                                        id="vnd">&#8363;</span></div>';
                                     } ?>
                                 </div>
                                 <div class="sold">Đã bán:
-                                    <?= $value[9] ?>
+                                    <?= $daBan ?>
                                 </div>
                             </div>
                         </a>
-                        <button type="button" class="add-to-cart" data-id="<?= $value[0] ?>"
-                            data-price="<?= $value[3] ?>">Thêm vào giỏ</button>
+                        <button type="button" class="add-to-cart" data-id="<?= $maSanPham1 ?>"
+                            data-price="<?= $price ?>">Thêm vào giỏ</button>
                     </div>
                 <?php } ?>
             </div>
         </div>
     </div>
 </div>
+
+<script src="./js/addToCart.js"></script>

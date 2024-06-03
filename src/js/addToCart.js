@@ -30,12 +30,13 @@ $(document).ready(function() {
                   });
                   Toast.fire({
                     icon: "success",
-                    title: "Đã thêm sản phẩm vào giỏ"
+                    title: "Thêm sản phẩm vào giỏ"
                   }).then(() => {
                     window.location.assign(window.location.href);
                 });
             },
             error: function (xhr, error) {
+              console.log(xhr);
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -45,10 +46,7 @@ $(document).ready(function() {
                     didOpen: (toast) => {
                       toast.onmouseenter = Swal.stopTimer;
                       toast.onmouseleave = Swal.resumeTimer;
-                    },
-                    onClose: () => {
-                        window.location.reload();
-                      } 
+                    }
                   });
                   Toast.fire({
                     icon: "error",

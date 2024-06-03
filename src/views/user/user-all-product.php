@@ -43,7 +43,7 @@
                         $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
                         $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                         ?>
-                        <div class="category-product">
+                        <div class="category-product product">
                             <a href="<?= $linkProduct ?>">
                                 <img class="imgProduct" src="<?= $hinhAnh ?>" alt="">
                                 <div class="info-product">
@@ -103,3 +103,5 @@
         </div>
     </div>
 </div>
+
+<script src="./js/addToCart.js"></script>

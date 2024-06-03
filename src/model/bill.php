@@ -93,7 +93,7 @@ function countSold($conn, $id)
 
 function countSoldAllProduct($conn)
 {
-    $sql = "select m.*, sum(c.soLuong) from chitietdonhang c,sanpham m where m.maSanPham = c.maSanPham GROUP by c.maSanPham ORDER by  sum(c.soLuong) asc";
+    $sql = "select m.*, sum(c.soLuong) as daBan from chitietdonhang c,sanpham m where m.maSanPham = c.maSanPham GROUP by c.maSanPham ORDER by sum(c.soLuong) asc";
     $resultData = mysqli_query($conn, $sql);
     return $resultData;
 }

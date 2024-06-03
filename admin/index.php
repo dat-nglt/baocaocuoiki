@@ -62,6 +62,9 @@
             case 'charts':
                 include "../src/controllers/adminControllers/charts/chart.php";
                 break;
+            case 'banner':
+                include "../src/controllers/adminControllers/bannerControllers/banner.php";
+                break;
         }
     } else {
         include "../src/controllers/adminControllers/charts/chart.php";

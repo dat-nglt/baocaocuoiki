@@ -3,13 +3,12 @@ include ("./serviceAjax.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $profileFullname = preg_replace('/\s+/', '', $_POST['profileFullname']);
-  $profileAddress = preg_replace('/\s+/', '', $_POST['profileAddress']);
+  $profileAddress = preg_replace('/\s+/', ' ', $_POST['profileAddress']);
   $profileGender = $_POST['profileGender'];
   $profileNumberphone = $_POST['profileNumberphone'];
-  $profileEmail = $_POST['profileEmail'];
+  $profileEmail = preg_replace('/\s+/', '', $_POST['profileEmail']);
   $profileDOB = $_POST['profileDOB'];
   $idUser = $_SESSION['user']['maNguoiDung'];
-
 
   if (
     empty($profileFullname) ||
