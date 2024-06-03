@@ -7,7 +7,6 @@ function submitProduct() {
 
     var name = $("#input-name").val();
     var price = $("#input-price").val();
-    var count = $("#input-count").val();
     var brand = $("#category-product-add").val();
     var file = $("#newImg")[0].files[0];
 
@@ -18,7 +17,7 @@ function submitProduct() {
     if (brand === "") {
         Swal.fire({
             title: "Thông báo",
-            text: "Vui lòng nhập thương hiệu",
+            text: "Vui lòng thêm thương hiệu",
             icon: "warning",
             showConfirmButton: true,
         });
@@ -37,8 +36,7 @@ function submitProduct() {
 
     if (
         name.trim() === "" ||
-        price === "" ||
-        count === ""
+        price.trim() === ""
     ) {
         Swal.fire({
             title: "Thông báo",
@@ -62,7 +60,6 @@ function submitProduct() {
                 var data = {
                     name,
                     price,
-                    count,
                     brand,
                     des,
                     image: response.secure_url,

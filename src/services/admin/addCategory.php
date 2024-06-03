@@ -12,8 +12,17 @@ if (!$conn) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
+    $name = preg_replace('/\s+/', ' ', trim($_POST['name']));
     $image = $_POST['image'];
+
+    if($name === ''){
+      $response = array(
+        'status' => 'warning',
+        'msg' => 'Tên thương hiệu không được bỏ trống',
+        'path' => "index.php?page=listclassify"
+      );
+      echo json_encode($response);
+    }
 
   $sql = "select * from phanloai where tenLoai = '$name'";
   $result = mysqli_query($conn, $sql);

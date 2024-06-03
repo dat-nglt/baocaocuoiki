@@ -2,10 +2,10 @@
 include ("./serviceAjax.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $accountSignIn = preg_replace('/\s+/', '', $_POST['accountSignIn']);
+  $accountSignIn = preg_replace('/\s+/', '', trim($_POST['accountSignIn']));
   $emailSignIn = $_POST['emailSignIn'];
-  $passwordSignInConfirm = $_POST['passwordSignInConfirm'];
-  $passwordSignIn = $_POST['passwordSignIn'];
+  $passwordSignInConfirm = preg_replace('/\s+/', '', trim($_POST['passwordSignInConfirm']));
+  $passwordSignIn = preg_replace('/\s+/', '', trim($_POST['passwordSignIn']));
   if (empty($accountSignIn) || empty($passwordSignInConfirm) || empty($emailSignIn) || empty($passwordSignIn)) {
     responseMessage('warning', 'Vui lòng điền đầy đủ thông tin đăng kí!', '');
   } else {

@@ -52,11 +52,6 @@ function openFormAdd() {
                 </div>
                 <div class="list__add-handmade">
                     <div class="list__form-box">
-                    <label for="input-count" class="list__form-label">Số lượng <span>*</span></label>
-                        <input type="number" class="list__form-input" id="input-count" required
-                            placeholder="Nhập số lượng" inputmode="numeric" pattern="[0-9]*">
-                    </div>
-                    <div class="list__form-box">
                         <label class="list__form-label">Thương hiệu</label>
                             <select id="category-product-add">
                                 ${optionCategory}

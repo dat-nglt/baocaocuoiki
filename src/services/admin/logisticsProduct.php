@@ -12,9 +12,41 @@ if (!$conn) {
 $_SESSION['productID'] = 1;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $listDataLogistics = $_POST['listDataLogistics'];
+
   if (!empty($listDataLogistics)) {
     try {
-      foreach ($listDataLogistics as $item) {
+      foreach ($listDataLogistics as $key => $item) {
+
+        if ($item[0] === '') {
+          $response = array(
+            'status' => 'warning',
+            'msg' => 'Vui lòng thêm sản phẩm',
+            'path' => "index.php?page=logistics"
+          );
+          echo json_encode($response);
+          return;
+        }
+
+        if (!is_numeric($item[1])) {
+          $response = array(
+            'status' => 'warning',
+            'msg' => 'Số lượng phải là số, lỗi ở sản phẩm thứ '.($key + 1),
+            'path' => "index.php?page=logistics"
+          );
+          echo json_encode($response);
+          return;
+        }
+      
+        if ($item[1] < 0) {
+          $response = array(
+              'status' => 'warning',
+              'msg' => 'Số lượng phải lớn hơn 0, lỗi ở sản phẩm thứ '.($key + 1),
+              'path' => "index.php?page=logistics"
+          );
+          echo json_encode($response);
+          return;
+      }
+
         $sqlCheckQuantity = "SELECT sanpham.soLuong 
         FROM sanpham 
         WHERE sanpham.maSanPham = '$item[0]';";

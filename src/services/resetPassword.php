@@ -5,8 +5,8 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $password = $_POST['password'];
-  $passwordConfirm = $_POST['passwordConfirm'];
+  $password = preg_replace('/\s+/', '', trim($_POST['password']));
+  $passwordConfirm = preg_replace('/\s+/', '', trim($_POST['passwordConfirm']));
   $emailForget = $_POST['emailForget'];
 
   if (empty($passwordConfirm) || empty($emailForget) || empty($password)) { //Validation mật khẩu mới và email đăng kí

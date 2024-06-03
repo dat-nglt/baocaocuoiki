@@ -85,8 +85,7 @@
                         <div class="list__hidden-text"><?= $soLuong ?></div>
                     </td>
                     <td>
-                        <div class="list__hidden-text"><?= $giaGiam ?><?php if ($giaGiam != 0)
-                              echo '%'; ?></div>
+                        <div class="list__hidden-text"><?= $giaGiam ?></div>
                     </td>
                     <td>
                         <?php if ($ngayHetHanGiam != '0000-00-00') { ?>
@@ -103,13 +102,6 @@
                             <button class="list__action-open-edit" type="button" data-id="<?= $maSanPham ?>"><i
                                     title="Chỉnh sửa sản phẩm"
                                     class="fa-solid fa-pen-to-square list__icon-edit"></i></button>
-                            </button>
-                            <button class="list__action-btn" type="button" data-id="<?= $maSanPham ?>">
-                                <?php if ($maSanPham === '1') {
-                                    echo '<i class="fa-solid fa-eye-slash list__icon-del"></i>';
-                                } else {
-                                    echo '<i class="fa-solid fa-eye list__icon-edit"></i>';
-                                } ?>
                             </button>
                             <button class="list__action-btn" type="button" data-id="<?= $maSanPham ?>"><i
                                     title="Xóa sản phẩm" class="fa-solid fa-trash list__icon-del"></i></button>

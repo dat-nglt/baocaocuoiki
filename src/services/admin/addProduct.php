@@ -12,14 +12,39 @@ if (!$conn) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $name = $_POST['name'];
-  $price = $_POST['price'];
-  $count = $_POST['count'];
+  $name = preg_replace('/\s+/', ' ', trim($_POST['name']));
+  $price = preg_replace('/\s+/', '', trim($_POST['price']));
   $brand = $_POST['brand'];
   $des = $_POST['des'];
 
-  if($count < 0){
-    $count = 0;
+  if($name === ''){
+    $response = array(
+      'status' => 'warning',
+      'msg' => 'Tên sản phẩm không được bỏ trống',
+      'path' => "index.php?page=listproducts"
+    );
+    echo json_encode($response);
+    return;
+  }
+
+  if($brand === ''){
+    $response = array(
+      'status' => 'warning',
+      'msg' => 'Vui lòng thêm thương hiệu',
+      'path' => "index.php?page=listproducts"
+    );
+    echo json_encode($response);
+    return;
+  }
+
+  if (!is_numeric($price)) {
+    $response = array(
+      'status' => 'warning',
+      'msg' => 'Giá sản phẩm phải là số',
+      'path' => "index.php?page=listproducts"
+    );
+    echo json_encode($response);
+    return;
   }
 
   if(isset($_POST['image'])){
@@ -30,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $sql = "select * from sanpham where tenSanPham = '$name'";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) < 1) {
-    $sql = "INSERT INTO sanpham VALUES ('', '$name', '$image', '$price', '$count', '$des', '', DATE(NOW()), '$brand')";
+    $sql = "INSERT INTO sanpham VALUES ('', '$name', '$image', '$price', '0', '$des', '', DATE(NOW()), '$brand')";
     $result = mysqli_query($conn, $sql);
     if ($result) {
       $response = array(

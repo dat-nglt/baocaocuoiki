@@ -7,7 +7,7 @@ function submitProductEdit() {
 
     var id = $("#id_product").val();
     var name = $("#input-name").val();
-    var count = $("#input-count").val();
+    var price = $("#input-price").val();
     var category = $("#category-product").val();
     var sale = $("#input-sale").val();
     var dateSale = $("#input-date-sale").val();
@@ -30,7 +30,7 @@ function submitProductEdit() {
 
     if (
         name.trim() === "" ||
-        count.trim() === ""
+        price.trim() === ""
     ) {
         Swal.fire({
             title: "Thông báo",
@@ -41,14 +41,35 @@ function submitProductEdit() {
         return;
     }
 
+    if (isNaN(sale) || sale === '') {
+        Swal.fire({
+            title: "Thông báo",
+            text: "Giá giảm phải là số",
+            icon: "warning",
+            showConfirmButton: true,
+        });
+        return;
+      }
+      
+      const number = parseFloat(sale);
+      if (number < 0 || number >= 100) {
+        Swal.fire({
+            title: "Thông báo",
+            text: "Vui lòng nhập giá giảm trong khoảng từ 0 đến 99",
+            icon: "warning",
+            showConfirmButton: true,
+        });
+        return;
+      }
+
     var file = $("#newImg")[0].files[0];
     if (file === undefined) {
         var image = $('#oldimg').attr('src');;
         var data = {
             name,
-            count,
+            price,
             category,
-            sale,
+            number,
             dateSale,
             des,
             id,
@@ -94,9 +115,9 @@ function submitProductEdit() {
             success: function (response) {
                 var data = {
                     name,
-                    count,
+                    price,
                     category,
-                    sale,
+                    number,
                     dateSale,
                     des,
                     id,

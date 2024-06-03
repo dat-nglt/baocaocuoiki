@@ -1,7 +1,7 @@
 <?php
 $_SESSION['sort__in__out'] = isset($_SESSION['sort__in__out']) ? $_SESSION['sort__in__out'] : null;
 $_SESSION['search__logistics'] = isset($_SESSION['search__logistics']) ? $_SESSION['search__logistics'] : '';
-$_SESSION['sort__date'] = isset($_SESSION['sort__date']) ? $_SESSION['sort__date'] : '';
+$_SESSION['sort__date'] = isset($_SESSION['sort__date']) ? $_SESSION['sort__date'] : 'desc';
 
 if (isset($_POST['search__logistics'])) {
   $search = preg_replace('/\s+/', ' ', trim($_POST['search__logistics']));

@@ -688,6 +688,12 @@
                 <button type="button" onclick="submitLogistics()" name="add-book" >Xác nhận</button>
             </div>
         </form>`;
+        const inputQuantity = document.getElementById('logistics__product__quantity');
+  inputQuantity.addEventListener('input', function() {
+    if (this.value < 0) {
+      this.value = 0;
+    }
+  });
     // CKEDITOR.replace('input-des');
   }
 </script>
@@ -730,10 +736,30 @@
     var addressLogistics = $("#address__logistics").val();
     var noteLogistics = $("#note__logistics").val();
 
-    var itemListDataLogistics = [productID, quantityLogistics, addressLogistics, noteLogistics, statusLogistics];
+    if (isNaN(quantityLogistics) || quantityLogistics === '') {
+        Swal.fire({
+            title: "Thông báo",
+            text: "Số lượng là số",
+            icon: "warning",
+            showConfirmButton: true,
+        });
+        return;
+      }
+      
+      const number = parseFloat(quantityLogistics);
+      if (number < 0) {
+        Swal.fire({
+            title: "Thông báo",
+            text: "Vui lòng nhập số lượng lớn hơn 0",
+            icon: "warning",
+            showConfirmButton: true,
+        });
+        return;
+      }
+    var itemListDataLogistics = [productID, number, addressLogistics, noteLogistics, statusLogistics];
 
     if (
-      quantityLogistics === ""
+      number === ""
     ) {
       Swal.fire({
         title: "Thông báo",
@@ -745,7 +771,7 @@
     }
 
     if (
-      quantityLogistics > productQuantityInStock && statusLogistics == '0'
+      number > productQuantityInStock && statusLogistics == '0'
     ) {
       Swal.fire({
         title: "Thông báo",
@@ -758,13 +784,11 @@
 
     listDataLogistics.push(itemListDataLogistics);
 
-    console.log(statusLogistics);
-
     if (
       productID === "" ||
       addressLogistics === "" ||
       statusLogistics === "" ||
-      quantityLogistics === ""
+      number === ""
     ) {
       Swal.fire({
         title: "Thông báo",
@@ -778,7 +802,7 @@
     statusLogistics = statusLogistics === '1' ? 'Nhập sản phẩm' : 'Xuất sản phẩm';
     var newItem = $(`<div class="item__add__logistics">` +
       `<strong>${productName}</strong>` +
-      `<strong>Số lượng: ${quantityLogistics}</strong>` +
+      `<strong>Số lượng: ${number}</strong>` +
       `<strong>Trạng thái: ${statusLogistics}</strong>` +
       `</div>`);
     var containerDataListLogistics = $('#container__list__logistics');

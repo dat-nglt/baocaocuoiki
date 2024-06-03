@@ -12,12 +12,13 @@
                 </div>
                 <div class="info-field-account">
                     <label for="">Họ & Tên</label>
-                    <input type="text" name="name" value="<?= $_SESSION['user']['tenNguoiDung'] ?>">
+                    <input id="profile-fullname-input" type="text" name="name"
+                        value="<?= $_SESSION['user']['tenNguoiDung'] ?>">
                 </div>
 
                 <div class="info-field-account">
                     <label for="">Email</label>
-                    <input type="email" name="email" value="<?= $_SESSION['user']['email'] ?>">
+                    <input id="profile-email-input" type="text" name="email" value="<?= $_SESSION['user']['email'] ?>">
                 </div>
                 <div class="info-field-account gender">
                     <span id='check-sex' for="nam">Giới tính</span>
@@ -41,24 +42,26 @@
             <divx>
                 <div class="info-field-account">
                     <label for="">Số điện thoại</label>
-                    <input type="text" name="tel" oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+                    <input id="profile-numberphone-input" type="text" name="tel"
+                        oninput="this.value=this.value.replace(/[^0-9]/g,'')"
                         value="<?= $_SESSION['user']['soDienThoai'] ?>">
                 </div>
 
 
                 <div class="info-field-account">
                     <label for="">Địa chỉ</label>
-                    <input type="text" name="address" value="<?= $_SESSION['user']['diaChi'] ?>">
+                    <input id="profile-address-input" type="text" name="address"
+                        value="<?= $_SESSION['user']['diaChi'] ?>">
                 </div>
                 <div class="info-field-account">
                     <label for="">Ngày sinh</label>
-                    <input type="date" name="date" value="<?= $_SESSION['user']['ngaySinh'] ?>">
+                    <input id="profile-dob-input" type="date" name="date" value="<?= $_SESSION['user']['ngaySinh'] ?>">
                 </div>
             </divx>
         </div>
 
 
-        <button id="submit-info-account" type="submit" name="save-profile">Lưu Thông Tin</button>
+        <button id="submit-info-account" type="button" name="save-profile">Lưu Thông Tin</button>
     </form>
 
     <form action="" method="post" id="info-password-form" style="display:none; text-align: center;">
@@ -129,9 +132,10 @@
     const passwordFiled = document.querySelectorAll('.password-field');
     const errorInfo = document.querySelectorAll(".error_message");
 
-    const passwordPattern =
+    let passwordPattern =
         /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
-    const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    let phoneRegex = /^\d{10}$|^\d{11}$/;
 
     passwordFiled.forEach((input, index) => {
         input.addEventListener("input", function () {
@@ -200,7 +204,7 @@
                     text: result.msg,
                     icon: result.status,
                     showConfirmButton: false,
-                    timer: 1000,
+                    timer: 1300,
                 })
                 return;
             },
@@ -216,5 +220,74 @@
             },
 
         });
+    })
+</script>
+
+<script>
+    $('#submit-info-account').on('click', function () {
+        let profileFullname = $('#profile-fullname-input').val().replace(/\s+/g, ' ');
+        let profileAddress = $('#profile-address-input').val().replace(/\s+/g, ' ');
+        let profileGender = $('input[name="check-sex"]:checked').val();
+        let profileNumberphone = $('#profile-numberphone-input').val();
+        let profileEmail = $('#profile-email-input').val();
+        let profileDOB = $('#profile-dob-input').val();
+
+        if (profileEmail !== "" && !emailPattern.test(profileEmail)) {
+            Swal.fire({
+                title: "Thông báo",
+                text: "Vui lòng nhập đúng định dạng Email",
+                icon: "warning",
+                showConfirmButton: false,
+                timer: 1300,
+            })
+            return;
+        }
+
+        if (profileNumberphone !== "" && !phoneRegex.test(profileNumberphone)) {
+            Swal.fire({
+                title: "Thông báo",
+                text: "Vui lòng nhập đúng định dạng số điện thoại",
+                icon: "warning",
+                showConfirmButton: false,
+                timer: 1300,
+            })
+            return;
+        }
+
+        $.ajax({
+            url: "../src/services/changeProfileService.php",
+            type: "POST",
+            dataType: "json",
+            data: {
+                profileFullname,
+                profileAddress,
+                profileGender,
+                profileEmail,
+                profileNumberphone,
+                profileDOB
+            },
+            success: function (result) {
+                Swal.fire({
+                    title: "Thông báo",
+                    text: result.msg,
+                    icon: result.status,
+                    showConfirmButton: false,
+                    timer: 1300,
+                })
+                return;
+            },
+            error: function (xhr, error) {
+                Swal.fire({
+                    title: "Thông báo",
+                    text: 'Đã có lỗi xảy ra',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 1000,
+                })
+                return;
+            },
+
+        });
+
     })
 </script>

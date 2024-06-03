@@ -3,8 +3,8 @@ include ("./serviceAjax.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $account = $_POST['account'];
-  $password = $_POST['password'];
+  $account = preg_replace('/\s+/', '', trim($_POST['account']));
+  $password = preg_replace('/\s+/', '', trim($_POST['password']));
   $checkAccountSQL = "select * from nguoidung where tenTaiKhoan = '$account'";
 
 

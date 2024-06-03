@@ -115,7 +115,7 @@ $(document).on("click", ".list__action-open-edit", function () {
                         <div class="list__form-box">
                         <label for="input-count" class="list__form-label">Số lượng <span>*</span></label>
                             <input type="number" class="list__form-input" id="input-count" required
-                                placeholder="Nhập số lượng" inputmode="numeric" value="${count}" pattern="[0-9]*">
+                                placeholder="Nhập số lượng" inputmode="numeric" value="${count}" pattern="[0-9]*" disabled>
                         </div>
                         <div class="list__form-box">
                             <label class="list__form-label">Thương hiệu</label>
@@ -127,7 +127,7 @@ $(document).on("click", ".list__action-open-edit", function () {
                     <div class="list__add-handmade" style="padding: 5px 15px 5px 15px;">
                     <div class="list__form-box">
                     <label for="input-sale" class="list__form-label">Giảm giá(%)</label>
-                    <input type="number" class="list__form-input" value="${sale}" inputmode="numeric" pattern="[0-9]*" id="input-sale">
+                    <input type="number" class="list__form-input" min="0" max="99" step="1" value="${sale}" inputmode="numeric" pattern="[0-9]*" id="input-sale">
                     </div>
                     <div class="list__form-box">
                     <label for="input-date-sale" class="list__form-label">Giảm đến ngày</label>
@@ -148,5 +148,14 @@ $(document).on("click", ".list__action-open-edit", function () {
                 </div>
             </form>`;
     CKEDITOR.replace("input-des");
+    const inputSale = document.getElementById('input-sale');
+  inputSale.addEventListener('input', function() {
+    if (this.value > 99) {
+      this.value = 99;
+    }else if(this.value < 0){
+      this.value = 0;
+    }
+  });
   }
 });
+
