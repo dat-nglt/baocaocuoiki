@@ -8,31 +8,41 @@
             </div>
         </div>
         <div>
-            <div>
-    <?php var_dump(mysqli_num_rows($dataProduct)) ?>
-    <?php var_dump(mysqli_num_rows($dataClassify)) ?>
-  
-            </div>
             <div class="container banner-header">
-                <div class="banner-sub">
+                <div class="banner-sub categoryBanner">
                     <div class="image-wrapper">
                         <img id="banner-1"
-                            src="https://file.hstatic.net/200000722513/file/gearvn-mua-nitro-v-nhan-qua-vip_6dc10804e83d41258ca09061fd3a59ad.jpg"
+                            src="<?= $dataBanner[0][1]?>"
                             alt="">
                         <div class="overlay" id="avatar-preview">
                             <i class="fas fa-camera"></i>
                             <p>Nhấp vào để thay đổi</p>
                         </div>
                     </div>
-
                 </div>
-                <a href=""><img id="banner-2"
-                        src="https://file.hstatic.net/200000722513/file/gearvn-mua-nitro-v-nhan-qua-vip_6dc10804e83d41258ca09061fd3a59ad.jpg"
-                        alt=""></a>
+                <div class="banner-sub categoryDetail">
+                    <div class="image-wrapper">
+                        <img id="banner-2"
+                            src="<?= $dataBanner[1][1]?>"
+                            alt="">
+                        <div class="overlay" id="avatar-preview">
+                            <i class="fas fa-camera"></i>
+                            <p>Nhấp vào để thay đổi</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="../src/js/admin/banner/openFormEdit.js"></script>
+<script> var listClassify = <?php echo json_encode(mysqli_fetch_all($dataClassify)) ?> ;</script>
+<script> var listProduct = <?php echo json_encode(mysqli_fetch_all($dataProduct)) ?> ;</script>
+
+<script src="../src/js/admin/banner/openFormEditCategory.js"></script>
+<script src="../src/js/admin/banner/openFormEditDetail.js"></script>
 <script src="../src/js/admin/closeFormAdd.js"></script>
+<script src="../src/js/admin/banner/changeImg.js"></script>
+<script src="../src/js/admin/banner/submitMainBanner.js"></script>
+<script src="../src/js/admin/banner/submit2ndBanner.js"></script>
+

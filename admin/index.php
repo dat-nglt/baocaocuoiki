@@ -29,6 +29,7 @@
     }
     date_default_timezone_set("Asia/Ho_Chi_Minh");
     include ("../src/model/connect.php");
+    include ("./model/banner.php");
     include ("../src/model/account.php");
     include ("../src/model/product.php");
     include ("../src/model/classify.php");

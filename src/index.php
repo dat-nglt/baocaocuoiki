@@ -30,6 +30,7 @@
     include ("./model/classify.php");
     include ("./model/logistics.php");
     include ("./model/bill.php");
+    include ("./model/banner.php");
     include ("./message.php");
     
     if (!isset($_SESSION['cart'])) {
