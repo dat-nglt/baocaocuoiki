@@ -20,16 +20,11 @@ if(isset($_POST['plusCount'])){
         }
     }
 }
-if(isset($_POST['delete-cart'])){
-    foreach ($_SESSION['cart'] as $key => $value) {
-        if ($value[0] == $_POST['id-delete']) {
-            updateQuantityProduct1($conn,$_SESSION['cart'][$key][3],$_POST['id-delete']);
-            unset($_SESSION['cart'][$key]);
-        }
-    }
-}
 foreach ($_SESSION['cart'] as $key => $value) {
     $countProduct[$value[0]] = mysqli_fetch_assoc(getOneProduct($conn, ''.$value[0].''))['soLuong'];
-}var_dump($countProduct);
+}
 include("./views/user/user-cart.php");
 ?>
+<script>
+    
+</script>

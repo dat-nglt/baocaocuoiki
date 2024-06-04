@@ -16,3 +16,13 @@ function responseMessage($status, $msg, $path)
   );
   echo json_encode($response);
 }
+
+function responseMessage1($status, $msg, $data)
+{
+  $response = array(
+    'status' => $status,
+    'msg' => $msg,
+    'data' => $data
+  );
+  echo json_encode($response);
+}

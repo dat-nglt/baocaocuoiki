@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
     $(".add-to-cart").click(function() {
         var productDiv = $(this).closest('.product');
@@ -5,7 +7,6 @@ $(document).ready(function() {
         var imgProduct = productDiv.find('.imgProduct').attr('src');
         var idProduct = $(this).data("id");
         var priceProduct = $(this).data("price");
-
         $.ajax({
             type: "POST",
             url: "./services/addToCart.php",
@@ -17,6 +18,7 @@ $(document).ready(function() {
                 giaTien: priceProduct,
             },
             success: function (result) {
+
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -32,7 +34,7 @@ $(document).ready(function() {
                     icon: "success",
                     title: "Thêm sản phẩm vào giỏ"
                   }).then(() => {
-                    window.location.assign(window.location.href);
+                                        window.location.assign(window.location.href);
                 });
             },
             error: function (xhr, error) {

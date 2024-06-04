@@ -24,5 +24,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql2 = "update sanpham set soLuong = soLuong - '" . $quantityProduct . "' where maSanPham = '" . $idProduct . "'";
         $updateQuantity = mysqli_query($conn, $sql2);
     }
-    responseMessage('Thêm vào giỏ hàng thành công', 'index.php?page=details-product&id=' . $idProduct,'');
+    responseMessage1('Thêm vào giỏ hàng thành công', 'index.php?page=details-product&id=' . $idProduct, count($_SESSION['cart']));
 }

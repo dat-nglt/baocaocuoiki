@@ -60,13 +60,12 @@
             </fieldset>
         </form>
         <a href="index.php?page=cart" style="position: relative;">
-            <i class="fa-solid fa-cart-shopping" style="color: rgb(255, 255, 255);"></i>
-            <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) { ?>
-                <span
+            <i id="cart-shopping" class="fa-solid fa-cart-shopping" style="color: rgb(255, 255, 255);"></i>
+          
+                <div id="count-cart"
                     style="position: absolute; font-size: 14px; background: #f90000; width: 20px; height: 19px; text-align: center; color: #fff; font-weight: 600; border-radius: 50%; top: -3px; left: 20px;">
-                    <?php echo count($_SESSION['cart']); ?>
-                </span>
-            <?php } ?>
+
+                </div>
         </a>
         <?php if (isset($_SESSION['user'])) {
 
@@ -86,3 +85,10 @@
         <?php } ?>
     </div>
 </header>
+<script>
+    var countCart =
+        <?php echo json_encode(count($_SESSION['cart'])); ?>;
+    sessionStorage.setItem('countCart', countCart);
+    let countCartSession = sessionStorage.getItem('countCart') ? sessionStorage.getItem('countCart') : 0;
+    $('#count-cart').text(countCartSession);
+</script>

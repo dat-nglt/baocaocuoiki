@@ -23,6 +23,7 @@
     <?php
     session_start();
     date_default_timezone_set("Asia/Ho_Chi_Minh");
+   
     include ("./model/connect.php");
     include ("./model/account.php");
     include ("./model/product.php");
@@ -30,12 +31,22 @@
     include ("./model/logistics.php");
     include ("./model/bill.php");
     include ("./message.php");
-    include ("./views/user/user-header.php");
-
-    $limitPage = 5;
+    
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
+
+    if(isset($_POST['delete-cart'])){
+        foreach ($_SESSION['cart'] as $key => $value) {
+            if ($value[0] == $_POST['id-delete']) {
+                updateQuantityProduct1($conn,$_SESSION['cart'][$key][3],$_POST['id-delete']);
+                unset($_SESSION['cart'][$key]);
+            }
+        }
+    }
+    include ("./views/user/user-header.php");
+
+    $limitPage = 5;
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
         switch ($page) {
