@@ -1,6 +1,6 @@
 <div class="list-menuBack">
     <div class="content-menuBack">
-        <a href="index.php"><i class="fa-solid fa-house"></i> Trang chủ</a>
+        <a href="index.php"><i class="fa-solid fa-house" style="margin-right: 5px;"></i> Trang chủ</a>
         <span class="separator"> <i class="fa-solid fa-angle-right"></i> </span>
         <span>
             <?= $nameClassify ?>
@@ -68,6 +68,38 @@
             </div>
         </div>
     </div>
+    <div class="list__paging">
+        <div>
+            <?php
+            $idCategory = $_GET['id'];
+            if ($total_page > 1) {
+                if ($current_page > 3) {
+                    echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=category-product&id=' . $idCategory . '&pageNumber=1"> <button><i class="fa-solid fa-angles-left"></i></button></a>';
+                }
+                if ($current_page > 1) {
+                    echo ' <a href="http://localhost/baocaocuoiki/src/index.php?page=category-product&id=' . $idCategory . '&pageNumber=' . ($current_page - 1) . '"><button><i class="fa-solid fa-angle-left"></i></button></a>';
+                }
+                for ($i = 1; $i <= $total_page; $i++) {
+                    if ($i != $current_page) {
+                        if ($i > $current_page - 3 && $i < $current_page + 3) {
+                            echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=category-product&id=' . $idCategory . '&pageNumber=' . $i . '"><button class="button">' . $i . '</button></a>';
+                        }
+                    } else {
+                        echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=category-product&id=' . $idCategory . '&pageNumber=' . $i . '" class="button-current"><button class="button" >' . $i . '</button></a>';
+                    }
+                }
+                if ($current_page < $total_page) {
+                    echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=category-product&id=' . $idCategory . '&pageNumber=' . ($current_page + 1) . '"> <button><i class="fa-solid fa-angle-right"></i></button></a>';
+                }
+                if ($current_page < $total_page - 2) {
+                    echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=category-product&id=' . $idCategory . '&pageNumber=' . ($total_page) . '"><button><i class="fa-solid fa-angles-right"></i></button></a>';
+                }
+            }
+            ?>
+        </div>
+    </div>
 </div>
+
+
 
 <script src="./js/addToCart.js"></script>

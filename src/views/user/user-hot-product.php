@@ -32,37 +32,41 @@
                 </ul>
             </div>
             <div class="category-product-content product">
-                <?php foreach ($listProduct as $key => $value) {
-                    extract($value);
-                    $maSanPham1 = $maSanPham;
-                    $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
-                    $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
-                    ?>
-                    <div class="category-product product">
-                        <a href="<?= $linkProduct ?>">
-                            <img class="imgProduct" src="<?= $hinhAnh ?>" alt="">
-                            <div class="info-product">
-                                <div class="name-product">
-                                    <?= $tenSanPham ?>
-                                </div>
-                                <div class="price__sale" style="display: flex; gap: 15px; align-items: center;">
-                                    <div class="price-product"><?= number_format($price, 0, '.', '.') ?><span
-                                            id="vnd">&#8363;</span></div>
-                                    <?php if ($price != $giaTien) {
-                                        echo '<div class="price-product"
+                <?php if ($listProduct->num_rows <= 0) { ?>
+                    <div class="empty__product">Chưa có sản phẩm thuộc mục này</div>
+                <?php } else { ?>
+                    <?php foreach ($listProduct as $key => $value) {
+                        extract($value);
+                        $maSanPham1 = $maSanPham;
+                        $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
+                        $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
+                        ?>
+                        <div class="category-product product">
+                            <a href="<?= $linkProduct ?>">
+                                <img class="imgProduct" src="<?= $hinhAnh ?>" alt="">
+                                <div class="info-product">
+                                    <div class="name-product">
+                                        <?= $tenSanPham ?>
+                                    </div>
+                                    <div class="price__sale" style="display: flex; gap: 15px; align-items: center;">
+                                        <div class="price-product"><?= number_format($price, 0, '.', '.') ?><span
+                                                id="vnd">&#8363;</span></div>
+                                        <?php if ($price != $giaTien) {
+                                            echo '<div class="price-product"
                                         style="color: #888;text-decoration: line-through; font-size: 11px;">' . number_format($giaTien, 0, '.', '.') . '<span
                                         id="vnd">&#8363;</span></div>';
-                                    } ?>
+                                        } ?>
+                                    </div>
+                                    <div class="sold">Đã bán:
+                                        <?= $daBan ?>
+                                    </div>
                                 </div>
-                                <div class="sold">Đã bán:
-                                    <?= $daBan ?>
-                                </div>
-                            </div>
-                        </a>
-                        <button type="button" class="add-to-cart" data-id="<?= $maSanPham1 ?>"
-                            data-price="<?= $price ?>">Thêm vào giỏ</button>
-                    </div>
-                <?php } ?>
+                            </a>
+                            <button type="button" class="add-to-cart" data-id="<?= $maSanPham1 ?>"
+                                data-price="<?= $price ?>">Thêm vào giỏ</button>
+                        </div>
+                    <?php }
+                } ?>
             </div>
         </div>
     </div>

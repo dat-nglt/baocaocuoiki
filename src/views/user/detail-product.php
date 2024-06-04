@@ -14,12 +14,13 @@
         <a href="index.php"><i class="fa-solid fa-house" style="margin-right: 5px;"></i> Trang chủ</a>
         <span class="separator"> <i class="fa-solid fa-angle-right"></i> </span>
         <a href="index.php?page=category-product&id=<?= $detailProduct['maLoai'] ?>">
+
             <?php echo $detailProduct['tenLoai']; ?>
         </a>
         <span> <i class="fa-solid fa-angle-right"></i> </span>
-        <strong style="color: var();">
+        <span style="color: var();">
             <?php echo $detailProduct['tenSanPham']; ?>
-        </strong>
+        </span>
     </div>
 </div>
 <div class="container detail-product main">

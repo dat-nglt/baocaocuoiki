@@ -31,8 +31,7 @@
   background-color: #ffffff;
   padding: 20px 0px;
   border-radius: 5px;
-  box-shadow: 0px 0px 5px 1px
-    rgba(88, 88, 83, 0.3);
+  box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.3);
 }
 
 .filter a {
@@ -52,16 +51,14 @@
   width: 70px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  box-shadow: 0px 0px 5px 1px
-    rgba(88, 88, 83, 0.3);
+  box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.3);
 }
 
 /* Product */
 .sale-product {
   background-color: #ffffff;
   margin: 10px 0px;
-  box-shadow: 0px 0px 5px 1px
-    rgba(88, 88, 83, 0.3);
+  box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.3);
   border-radius: 5px;
 }
 
@@ -69,11 +66,7 @@
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  background: linear-gradient(
-    to right,
-    rgb(43 43 43),
-    rgb(91, 159, 236)
-  );
+  background: linear-gradient(to right, rgb(43 43 43), rgb(91, 159, 236));
   border-radius: 5px 5px 0 0;
 }
 
@@ -96,8 +89,7 @@
 }
 
 .sale-product-content .product {
-  box-shadow: 0px 0px 5px 1px
-    rgba(88, 88, 83, 0.5); /* Làm xong bỏ dòng này */
+  box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.5); /* Làm xong bỏ dòng này */
   border-radius: 5px;
   background-color: rgb(242, 242, 240);
   width: fit-content;
@@ -111,9 +103,7 @@
   border-radius: 5px 5px 0 0;
 }
 
-.sale-product-content
-  .product
-  .info-product {
+.sale-product-content .product .info-product {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -121,10 +111,8 @@
   font-size: 1.4rem;
 }
 
-.sale-product-content
-  .product
-  .info-product
-  .name-product {
+.sale-product-content .product .info-product .name-product {
+  text-transform: uppercase;
   width: fit-content;
   height: 35px;
   overflow: hidden;
@@ -134,10 +122,7 @@
   -webkit-box-orient: vertical;
 }
 
-.sale-product-content
-  .product
-  .info-product
-  .price-product {
+.sale-product-content .product .info-product .price-product {
   font-size: 1.4rem;
   color: rgb(20, 53, 195);
   font-weight: 600;
@@ -153,6 +138,19 @@
 .scale-item:hover {
   scale: 1.02;
   /* background: rgb(47 169 247); */
+}
+
+.out-count{
+  margin: 5px 0px;
+  width: 100%;
+  background-color: var(--gray-black-cl);
+  color: var(--white-cl);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 5px;
+  /* background: #5a9de8; */
+  padding: 7px 0;
+  border: 1px solid var(--gray-black-cl);
 }
 
 .add-to-cart {

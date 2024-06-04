@@ -23,13 +23,13 @@ $(document).on("click", ".categoryDetail", function () {
     addFormEdit.innerHTML = `
         <form action="" method="post" style="height: 545px" class="list__form-add">
             <div class="list__form-title">
-                <span><i class="fa-solid fa-images"></i> Banner danh mục</span><i class="fa-solid fa-xmark close-icon"
+                <span><i class="fa-solid fa-images"></i> Banner sản phẩm</span><i class="fa-solid fa-xmark close-icon"
                 onclick="closeFormAdd()"></i>
             </div>
             <div class="list__form-content" style="display: block">
                 <div class="list__add-handmade" style="display: block; padding: 10px 15px 0 15px;">
                     <div style="text-align: start;">
-                    <div style="font-size: 18px; font-weight: 500;">Hình ảnh banner chính <span style="color: red">*</span></div>
+                    <div style="font-size: 18px; font-weight: 500;">Hình ảnh banner phụ <span style="color: red">*</span></div>
                     <div style="display: flex; flex-direction: column;">
                         <div style="display: flex;justify-content: center; margin-bottom: 5px;" id="imgContainer"></div>
                         <img id="oldimg" style="height: 270px; width: 630px" src="${image}" alt="">

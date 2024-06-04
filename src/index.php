@@ -17,13 +17,14 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
     <title>Báo Cáo Cuối Kì</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 </head>
 
 <body>
     <?php
     session_start();
     date_default_timezone_set("Asia/Ho_Chi_Minh");
-   
+
     include ("./model/connect.php");
     include ("./model/account.php");
     include ("./model/product.php");
@@ -32,15 +33,15 @@
     include ("./model/bill.php");
     include ("./model/banner.php");
     include ("./message.php");
-    
+
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
     }
 
-    if(isset($_POST['delete-cart'])){
+    if (isset($_POST['delete-cart'])) {
         foreach ($_SESSION['cart'] as $key => $value) {
             if ($value[0] == $_POST['id-delete']) {
-                updateQuantityProduct1($conn,$_SESSION['cart'][$key][3],$_POST['id-delete']);
+                updateQuantityProduct1($conn, $_SESSION['cart'][$key][3], $_POST['id-delete']);
                 unset($_SESSION['cart'][$key]);
             }
         }
@@ -99,7 +100,7 @@
                 include "./controllers/userControllers/accountControllers/forgotPassword.php";
                 break;
             case 'introduce':
-                include("./views/user/user-webIntro.php");
+                include ("./views/user/user-webIntro.php");
                 break;
             case 'reset-password':
                 include "./controllers/userControllers/accountControllers/resetPassword.php";

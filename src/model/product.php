@@ -33,40 +33,52 @@ function getOneProduct($conn, $idProduct)
 }
 ;
 
-function getAllProductOfClassify($conn,$id){
-    $sql = "select s.*,p.tenLoai from sanpham s,phanloai p where s.maLoai = p.maLoai and s.maLoai = '".$id."'";
-    $resultData = mysqli_query($conn, $sql);
-    return $resultData; 
-}
-
-function getCountProductWithClassify($conn, $classify){
-    $sql = "select count(maLoai) from sanpham where maLoai = '$classify'";
-    $resultData = mysqli_query($conn, $sql);
-    return $resultData;
-}
-
-function getProductFlashSale($conn,$limit){
-    $sql = "select * from sanpham where giaGiam > 0";
-    if($limit!=""){
-        $sql.= " limit 0,5";
+function getAllProductOfClassify($conn, $id, $start = '', $limit = '')
+{
+    $sql = "SELECT s.*,p.tenLoai 
+    FROM sanpham s,phanloai p 
+    WHERE s.maLoai = p.maLoai 
+    AND s.maLoai = '" . $id . "' ";
+    if ($start != '') {
+        $sql .= "LIMIT $start, $limit";
     }
     $resultData = mysqli_query($conn, $sql);
     return $resultData;
 }
 
-function updateQuantityProduct($conn,$quantity,$id){
-    $sql = "update sanpham set soLuong = soLuong - '".$quantity."' where maSanPham = '".$id."'";
+function getCountProductWithClassify($conn, $classify)
+{
+    $sql = "select count(maLoai) from sanpham where maLoai = '$classify'";
     $resultData = mysqli_query($conn, $sql);
     return $resultData;
 }
 
-function updateQuantityProduct1($conn,$quantity,$id){
-    $sql = "update sanpham set soLuong = soLuong + '".$quantity."' where maSanPham = '".$id."'";
+function getProductFlashSale($conn, $start = '', $limit = '')
+{
+    $sql = "SELECT * FROM sanpham WHERE giaGiam > 0";
+    if ($start != '') {
+        $sql .= " LIMIT $start, $limit";
+    }
     $resultData = mysqli_query($conn, $sql);
     return $resultData;
 }
 
-function getCountProduct($conn){
+function updateQuantityProduct($conn, $quantity, $id)
+{
+    $sql = "update sanpham set soLuong = soLuong - '" . $quantity . "' where maSanPham = '" . $id . "'";
+    $resultData = mysqli_query($conn, $sql);
+    return $resultData;
+}
+
+function updateQuantityProduct1($conn, $quantity, $id)
+{
+    $sql = "update sanpham set soLuong = soLuong + '" . $quantity . "' where maSanPham = '" . $id . "'";
+    $resultData = mysqli_query($conn, $sql);
+    return $resultData;
+}
+
+function getCountProduct($conn)
+{
     $sql = "SELECT sum(soLuong) from sanpham";
     $resultData = mysqli_query($conn, $sql);
     return $resultData;

@@ -12,6 +12,7 @@ $listClassify = getAllClassify($conn);
 $arrayProductFlashSale = array();
 $arrayProductFlashSaleSold = array();
 $listProductFlashSale = getProductFlashSale($conn, '');
+$listProductHot = countSoldAllProduct($conn);
 foreach ($listProductFlashSale as $key => $value) {
     extract($value);
     if (strtotime($ngayHetHanGiam) > strtotime(date('Y-m-d'))) {
@@ -20,10 +21,11 @@ foreach ($listProductFlashSale as $key => $value) {
         $arrayProductFlashSale[$maSanPham1] = mysqli_fetch_assoc(getOneProduct($conn, $maSanPham1));
     }
 }
-$listProduct = getAllProduct($conn, '', 'desc', '0', '0', '15');
+$listProduct = getAllProduct($conn, '', 'desc', '0', '0', '10');
 foreach ($listProduct as $key => $value) {
     extract($value);
     $maSanPham1 = $maSanPham;
     $arrayProductFlashSaleSold[$maSanPham1] = mysqli_fetch_assoc(countSold($conn,$maSanPham1));
 }
+$dataBanner = mysqli_fetch_all(getAllBanner($conn));
 include("./views/user/user-homepage.php");
