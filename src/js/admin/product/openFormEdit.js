@@ -1,7 +1,7 @@
 $(document).on("click", ".list__action-open-edit", function () {
   var id = $(this).data("id");
   var name = $(this).closest("tr").find("td:eq(1)").text().trim();
-  var price = $(this).closest("tr").find("td:eq(2)").text().trim();
+  var price = $(this).closest("tr").find("td:eq(2)").text().trim().toString().replace(/\./g, '');
   var image = $(this).closest("tr").find("td:eq(3) img").attr("src");
   var count = $(this).closest("tr").find("td:eq(4)").text().trim();
   var sale = $(this).closest("tr").find("td:eq(5)").text().trim();
@@ -34,7 +34,8 @@ $(document).on("click", ".list__action-open-edit", function () {
         title: "Thông báo",
         text: error,
         icon: "error",
-        showConfirmButton: true,
+        timer: 1300,
+showConfirmButton: false,
       });
     },
   });

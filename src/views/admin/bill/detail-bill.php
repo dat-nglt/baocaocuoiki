@@ -1,3 +1,5 @@
+
+
 <div class="body__container">
     <div class="detail__container">
         <form action="" method="post">

@@ -141,6 +141,7 @@
 }
 
 .out-count{
+  text-align: center;
   margin: 5px 0px;
   width: 100%;
   background-color: var(--gray-black-cl);

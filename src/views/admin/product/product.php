@@ -74,7 +74,9 @@
                         <div class="list__hidden-text" style="-webkit-line-clamp: 2;"><?= $tenSanPham ?></div>
                     </td>
                     <td>
-                        <div class="list__hidden-text" style="-webkit-line-clamp: 2;"><?= $giaTien ?></div>
+                        <div class="list__hidden-text" style="-webkit-line-clamp: 2;">
+                            <?= number_format($giaTien, 0, '.', '.') ?>
+                        </div>
                     </td>
                     <td>
                         <div style="display: flex; align-items: center; justify-content: center">

@@ -32,6 +32,7 @@ $(document).ready(function () {
           title: "Thông báo",
           text: "Xóa không thành công.",
           icon: "error",
+          timer: 1300,
           showConfirmButton: true,
         }).then(function () {
             window.location.assign("index.php?page=listbills");

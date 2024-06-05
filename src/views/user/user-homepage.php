@@ -27,32 +27,39 @@
                         style="color: #fff; font-size: 2rem; margin-left: 10px"></i></div>
                 <div id="time"></div>
             </div>
-            <div class="sale-product-content">
+            <div class="sale-product-content slider">
                 <?php foreach ($arrayProductFlashSale as $key => $value) {
                     extract($value);
                     $maSanPham1 = $maSanPham;
                     $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
                     $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                     ?>
-                    <a href="<?= $linkProduct ?>">
-                        <div class="product scale-item">
-                            <img src="<?= $hinhAnh ?>" alt="">
+                    <div class="product scale-item">
+                        <a href="<?= $linkProduct ?>">
+                            <img class="imgProduct" src="<?= $hinhAnh ?>" alt="">
                             <div class="info-product">
                                 <div class="name-product"><?= $tenSanPham ?></div>
                                 <div class="price__sale" style="display: flex; gap: 15px; align-items: center;">
                                     <div class="price-product"><?= number_format($price, 0, '.', '.') ?><span
-                                            id="vnd">&#8363;</span>
-                                    </div>
-                                    <div class="price-product"
-                                        style="color: #888;text-decoration: line-through; font-size: 11px;">
-                                        <?= number_format($giaTien, 0, '.', '.') ?><span id="vnd">&#8363;</span>
-                                    </div>
+                                            id="vnd">&#8363;</span></div>
+                                    <?php if ($price != $giaTien) {
+                                        echo '<div class="price-product"
+                                            style="color: #888;text-decoration: line-through; font-size: 11px;">' . number_format($giaTien, 0, '.', '.') . '<span
+                                            id="vnd">&#8363;</span></div>';
+                                    } ?>
                                 </div>
-                                <div class="sold">Đã bán: <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
+                                <div class="sold">Đã bán:
+                                    <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                        <?php if ($soLuong > 0) { ?>
+                            <div class="add-to-cart" data-id="<?= $maSanPham1 ?>" data-price="<?= $price ?>">Thêm
+                                vào giỏ</div>
+                        <?php } else { ?>
+                            <div class="out-count" disabled>Đã hết hàng</div>
+                        <?php } ?>
+                    </div>
                 <?php } ?>
             </div>
         </div>
@@ -75,26 +82,34 @@
                     $maSanPham1 = $maSanPham;
                     $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
                     $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
+                    $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                     ?>
-                    <a href="<?= $linkProduct ?>">
-                        <div class="product scale-item">
-                            <img src="<?= $hinhAnh ?>" alt="">
+                    <div class="product scale-item">
+                        <a href="<?= $linkProduct ?>">
+                            <img class="imgProduct" src="<?= $hinhAnh ?>" alt="">
                             <div class="info-product">
                                 <div class="name-product"><?= $tenSanPham ?></div>
                                 <div class="price__sale" style="display: flex; gap: 15px; align-items: center;">
                                     <div class="price-product"><?= number_format($price, 0, '.', '.') ?><span
-                                            id="vnd">&#8363;</span>
-                                    </div>
-                                    <div class="price-product"
-                                        style="color: #888;text-decoration: line-through; font-size: 11px;">
-                                        <?= number_format($giaTien, 0, '.', '.') ?><span id="vnd">&#8363;</span>
-                                    </div>
+                                            id="vnd">&#8363;</span></div>
+                                    <?php if ($price != $giaTien) {
+                                        echo '<div class="price-product"
+                                            style="color: #888;text-decoration: line-through; font-size: 11px;">' . number_format($giaTien, 0, '.', '.') . '<span
+                                            id="vnd">&#8363;</span></div>';
+                                    } ?>
                                 </div>
-                                <div class="sold">Đã bán: <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
+                                <div class="sold">Đã bán:
+                                    <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                        <?php if ($soLuong > 0) { ?>
+                            <button type="button" class="add-to-cart" data-id="<?= $maSanPham1 ?>" data-price="<?= $price ?>">Thêm
+                                vào giỏ</button>
+                        <?php } else { ?>
+                            <button type="button" class="out-count" disabled>Đã hết hàng</button>
+                        <?php } ?>
+                    </div>
                 <?php } ?>
             </div>
         </div>
@@ -144,6 +159,7 @@
         </div>
     </div>
 </div>
+
 <script src="./js/homepage.js"></script>
 <!-- <script src="./js/addToCart.js"></script> -->
 <script>
@@ -207,5 +223,17 @@
 
             });
         });
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+
+<script>
+    $('.slider').slick({
+        infinite: true,
+        speed: 300,
+        slidesToShow: 5,
+        slidesToScroll: 5, // lô, đọc tin nhắn zalo
     });
 </script>

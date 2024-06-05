@@ -27,6 +27,11 @@
         header("Location: http://localhost/baocaocuoiki/src/");
         exit();
     }
+    function formatToCurrency($amount, $currency = 'VND', $symbol = '')
+    {
+        $formattedAmount = number_format($amount, 0, ',', '.');
+        return $symbol . $formattedAmount;
+    }
     date_default_timezone_set("Asia/Ho_Chi_Minh");
     include ("../src/model/connect.php");
     include ("../src/model/banner.php");

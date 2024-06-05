@@ -17,6 +17,9 @@ function getAllProduct($conn, $search, $sort, $classify, $startPage, $limit)
     if ($sort == "1") {
         $sql .= " order by s.giaTien desc";
     }
+    if($sort === ""){
+        $sql .= " order by s.soLuong desc";
+    }
     if ($startPage != '') {
         $sql .= " limit $startPage, $limit";
     }

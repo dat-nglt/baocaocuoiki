@@ -741,7 +741,8 @@
             title: "Thông báo",
             text: "Số lượng là số",
             icon: "warning",
-            showConfirmButton: true,
+            timer: 1300,
+showConfirmButton: false,
         });
         return;
       }
@@ -752,7 +753,8 @@
             title: "Thông báo",
             text: "Vui lòng nhập số lượng lớn hơn 0",
             icon: "warning",
-            showConfirmButton: true,
+            timer: 1300,
+showConfirmButton: false,
         });
         return;
       }
@@ -765,7 +767,8 @@
         title: "Thông báo",
         text: "Vui lòng nhập số lượng sản phẩm",
         icon: "warning",
-        showConfirmButton: true,
+        timer: 1300,
+showConfirmButton: false,
       });
       return;
     }
@@ -777,7 +780,8 @@
         title: "Thông báo",
         text: `Số lượng tồn kho không đủ để xuất sản phẩm`,
         icon: "warning",
-        showConfirmButton: true,
+        timer: 1300,
+showConfirmButton: false,
       });
       return;
     }
@@ -794,7 +798,8 @@
         title: "Thông báo",
         text: "Vui lòng nhập các thông tin bắt buộc",
         icon: "warning",
-        showConfirmButton: true,
+        timer: 1300,
+showConfirmButton: false,
       });
       return;
     }
@@ -815,7 +820,8 @@
         title: "Thông báo",
         text: "Không có dữ liệu nhập xuất",
         icon: "warning",
-        showConfirmButton: true,
+        timer: 1300,
+showConfirmButton: false,
       });
       return;
     }
@@ -831,7 +837,8 @@
           title: "Thông báo",
           text: result.msg,
           icon: result.status,
-          showConfirmButton: true,
+          timer: 1300,
+showConfirmButton: false,
         }).then(function () {
           window.location.assign(
             result.path
@@ -843,7 +850,8 @@
           title: "Warning",
           text: "Nhập sản phẩm không thành công",
           icon: "error",
-          showConfirmButton: true,
+          timer: 1300,
+showConfirmButton: false,
         }).then(function () {
           window.location.assign(
             "index.php?page=logistics"

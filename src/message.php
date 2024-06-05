@@ -8,7 +8,8 @@ function success($msg, $link)
             title: "Thông báo",
             text: "' . $msg . '",
             icon: "success",
-            showConfirmButton: true,
+            timer: 1300,
+showConfirmButton: false,
         }).then(function(){
             window.location.assign("' . $link . '");
         });
@@ -19,7 +20,8 @@ function success($msg, $link)
             title: "Thông báo",
             text: "' . $msg . '",
             icon: "success",
-            showConfirmButton: true,
+            timer: 1300,
+showConfirmButton: false,
         });
         return;
     </script>';
@@ -33,7 +35,8 @@ function successAdmin($msg, $adminLink, $homeLink)
             title: "Thông báo",
             text: "' . $msg . '",
             icon: "success",
-            showConfirmButton: true,
+            timer: 1300,
+showConfirmButton: false,
         }).then(function(){
             window.open("' . $adminLink . '", "_blank");
             window.open("' . $homeLink . '", "_self");
@@ -49,7 +52,8 @@ function error($msg, $link)
             title: "Thông báo",
             text: "' . $msg . '",
             icon: "error",
-            showConfirmButton: true,
+            timer: 1300,
+showConfirmButton: false,
         }).then(function(){
             window.location.assign("' . $link . '");
         });
@@ -60,7 +64,8 @@ function error($msg, $link)
             title: "Thông báo",
             text: "' . $msg . '",
             icon: "error",
-            showConfirmButton: true,
+            timer: 1300,
+showConfirmButton: false,
         });
         return;
     </script>';
@@ -75,7 +80,8 @@ function warning($msg, $link)
             title: "Thông báo",
             text: "' . $msg . '",
             icon: "warning",
-            showConfirmButton: true,
+            timer: 1300,
+showConfirmButton: false,
         }).then(function(){
             window.location.assign("' . $link . '");
         });
@@ -86,7 +92,8 @@ function warning($msg, $link)
             title: "Thông báo",
             text: "' . $msg . '",
             icon: "warning",
-            showConfirmButton: true,
+            timer: 1300,
+showConfirmButton: false,
         });
         return;
     </script>';

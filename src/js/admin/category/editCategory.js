@@ -36,7 +36,7 @@ function submitCategoryEdit() {
                 Swal.fire({
                     title: "Thông báo",
                     text: result.msg,
-                    icon: result.status,
+                    icon: result.status, 
                     showConfirmButton: true,
                 }).then(function () {
                     window.location.assign(result.path);
@@ -46,7 +46,7 @@ function submitCategoryEdit() {
                 Swal.fire({
                     title: "Thông báo",
                     text: "Chỉnh sửa không thành công",
-                    icon: "error",
+                    icon: "error",    
                     showConfirmButton: true,
                 }).then(function () {
                     window.location.assign("index.php?page=listclassify");
@@ -78,7 +78,7 @@ function submitCategoryEdit() {
                         Swal.fire({
                             title: "Thông báo",
                             text: result.msg,
-                            icon: result.status,
+                            icon: result.status,        
                             showConfirmButton: true,
                         }).then(function () {
                             window.location.assign(result.path);

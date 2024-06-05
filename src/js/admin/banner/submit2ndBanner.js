@@ -75,7 +75,7 @@ function submit2ndBanner() {
                         Swal.fire({
                             title: "Thông báo",
                             text: result.msg,
-                            icon: result.status,
+                            icon: result.status,                   
                             showConfirmButton: true,
                         }).then(function () {
                             window.location.assign(result.path);

@@ -86,11 +86,11 @@
                         <div class="list__hidden-text"><?= $gender ?></div>
                     </td>
                     <td>
-                        <?php if(strtotime($ngaySinh) != '0000-00-00'){ ?>
+                        <?php if (strtotime($ngaySinh) != '0000-00-00') { ?>
                             <div class="list__hidden-text"><?= date("d-m-Y", strtotime($ngaySinh)) ?></div>
-                        <?php }else{ ?>
+                        <?php } else { ?>
                             <div class="list__hidden-text"></div>
-                        <?php }?>
+                        <?php } ?>
                     </td>
                     <td>
                         <div class="list__hidden-text"><?= date("d-m-Y", strtotime($ngayThamGia)) ?></div>
@@ -100,11 +100,12 @@
                     </td>
                     <td>
                         <div>
-                            <button class="list__action-open-edit" type="button" data-id="<?= $maNguoiDung ?>"><i class="fa-solid fa-eye list__icon-edit"></i></button>
+                            <button class="list__action-open-edit" type="button" data-id="<?= $maNguoiDung ?>"><i
+                                    class="fa-solid fa-eye list__icon-edit"></i></button>
                             <button class="list__action-btn" type="button" data-id="<?= $maNguoiDung ?>">
                                 <?php if ($quyenTruyCap === '1') {
                                     echo '<i class="fa-solid fa-lock list__icon-del"></i>';
-                                } else{
+                                } else {
                                     echo '<i class="fa-solid fa-lock-open list__icon-edit"></i>';
                                 } ?>
                             </button>

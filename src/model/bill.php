@@ -91,9 +91,17 @@ function countSold($conn, $id)
     return $resultData;
 }
 
-function countSoldAllProduct($conn)
+function countSoldAllProduct($conn, $star = '', $limit = '')
 {
-    $sql = "select m.*, sum(c.soLuong) as daBan from chitietdonhang c,sanpham m where m.maSanPham = c.maSanPham GROUP by c.maSanPham ORDER by sum(c.soLuong) asc";
+    $sql = "SELECT m.*, sum(c.soLuong) AS daBan 
+    FROM chitietdonhang c,sanpham m 
+    WHERE m.maSanPham = c.maSanPham 
+    GROUP BY c.maSanPham 
+    ORDER BY sum(c.soLuong) asc";
+
+    if ($star != '') {
+        $sql .= " LIMIT $star, $limit";
+    }
     $resultData = mysqli_query($conn, $sql);
     return $resultData;
 }

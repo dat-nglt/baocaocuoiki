@@ -153,7 +153,8 @@ function notification(result) {
     title: "Thông báo",
     text: result.msg,
     icon: result.status,
-    showConfirmButton: true,
+    timer: 1300,
+showConfirmButton: false,
   }).then(function () {
     if (result.path != "") {
       window.location.assign(result.path);

@@ -1,4 +1,4 @@
-'<?php
+<?php
 include ("./serviceAjax.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

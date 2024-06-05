@@ -34,7 +34,7 @@ function submitMainBanner() {
                 Swal.fire({
                     title: "Thông báo",
                     text: result.msg,
-                    icon: result.status,
+                    icon: result.status,              
                     showConfirmButton: true,
                 }).then(function () {
                     window.location.assign(result.path);
@@ -44,7 +44,7 @@ function submitMainBanner() {
                 Swal.fire({
                     title: "Thông báo",
                     text: "Chỉnh sửa không thành công",
-                    icon: "error",
+                    icon: "error",  
                     showConfirmButton: true,
                 }).then(function () {
                     window.location.assign("index.php?page=banner");
@@ -75,7 +75,7 @@ function submitMainBanner() {
                         Swal.fire({
                             title: "Thông báo",
                             text: result.msg,
-                            icon: result.status,
+                            icon: result.status,            
                             showConfirmButton: true,
                         }).then(function () {
                             window.location.assign(result.path);
@@ -100,7 +100,7 @@ function submitMainBanner() {
                 Swal.fire({
                     title: "Thông báo",
                     text: "Chỉnh sửa thông tin thất bại",
-                    icon: "error",
+                    icon: "error",   
                     showConfirmButton: true,
                 }).then(function () {
                     window.location.assign("index.php?page=banner");

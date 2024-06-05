@@ -40,13 +40,6 @@
             </div>
             <div class="info-field-cart">
                 <label for="">Số điện thoại</label>
-                <!-- replace(/[^0-9]/g,''):
-                /[^0-9]/g: Đây là biểu thức chính quy (regex) được sử dụng trong phương thức replace. Trong ngữ cảnh này:
-                0-9: Đại diện cho tất cả các chữ số từ 0 đến 9.
-                ^: Ký tự này được đặt ngay sau dấu ^ có nghĩa là "không phải", vì vậy [^0-9] có nghĩa là bất kỳ ký tự nào không phải là chữ số.
-                /g: Điều này là một cờ (flag) của regex, nói cho phương thức replace biết là cần tìm kiếm và thay thế tất cả các ký tự không phải số,
-                không chỉ là ký tự đầu tiên mà nó gặp.
-                '': Chuỗi rỗng, tức là sẽ thay thế mọi ký tự không phải số bằng không gì cả, có nghĩa là xóa chúng khỏi giá trị. -->
                 <input name="order-number" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required type="text"
                     placeholder="VD: 039988770">
             </div>
@@ -67,5 +60,3 @@
         </form>
     </div>
 </div>
-
-  

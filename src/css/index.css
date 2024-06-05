@@ -1,13 +1,13 @@
-@import "./user/user-header.css";
-@import "./user/user-homepage.css";
-@import "./user/user-footer.css";
-@import "./user/user-cart.css";
-@import "./user/user-account.css";
-@import "./user/user-detail-bill-history.css";
-@import "./user/detail-product.css";
-@import "./user/category-product.css";
-@import "./user/user-webIntro.css";
-@import "./login/login.css";
+@import './user/user-header.css';
+@import './user/user-homepage.css';
+@import './user/user-footer.css';
+@import './user/user-cart.css';
+@import './user/user-account.css';
+@import './user/user-detail-bill-history.css';
+@import './user/detail-product.css';
+@import './user/category-product.css';
+@import './user/user-webIntro.css';
+@import './login/login.css';
 
 html {
   background-color: #ececec;
@@ -21,7 +21,7 @@ body {
 * {
   padding: 0;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
 }
 
@@ -52,7 +52,9 @@ li {
   right: 0px;
   border-radius: 5px;
   display: flex;
-  animation: moveToastMessage 0.5s linear, hidden 4s linear;
+  animation: moveToastMessage 0.5s
+      linear,
+    hidden 4s linear;
   animation-fill-mode: forwards;
 }
 
@@ -92,16 +94,18 @@ li {
 }
 
 #more-product {
-  color: #0f79e6;
-  padding: 6px 18px;
-  font-size: 1.5rem;
-  background-color: rgb(255 255 255 / 69%);
+  background: #0069d1;
+  color: rgb(255 255 255);
+  padding: 5px 20px;
+  font-size: 15px;
   border-radius: 5px;
-  font-weight: 500;
+  font-weight: 600;
+  transition: transform 0.2s ease-in-out;
 }
 
 #more-product:hover {
-  scale: 1.02;
+  color: #126dcb;
+  background-color: rgb(255 255 255);
 }
 
 :root {
@@ -162,8 +166,8 @@ li {
   }
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
   display: none;
@@ -172,7 +176,9 @@ input[type="number"]::-webkit-outer-spin-button {
 .current-page {
   li,
   span {
-    color: var(--blue-white-cl) !important;
+    color: var(
+      --blue-white-cl
+    ) !important;
   }
 }
 
@@ -192,7 +198,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .slick-slider button {
   position: absolute;
   top: 40%;
-  outline: "none";
+  outline: 'none';
   border: none;
   width: 40px;
   height: 40px;
@@ -208,7 +214,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .slick-slider .slick-prev::before {
-  content: "<";
+  content: '<';
   line-height: 1;
   font-size: 25px;
 }
@@ -219,7 +225,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .slick-slider .slick-next::after {
-  content: ">";
+  content: '>';
   line-height: 1;
   font-size: 25px;
 }
@@ -233,10 +239,10 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 250px;
 }
 
-.slick-slide {
-  padding: 10px 15px;
-  position: relative;
-  height: auto !important;
+.slick-strack {
+  gap: 22px;
+  display: flex !important;
+  margin: 0px auto;
   transition: all 500ms ease;
 }
 

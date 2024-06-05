@@ -49,8 +49,8 @@
 .user-header .menu a {
   color: rgb(255, 255, 255);
   text-transform: uppercase;
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   padding: 10px 0;
 }
 
@@ -66,7 +66,7 @@
 .user-header a:hover,
 .user-header .user button:hover i,
 .filter a:hover {
-  color: hsl(0, 0%, 73%) !important;
+  color: #ffd166 !important;
 }
 
 /* 
@@ -114,7 +114,7 @@
 }
 
 .menu-user li a:hover {
-  color: #0f79e6 !important; 
+  color: #0f79e6 !important;
   background-color: rgba(
     255,
     255,

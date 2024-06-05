@@ -74,7 +74,7 @@ function submitCategory() {
             Swal.fire({
                 title: "Thông báo",
                 text: "Thêm thương hiệu thất bại",
-                icon: "error",
+                icon: "error",     
                 showConfirmButton: true,
             }).then(function () {
                 window.location.assign("index.php?page=listclassify");

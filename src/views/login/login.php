@@ -285,7 +285,7 @@
             text: result.msg,
             icon: result.status,
             showConfirmButton: false,
-            timer: 1300,
+            timer: 1300
         }).then(function () {
             if (result.path != "") {
                 window.location.assign(result.path);

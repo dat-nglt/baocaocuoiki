@@ -16,9 +16,9 @@ if ($current_page > $total_page) {
     $current_page = $total_page;
 }
 $start = ($current_page - 1) * 8;
-$listProductFlashSale = getProductFlashSale($conn, $start, 8);
+$listProduct = getProductFlashSale($conn, $start, 8);
 
-foreach ($listProductFlashSale as $key => $value) {
+foreach ($listProduct as $key => $value) {
     extract($value);
     if (strtotime($ngayHetHanGiam) > strtotime(date('Y-m-d'))) {
         $maSanPham1 = $maSanPham;
