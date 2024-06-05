@@ -15,9 +15,9 @@
             <div class="login__input__box">
 
                 <fieldset class="fieldset-login">
-                    <legend>Mật khẩu...</legend>
+                    <legend>Mật khẩu</legend>
                     <input class="input_login input_login_password" type="password" autocomplete=""
-                        name="password-login" id="account-password-login-input" placeholder="Mật khẩu" />
+                        name="password-login" id="account-password-login-input" placeholder="Mật khẩu..." />
                     <span class="error_message">Mật khẩu </span>
                     <i class="fa-regular fa-eye-slash eye"></i>
                 </fieldset>

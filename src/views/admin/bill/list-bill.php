@@ -3,7 +3,7 @@
         <div>
             <div style="flex: 1;display:flex;justify-content: space-between">
                 <div>
-                    <span>Danh sách tài khoản</span>
+                    <span>Danh sách đơn hàng</span>
                     <!-- <button onclick="openFormAdd()" id="list__add-btn"
                         type="button">Thêm
                         tài khoản</button> -->
@@ -12,16 +12,42 @@
                     <fieldset>
                         <legend>Tìm kiếm</legend>
                         <form action="" method="post" class="admin__form-search">
-                            <input type="text" name="search-order" placeholder="Tên người dùng"
-                                autocomplete="off">
+                            <input type="text" name="search-order" placeholder="Tên người dùng" autocomplete="off">
                             <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </fieldset>
-                    <fieldset>
-                        <legend>Sắp xếp</legend>
+                    <!-- <fieldset>
+                        <legend>Trạng thái đơn hàng</legend>
                         <form action="" method="post" class="admin__form-search">
                             <select name="sort-order" id="">
-                                <option value="desc" <?php if ($_SESSION['sort-order'] === 'desc')
+                                <option value="0" <?php if ($_SESSION['sort-order-status'] === '0')
+                                    echo 'selected' ?>>
+                                        Chờ xác nhận
+                                    </option>
+                                    <option value="1" <?php if ($_SESSION['sort-order-status'] === '1')
+                                    echo 'selected' ?>>Đã xác nhận
+                                    </option>
+                                    <option value="2" <?php if ($_SESSION['sort-order-status'] === '2')
+                                    echo 'selected' ?>>
+                                        Đang giao hàng
+                                    </option>
+                                    <option value="3" <?php if ($_SESSION['sort-order-status'] === '3')
+                                    echo 'selected' ?>>
+                                        Giao thành công
+                                    </option>
+                                    <option value="4" <?php if ($_SESSION['sort-order-status'] === '4')
+                                    echo 'selected' ?>>
+                                        Giao thất bại
+                                    </option>
+                                </select>
+                                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </form>
+                        </fieldset> -->
+                        <fieldset>
+                            <legend>Sắp xếp</legend>
+                            <form action="" method="post" class="admin__form-search">
+                                <select name="sort-order" id="">
+                                    <option value="desc" <?php if ($_SESSION['sort-order'] === 'desc')
                                     echo 'selected' ?>>
                                         Mới nhất
                                     </option>
@@ -89,7 +115,8 @@
                         <div class="list__hidden-text"><?= $count ?></div>
                     </td>
                     <td>
-                        <div class="list__hidden-text"><?=number_format($thanhTien, 0, '.', '.') ?><span id="vnd" style="font-weight: 500; font-size: 17px;">&#8363;</span></div>
+                        <div class="list__hidden-text"><?= number_format($thanhTien, 0, '.', '.') ?><span id="vnd"
+                                style="font-weight: 500; font-size: 17px;">&#8363;</span></div>
                     </td>
                     <td>
                         <div class="list__hidden-text"><?= date("d-m-Y", strtotime($thoiGian)) ?></div>
@@ -102,7 +129,8 @@
                     </td>
                     <td>
                         <div>
-                            <a href="index.php?page=detailbill&id=<?=$maDonHang?>"><button class="list__action-open-edit" type="button"><i class="fa-solid fa-eye list__icon-edit"></i></button></a>
+                            <a href="index.php?page=detailbill&id=<?= $maDonHang ?>"><button class="list__action-open-edit"
+                                    type="button"><i class="fa-solid fa-eye list__icon-edit"></i></button></a>
                             <!-- <button class="list__action-btn" type="button" data-id="<?= $maDonHang ?>"><i
                                 title="Xóa sản phẩm" class="fa-solid fa-trash list__icon-del"></i></button> -->
                         </div>

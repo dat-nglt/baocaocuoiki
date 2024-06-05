@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
     $(".add-to-cart").click(function() {
         var productDiv = $(this).closest('.product');
@@ -18,7 +16,9 @@ $(document).ready(function() {
                 giaTien: priceProduct,
             },
             success: function (result) {
-
+              var newCart = result.data;
+              sessionStorage.setItem('countCart', newCart);
+              $('#count-cart').text(sessionStorage.getItem('countCart'));
                 const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
@@ -33,8 +33,6 @@ $(document).ready(function() {
                   Toast.fire({
                     icon: "success",
                     title: "Thêm sản phẩm vào giỏ"
-                  }).then(() => {
-                                        window.location.assign(window.location.href);
                 });
             },
             error: function (xhr, error) {

@@ -15,7 +15,8 @@
 
 .category-sidebar {
   height: fit-content;
-  box-shadow: 0px 0px 5px 1px rgba(88, 88, 83, 0.5);
+  box-shadow: 0px 0px 5px 1px
+    rgba(88, 88, 83, 0.5);
   border-radius: 5px;
   background-color: rgb(242, 242, 240);
   padding: 10px;
@@ -68,21 +69,38 @@
   text-align: center;
 }
 
-.category-product-content .category-product {
+.category-product-content
+  .category-product {
+  position: relative;
   border-radius: 5px;
   background-color: rgb(242, 242, 240);
   width: fit-content;
   height: fit-content;
 }
 
-.category-product .category-product img {
+.time-sale-box {
+  position: absolute;
+  top: 0px;
+  right: -10px;
+  background: red;
+  padding: 2px 14px;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.category-product
+  .category-product
+  img {
   background: white;
   width: 195px;
   height: 180px;
   border-radius: 5px 5px 0 0;
 }
 
-.category-product .category-product .info-product {
+.category-product
+  .category-product
+  .info-product {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -90,7 +108,10 @@
   font-size: 1.4rem;
 }
 
-.category-product .category-product .info-product .name-product {
+.category-product
+  .category-product
+  .info-product
+  .name-product {
   text-transform: uppercase;
   width: fit-content;
   height: 35px;
@@ -101,7 +122,10 @@
   -webkit-box-orient: vertical;
 }
 
-.category-product .category-product .info-product .price-product {
+.category-product
+  .category-product
+  .info-product
+  .price-product {
   font-size: 1.4rem;
   color: rgb(20, 53, 195);
   font-weight: 600;
@@ -127,7 +151,8 @@
   scale: 1.02;
 } */
 
-.category-sidebar button[type="submit"] {
+.category-sidebar
+  button[type='submit'] {
   border-radius: 3px;
   text-align: left;
   width: 90%;
@@ -137,7 +162,8 @@
   cursor: pointer;
 }
 
-.category-sidebar button[type="submit"]:hover {
+.category-sidebar
+  button[type='submit']:hover {
   background-color: #ddd;
 }
 
@@ -176,17 +202,23 @@
     padding: 4px 10px;
     font-size: 15px;
     cursor: pointer;
-    background-color: var(--gray-white-cl);
+    background-color: var(
+      --gray-white-cl
+    );
     transition: all 0.1s linear;
     margin-left: 5px;
 
     &:hover {
       color: var(--white-cl);
-      background-color: var(--blue-white-cl);
+      background-color: var(
+        --blue-white-cl
+      );
     }
   }
   .button-current button {
     color: var(--white-cl);
-    background-color: var(--blue-white-cl);
+    background-color: var(
+      --blue-white-cl
+    );
   }
 }

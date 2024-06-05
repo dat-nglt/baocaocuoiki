@@ -6,7 +6,10 @@ if (isset($_GET['id']) && $_GET['id'] > 0) {
     $total_page = ceil(mysqli_num_rows(getAllProductOfClassify($conn, $_GET['id'])) / 8);
     $listAllProduct = getAllProductOfClassify($conn, $_GET['id']);
     $nameClassify = mysqli_fetch_array($listAllProduct)[9];
-
+    if($nameClassify === null){
+        echo "<script>window.location.href = 'http://localhost/baocaocuoiki/src/';</script>";
+        exit();
+    }
     if ($total_page == 0) {
         $total_page = 1;
     }

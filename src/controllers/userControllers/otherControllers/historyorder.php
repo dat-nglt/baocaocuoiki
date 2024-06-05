@@ -5,6 +5,6 @@ if (isset($_SESSION['user'])) {
     return;
 }
 else {
-    header('location: index.php');
-};
-?>
+    echo "<script>window.location.href = 'http://localhost/baocaocuoiki/src/';</script>";
+    exit();
+}

@@ -95,7 +95,7 @@
 }
 
 .sss {
-  color: #e30019;
+  color: rgb(20, 53, 195);
   font-weight: 800;
   line-height: 40px;
   padding: 15px 0;
@@ -107,6 +107,7 @@
 }
 
 .ssss h2 {
+  text-transform: uppercase;
   width: 95%;
   font-size: 2.4rem;
 }
@@ -222,15 +223,13 @@
 }
 
 .slider {
-  /* margin-top: 20px; */
   width: 100%;
-  padding: 20px;
+  padding: 20px 15px;
 }
 
-/* .slick-track {
-  display: flex !important;
-  gap: 30px;
-} */
+.slick-list.draggable {
+  padding: 5px 0;
+}
 
 .slider .mx-2 {
   background: rgb(242, 242, 240);
@@ -265,7 +264,7 @@ h2.pt-2.fw-bold {
 }
 
 .product-price {
-  color: red;
+  color: rgb(20, 53, 195);
   font-weight: 600;
   font-size: 1.2rem;
   padding: 5px 0;
@@ -278,13 +277,13 @@ h2.pt-2.fw-bold {
 
 button.slick-next.slick-arrow {
   background: none;
-  right: 20px;
+  right: 12px;
   cursor: pointer;
 }
 
 button.slick-prev.slick-arrow {
   background: none;
-  left: 20px;
+  left: 12px;
   cursor: pointer;
 }
 
@@ -298,10 +297,6 @@ button.slick-prev.slick-arrow::before {
   content: "\276E";
   font-size: 5rem;
   color: black;
-}
-
-.slick-initialized .slick-slide:hover {
-  background: rgb(194, 226, 247);
 }
 
 .gift-title {

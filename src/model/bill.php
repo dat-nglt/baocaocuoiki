@@ -97,7 +97,7 @@ function countSoldAllProduct($conn, $star = '', $limit = '')
     FROM chitietdonhang c,sanpham m 
     WHERE m.maSanPham = c.maSanPham 
     GROUP BY c.maSanPham 
-    ORDER BY sum(c.soLuong) asc";
+    ORDER BY sum(c.soLuong) desc";
 
     if ($star != '') {
         $sql .= " LIMIT $star, $limit";

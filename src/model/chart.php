@@ -15,7 +15,7 @@ function billChart($conn, $time)
 {
   $sql = "SELECT COUNT(*), donhang.thoiGian 
   FROM donhang WHERE DATE(donhang.thoiGian) 
-  BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE()
+  BETWEEN DATE_SUB(CURDATE(), INTERVAL $time DAY) AND CURDATE()
   GROUP BY donhang.thoiGian;";
   if ($time > 30) {
     $sql = "SELECT
@@ -34,7 +34,7 @@ function getLogisticsQuantity($conn, $time, $status)
   $sql = "SELECT SUM(logistics.quantityLogistics), DATE_FORMAT(logistics.timeLogistics, '%Y-%m-%d') AS dateLogistics
 	FROM logistics
   WHERE DATE(logistics.timeLogistics) 
-  BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) 
+  BETWEEN DATE_SUB(CURDATE(), INTERVAL $time DAY) 
   AND CURDATE() AND logistics.statusLogistics = $status
   GROUP BY dateLogistics
   ";
@@ -54,9 +54,9 @@ function salesLogistics($conn, $time)
 {
   $sql = "SELECT SUM(donhang.thanhTien), donhang.thoiGian, donhang.trangThai 
   FROM donhang 
-  WHERE donhang.trangThai = 0 
+  WHERE donhang.trangThai = 3 
   AND DATE(donhang.thoiGian) 
-  BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE()
+  BETWEEN DATE_SUB(CURDATE(), INTERVAL $time DAY) AND CURDATE()
   GROUP BY donhang.thoiGian";
   if ($time > 30) {
     $sql = "SELECT SUM(donhang.thanhTien),  DATE_FORMAT(donhang.thoiGian, '%Y-%m') AS monthLogistics, donhang.thoiGian, donhang.trangThai 

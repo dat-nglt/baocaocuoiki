@@ -39,4 +39,31 @@ function getAllProductLogistics($conn)
   $resultData = mysqli_query($conn, $sql);
   return $resultData;
 }
+
+function addLogistics(
+  $conn,
+  $idProduct,
+  $quantityLogistics,
+  $addressLogistics,
+  $noteLogistics,
+  $statusLogistics
+) {
+  $sql = "INSERT INTO logistics
+  (id, 
+  idProduct, 
+  quantityLogistics, 
+  timeLogistics, 
+  addessLogistics, 
+  noteLogistics, 
+  statusLogistics) 
+  VALUES (NULL,
+  '$idProduct', 
+  '$quantityLogistics', 
+  current_timestamp(), 
+  '$addressLogistics', 
+  '$noteLogistics', 
+  '$statusLogistics');";
+  $resultData = mysqli_query($conn, $sql);
+  return $resultData;
+}
 ;

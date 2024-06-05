@@ -16,6 +16,7 @@
     <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.28/sweetalert2.all.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.28/sweetalert2.css">
+    <link rel="icon" type="image/x-icon" href="../src/img/favicon.ico">
     <title>Báo Cáo Cuối Kì</title>
 </head>
 
@@ -43,7 +44,7 @@
     include ("../src/model/chart.php");
     include ("../src/message.php");
     include ("../src/views/admin/admin-header.php");
-    $limitPage = 10;
+    $limitPage = 12;
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
         switch ($page) {

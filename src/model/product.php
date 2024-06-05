@@ -58,7 +58,7 @@ function getCountProductWithClassify($conn, $classify)
 
 function getProductFlashSale($conn, $start = '', $limit = '')
 {
-    $sql = "SELECT * FROM sanpham WHERE giaGiam > 0";
+    $sql = "SELECT * FROM sanpham WHERE giaGiam > 0 AND (DATE(NOW()) < ngayHetHanGiam)";
     if ($start != '') {
         $sql .= " LIMIT $start, $limit";
     }
@@ -66,16 +66,13 @@ function getProductFlashSale($conn, $start = '', $limit = '')
     return $resultData;
 }
 
-function updateQuantityProduct($conn, $quantity, $id)
-{
-    $sql = "update sanpham set soLuong = soLuong - '" . $quantity . "' where maSanPham = '" . $id . "'";
-    $resultData = mysqli_query($conn, $sql);
-    return $resultData;
-}
-
-function updateQuantityProduct1($conn, $quantity, $id)
-{
-    $sql = "update sanpham set soLuong = soLuong + '" . $quantity . "' where maSanPham = '" . $id . "'";
+function updateQuantityProduct($conn, $quantity, $id, $condition)
+{   
+    if ($condition === 'success') {
+        $sql = "update sanpham set soLuong = soLuong - '" . $quantity . "' where maSanPham = '" . $id . "'";
+    } else {
+        $sql = "update sanpham set soLuong = soLuong + '" . $quantity . "' where maSanPham = '" . $id . "'";
+    }
     $resultData = mysqli_query($conn, $sql);
     return $resultData;
 }
@@ -85,4 +82,20 @@ function getCountProduct($conn)
     $sql = "SELECT sum(soLuong) from sanpham";
     $resultData = mysqli_query($conn, $sql);
     return $resultData;
+}
+
+function formatTimeRemaining($seconds)
+{
+    $days = floor($seconds / 86400);
+    $hours = floor(($seconds % 86400) / 3600);
+
+    $timeRemaining = "";
+    if ($days > 0) {
+        $timeRemaining .= $days . "d";
+    }
+    if ($hours > 0) {
+        $timeRemaining .= $hours . "h";
+    }
+
+    return $timeRemaining;
 }

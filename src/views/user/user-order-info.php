@@ -36,27 +36,46 @@
         <form id="info-form" action="" method="POST">
             <div class="info-field-cart">
                 <label for="">Họ và tên</label>
-                <input name="order-name" required type="text" placeholder="VD: Nguyễn Văn A">
+                <input id="input_order_name" name="order-name" required type="text" <?php if($_SESSION['user']['tenNguoiDung'] !== '') echo 'value="' . $_SESSION['user']['tenNguoiDung'] . '"'; ?> placeholder="VD: Nguyễn Văn A">
             </div>
             <div class="info-field-cart">
                 <label for="">Số điện thoại</label>
-                <input name="order-number" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required type="text"
+                <input id="input_order_numberphone" name="order-number"
+                    oninput="this.value=this.value.replace(/[^0-9]/g,'')" <?php if($_SESSION['user']['soDienThoai'] !== '') echo 'value="' . $_SESSION['user']['soDienThoai'] . '"'; ?> required type="text"
                     placeholder="VD: 039988770">
             </div>
             <div class="info-field-cart">
                 <label for="">Địa chỉ</label>
-                <input name="order-address" required type="text" placeholder="VD: Đường Trần Duy Hưng">
+                <input id="input_order_address" name="order-address" <?php if($_SESSION['user']['diaChi'] !== '') echo 'value="' . $_SESSION['user']['diaChi'] . '"'; ?> required type="text"
+                    placeholder="VD: Đường Trần Duy Hưng">
             </div>
             <div class="info-field-cart">
                 <label for="">Ghi chú đơn hàng (Tuỳ chọn)</label>
-                <textarea name="order-note" required name="" id="" cols="30" rows="5" placeholder=""></textarea>
+                <textarea id="input_order_note" name="order-note" name="" id="" cols="30" rows="5"
+                    placeholder=""></textarea>
             </div>
             <div class="total-pay">
                 <label for="">Tạm tính:</label>
                 <div class="price"><?= number_format($thanhtien, 0, '.', '.') ?> <span id="vnd"> &#8363;</span></div>
             </div>
-            <button id="orderButton" type="submit" name="order-btn" style="background-color: #ff9a00;"
+            <button id="input_order_btn" type="submit" name="order-btn" style="background-color: #ff9a00;"
                 class="button-buy">Đặt hàng</button>
         </form>
     </div>
 </div>
+<!-- 
+<script>
+    const inputOrderBtn = $('#input_order_btn');
+    const inputOrderName = $('#input_order_name');
+    const inputOrderPhone = $('#input_order_numberphone');
+    const inputOrderAddress = $('#input_order_address');
+    const inputOrderNote = $('#input_order_note');
+
+    inputOrderBtn.on('click', function () {
+        console.log(inputOrderAddress, inputOrderName, inputOrderNote, inputOrderPhone);
+    })
+
+    $.ajax({
+
+    })
+</script> -->

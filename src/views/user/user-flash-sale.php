@@ -34,29 +34,42 @@
             <div class="category-product-content">
                 <?php if (empty($arrayProductFlashSale)) { ?>
                     <div class="empty__product">Chưa có sản phẩm thuộc mục này</div>
-                <?php } else { ?>
-                    <?php foreach ($arrayProductFlashSale as $key => $value) {
+                <?php } else {
+                    foreach ($arrayProductFlashSale as $key => $value) {
                         extract($value);
                         $maSanPham1 = $maSanPham;
                         $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
                         $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                         ?>
-                        <a href="<?= $linkProduct ?>">
-                            <div class="category-product">
-                                <img src="<?= $hinhAnh ?>" alt="">
+                        <div class="category-product product">
+                            <a href="<?= $linkProduct ?>">
+                                <img class="imgProduct" src="<?= $hinhAnh ?>" alt="">
                                 <div class="info-product">
                                     <div class="name-product">
                                         <?= $tenSanPham ?>
                                     </div>
-                                    <div class="product-price">
-                                        <?= number_format($price, 0, '.', '.') ?><span id="vnd">&#8363;</span>
+                                    <div class="price__sale" style="display: flex; gap: 15px; align-items: center;">
+                                        <div class="price-product"><?= number_format($price, 0, '.', '.') ?><span
+                                                id="vnd">&#8363;</span></div>
+                                        <?php if ($price != $giaTien) {
+                                            echo '<div class="price-product"
+                                            style="color: #888;text-decoration: line-through; font-size: 11px;">' . number_format($giaTien, 0, '.', '.') . '<span
+                                            id="vnd">&#8363;</span></div>';
+                                        } ?>
                                     </div>
                                     <div class="sold">Đã bán:
                                         <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
                                     </div>
+                                    <div class="time-sale-box"> <?= $arrayProductFlashSaleTime[$maSanPham1] ?></div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                            <?php if ($soLuong > 0) { ?>
+                                <div class="add-to-cart" data-id="<?= $maSanPham1 ?>" data-price="<?= $price ?>">Thêm
+                                    vào giỏ</div>
+                            <?php } else { ?>
+                                <div class="out-count" disabled>Đã hết hàng</div>
+                            <?php } ?>
+                        </div>
                     <?php }
                 } ?>
             </div>
@@ -67,28 +80,30 @@
             <?php
             if ($total_page > 1) {
                 if ($current_page > 3) {
-                    echo 'http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=1"> <button><i class="fa-solid fa-angles-left"></i></button></a>';
+                    echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=1"> <button><i class="fa-solid fa-angles-left"></i></button></a>';
                 }
                 if ($current_page > 1) {
-                    echo ' http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=' . ($current_page - 1) . '"><button><i class="fa-solid fa-angle-left"></i></button></a>';
+                    echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=' . ($current_page - 1) . '"><button><i class="fa-solid fa-angle-left"></i></button></a>';
                 }
                 for ($i = 1; $i <= $total_page; $i++) {
                     if ($i != $current_page) {
                         if ($i > $current_page - 3 && $i < $current_page + 3) {
-                            echo 'http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=' . $i . '"><button class="button">' . $i . '</button></a>';
+                            echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=' . $i . '"><button class="button">' . $i . '</button></a>';
                         }
                     } else {
-                        echo 'http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=' . $i . '" class="button-current"><button class="button" >' . $i . '</button></a>';
+                        echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=' . $i . '" class="button-current"><button class="button" >' . $i . '</button></a>';
                     }
                 }
                 if ($current_page < $total_page) {
-                    echo 'http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=' . ($current_page + 1) . '"> <button><i class="fa-solid fa-angle-right"></i></button></a>';
+                    echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=' . ($current_page + 1) . '"> <button><i class="fa-solid fa-angle-right"></i></button></a>';
                 }
                 if ($current_page < $total_page - 2) {
-                    echo 'http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=' . ($total_page) . '"><button><i class="fa-solid fa-angles-right"></i></button></a>';
+                    echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=flashsale&pageNumber=' . ($total_page) . '"><button><i class="fa-solid fa-angles-right"></i></button></a>';
                 }
             }
             ?>
         </div>
     </div>
 </div>
+
+<script src="./js/addToCart.js"></script>

@@ -31,8 +31,9 @@
                     <?php } ?>
                 </ul>
             </div>
-            <div class="category-product-content">
-                <?php
+            <div class="category-product-content"> <?php if (empty($listProduct)) { ?>
+                    <div class="empty__product">Chưa có sản phẩm thuộc mục này</div>
+                <?php } else {
                 foreach ($listProduct as $key => $value) {
                     extract($value);
                     $maSanPham1 = $maSanPham;
@@ -64,7 +65,7 @@
                             data-price="<?= $price ?>">Thêm vào giỏ</button>
                     </div>
                     <?php
-                } ?>
+                }} ?>
             </div>
         </div>
     </div>

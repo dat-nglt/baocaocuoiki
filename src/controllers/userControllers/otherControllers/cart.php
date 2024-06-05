@@ -6,8 +6,6 @@ if(isset($_POST['minusCount'])){
             
                 $_SESSION['cart'][$key][3] -= 1;
                 $_SESSION['cart'][$key][5] -= $_POST['changepricecart'];
-                updateQuantityProduct1($conn,1,$_POST['changequantitycart']);
-        
         }
     }
 }
@@ -16,7 +14,6 @@ if(isset($_POST['plusCount'])){
         if ($value[0] == $_POST['changequantitycart1']) {
             $_SESSION['cart'][$key][3] += 1;
             $_SESSION['cart'][$key][5] += $_POST['changepricecart1'];
-            updateQuantityProduct($conn,1,$_POST['changequantitycart1']);
         }
     }
 }

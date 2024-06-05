@@ -89,7 +89,19 @@
                     style="color: red; font-weight: 600"><?= number_format($detailBill['thanhTien'], 0, '.', '.') ?>
                     VNĐ</span>
             </div>
-            <div>Trạng thái đơn hàng: <span style="color: green; font-weight: 600"><?= $detailBill['hoTen'] ?></span>
+            <?php
+            if ($detailBill['trangThai'] == 0) {
+                $trangThaiDonHang = 'Đơn hàng chờ xác nhận';
+            } else if ($detailBill['trangThai'] == 1) {
+                $trangThaiDonHang = 'Đơn hàng đã xác nhận';
+            } else if ($detailBill['trangThai'] == 2) {
+                $trangThaiDonHang = 'Đang giao hàngàng đang ';
+            } else if ($detailBill['trangThai'] == 3) {                $trangThaiDonHang = 'Đơn hàng thành công';
+            } else if ($detailBill['trangThai'] == 4) {
+                $trangThaiDonHang = 'Đơn hàng thất bại';
+            }
+            ?>
+            <div>Trạng thái đơn hàng: <span style="color: green; font-weight: 600"><?= $trangThaiDonHang ?></span>
             </div>
         </div>
     </div>

@@ -11,18 +11,27 @@ $_SESSION["test"] = 0;
 $listClassify = getAllClassify($conn);
 $arrayProductFlashSale = array();
 $arrayProductFlashSaleSold = array();
+$arrayProductFlashSaleTime = array();
 $listProductFlashSale = getProductFlashSale($conn, '');
 $listProductHot = countSoldAllProduct($conn);
 $listProductHotSold = array();
+
+
 foreach ($listProductFlashSale as $key => $value) {
     extract($value);
-    if (strtotime($ngayHetHanGiam) > strtotime(date('Y-m-d'))) {
+    if ((strtotime($ngayHetHanGiam) > strtotime(date('Y-m-d'))) && $giaGiam > 0) {
         $maSanPham1 = $maSanPham;
         $arrayProductFlashSaleSold[$maSanPham1] = mysqli_fetch_assoc(countSold($conn,$maSanPham1));
         $arrayProductFlashSale[$maSanPham1] = mysqli_fetch_assoc(getOneProduct($conn, $maSanPham1));
+        $currentDateTime = new DateTime();
+        $currentTimestamp = $currentDateTime->getTimestamp();
+        $time = $arrayProductFlashSale[$maSanPham1]['ngayHetHanGiam'];
+        $targetDateTime = new DateTime("".$time." 24:00:00");
+        $targetTimestamp = $targetDateTime->getTimestamp();
+        $secondsRemaining = $targetTimestamp - $currentTimestamp;
+        $arrayProductFlashSaleTime[$maSanPham1] = formatTimeRemaining($secondsRemaining);
     }
 }
-// var_dump(mysqli_fetch_assoc($listProductHot));
 
 foreach ($listProductHot as $key => $value) {
     extract($value);

@@ -18,6 +18,8 @@ if (count($_SESSION['cart']) > 0) {
                 addDetailBill($conn, $last_id, $_SESSION['cart'][$key][0], $_SESSION['cart'][$key][3], $_SESSION['cart'][$key][4], $_SESSION['cart'][$key][5]);
             }
             unset($_SESSION['cart']);
+            $_SESSION['succes'] = true;
+            echo "<script>window.location.href = 'http://localhost/baocaocuoiki/src/index.php?page=success-order';</script>";
             exit();
         }
     } else {
@@ -25,7 +27,7 @@ if (count($_SESSION['cart']) > 0) {
     }
     return;
 } else {
-    header("Location: index.php");
+    echo "<script>window.location.href = 'http://localhost/baocaocuoiki/src/';</script>";
     exit();
 }
 

@@ -14,15 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['cart'][$key][3] += 1;
             $_SESSION['cart'][$key][5] += $thanhTien;
             $checkProduct = true;
-            $sql1 = "update sanpham set soLuong = soLuong - '" . $quantityProduct . "' where maSanPham = '" . $idProduct . "'";
-            $updateQuantity = mysqli_query($conn, $sql1);
         }
     }
     if (!$checkProduct) {
         $addcart = [$idProduct, $nameProduct, $imgProduct, $quantityProduct, $priceProduct, $thanhTien];
         array_push($_SESSION['cart'], $addcart);
-        $sql2 = "update sanpham set soLuong = soLuong - '" . $quantityProduct . "' where maSanPham = '" . $idProduct . "'";
-        $updateQuantity = mysqli_query($conn, $sql2);
+
     }
     responseMessage1('Thêm vào giỏ hàng thành công', 'index.php?page=details-product&id=' . $idProduct, count($_SESSION['cart']));
 }

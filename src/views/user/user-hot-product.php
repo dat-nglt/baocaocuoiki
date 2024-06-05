@@ -62,8 +62,12 @@
                                     </div>
                                 </div>
                             </a>
-                            <button type="button" class="add-to-cart" data-id="<?= $maSanPham1 ?>"
-                                data-price="<?= $price ?>">Thêm vào giỏ</button>
+                            <?php if ($soLuong > 0) { ?>
+                                <div class="add-to-cart" data-id="<?= $maSanPham1 ?>" data-price="<?= $price ?>">Thêm
+                                    vào giỏ</div>
+                            <?php } else { ?>
+                                <div class="out-count" disabled>Đã hết hàng</div>
+                            <?php } ?>
                         </div>
                     <?php }
                 } ?>
@@ -75,25 +79,25 @@
             <?php
             if ($total_page > 1) {
                 if ($current_page > 3) {
-                    echo 'http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=1"> <button><i class="fa-solid fa-angles-left"></i></button></a>';
+                    echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=1"> <button><i class="fa-solid fa-angles-left"></i></button></a>';
                 }
                 if ($current_page > 1) {
-                    echo ' http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=' . ($current_page - 1) . '"><button><i class="fa-solid fa-angle-left"></i></button></a>';
+                    echo ' <a href="http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=' . ($current_page - 1) . '"><button><i class="fa-solid fa-angle-left"></i></button></a>';
                 }
                 for ($i = 1; $i <= $total_page; $i++) {
                     if ($i != $current_page) {
                         if ($i > $current_page - 3 && $i < $current_page + 3) {
-                            echo 'http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=' . $i . '"><button class="button">' . $i . '</button></a>';
+                            echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=' . $i . '"><button class="button">' . $i . '</button></a>';
                         }
                     } else {
-                        echo 'http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=' . $i . '" class="button-current"><button class="button" >' . $i . '</button></a>';
+                        echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=' . $i . '" class="button-current"><button class="button" >' . $i . '</button></a>';
                     }
                 }
                 if ($current_page < $total_page) {
-                    echo 'http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=' . ($current_page + 1) . '"> <button><i class="fa-solid fa-angle-right"></i></button></a>';
+                    echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=' . ($current_page + 1) . '"> <button><i class="fa-solid fa-angle-right"></i></button></a>';
                 }
                 if ($current_page < $total_page - 2) {
-                    echo 'http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=' . ($total_page) . '"><button><i class="fa-solid fa-angles-right"></i></button></a>';
+                    echo '<a href="http://localhost/baocaocuoiki/src/index.php?page=hotproduct&pageNumber=' . ($total_page) . '"><button><i class="fa-solid fa-angles-right"></i></button></a>';
                 }
             }
             ?>

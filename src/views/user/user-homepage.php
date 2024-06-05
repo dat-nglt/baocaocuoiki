@@ -23,9 +23,9 @@
         ?>
         <div class="sale-product">
             <div class="sale-prodoct-header">
-                <div id="title">Flash Sale Trong Tuần <i class="fa-solid fa-weight-scale fa-bounce"
-                        style="color: #fff; font-size: 2rem; margin-left: 10px"></i></div>
-                <div id="time"></div>
+                <div id="title">Flash Sale <i class="fa-solid fa-weight-scale fa-bounce"
+                        style="color: #fff; font-size: 2rem; margin-left: 10px; margin-bottom: 2px;"></i></div>
+                <a href="index.php?page=flashsale" id="more-product">Xem tất cả...</a>
             </div>
             <div class="sale-product-content slider">
                 <?php foreach ($arrayProductFlashSale as $key => $value) {
@@ -51,6 +51,7 @@
                                 <div class="sold">Đã bán:
                                     <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
                                 </div>
+                                <div class="time-sale-box"> <?= $arrayProductFlashSaleTime[$maSanPham1] ?></div>
                             </div>
                         </a>
                         <?php if ($soLuong > 0) { ?>
@@ -72,16 +73,15 @@
         ?>
         <div class="sale-product">
             <div class="sale-prodoct-header">
-                <div id="title">Sản phẩm bán chạy <i class="fa-solid fa-weight-scale fa-bounce"
-                        style="color: #fff; font-size: 2rem; margin-left: 10px"></i></div>
-                <div id="time"></div>
+                <div id="title">Sản phẩm bán chạy <i class="fa-solid fa-fire-flame-curved fa-fade"
+                        style="color: #fff; font-size: 2rem; margin-left: 10px; margin-bottom: 2px;"></i></div>
+                <a href="index.php?page=hotproduct" id="more-product">Xem tất cả...</a>
             </div>
-            <div class="sale-product-content">
+            <div class="sale-product-content slider">
                 <?php foreach ($listProductHot as $key => $value) {
                     extract($value);
                     $maSanPham1 = $maSanPham;
                     $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
-                    $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                     $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                     ?>
                     <div class="product scale-item">
@@ -99,15 +99,15 @@
                                     } ?>
                                 </div>
                                 <div class="sold">Đã bán:
-                                    <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
+                                    <?= $daBan ?>
                                 </div>
                             </div>
                         </a>
                         <?php if ($soLuong > 0) { ?>
-                            <button type="button" class="add-to-cart" data-id="<?= $maSanPham1 ?>" data-price="<?= $price ?>">Thêm
-                                vào giỏ</button>
+                            <div class="add-to-cart" data-id="<?= $maSanPham1 ?>" data-price="<?= $price ?>">Thêm
+                                vào giỏ</div>
                         <?php } else { ?>
-                            <button type="button" class="out-count" disabled>Đã hết hàng</button>
+                            <div class="out-count" disabled>Đã hết hàng</div>
                         <?php } ?>
                     </div>
                 <?php } ?>
@@ -119,7 +119,8 @@
     <!-- Danh sách sản phẩm -->
     <div class="sale-product">
         <div class="sale-prodoct-header">
-            <div id="title">Sản phẩm mới</div>
+            <div id="title">Sản phẩm mới <i class="fa-solid fa-star fa-bounce"
+                    style="color: #fff; font-size: 2rem; margin-left: 10px; margin-bottom: 2px;"></i></div>
             <a href="index.php?page=allproduct" id="more-product">Xem tất cả...</a>
         </div>
         <div class="sale-product-content">
@@ -234,6 +235,6 @@
         infinite: true,
         speed: 300,
         slidesToShow: 5,
-        slidesToScroll: 5, // lô, đọc tin nhắn zalo
+        slidesToScroll: 5,
     });
 </script>

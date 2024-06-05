@@ -1,0 +1,47 @@
+.success-page {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: #333 3px 3px 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  align-items: center;
+  width: 800px;
+  height: 400px;
+}
+
+.success-page > i {
+  font-size: 5rem;
+}
+
+.success-page #d1 {
+  font-size: 3rem;
+  color: #3bb351;
+  font-weight: bold;
+}
+
+.success-page #d2 {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.success-page .choice {
+  display: flex;
+  gap: 20px;
+}
+
+.success-page .choice a {
+  background-color: rgb(255, 166, 0);
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  min-width: 200px;
+  text-align: center;
+}
+
+.success-page .choice a:hover {
+  background-color: rgb(255, 191, 71);
+}

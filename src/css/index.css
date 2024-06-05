@@ -7,6 +7,7 @@
 @import './user/detail-product.css';
 @import './user/category-product.css';
 @import './user/user-webIntro.css';
+@import './user/success-order.css';
 @import './login/login.css';
 
 html {
@@ -26,7 +27,7 @@ body {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none;  
 }
 
 li {
@@ -99,7 +100,6 @@ li {
   padding: 5px 20px;
   font-size: 15px;
   border-radius: 5px;
-  font-weight: 600;
   transition: transform 0.2s ease-in-out;
 }
 
@@ -239,11 +239,10 @@ input[type='number']::-webkit-outer-spin-button {
   height: 250px;
 }
 
-.slick-strack {
-  gap: 22px;
+.slick-track {
+  gap: 25px;
   display: flex !important;
-  margin: 0px auto;
-  transition: all 500ms ease;
+  justify-content: center;
 }
 
 .swal2-popup {

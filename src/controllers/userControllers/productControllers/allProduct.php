@@ -8,7 +8,7 @@ if (isset($_POST['search-product'])) {
 }
 $_SESSION['search-product'] = isset($_SESSION['search-product']) ? $_SESSION['search-product'] : '';
 
-$countProduct = getAllProduct($conn, $_SESSION['search-product'], 'desc', '0', '', '');
+$countProduct = getAllProduct($conn, $_SESSION['search-product'], '', '0', '', '');
 $limitPage = 8;
 $total_page = ceil(mysqli_num_rows($countProduct) / $limitPage);
 var_dump($total_page);
@@ -26,7 +26,7 @@ if ($current_page > $total_page) {
 $start = ($current_page - 1) * $limitPage;
 var_dump($_SESSION['search-product']);
 $listClassify = getAllClassify($conn); // Lấy tất cả danh mục
-$listProduct = getAllProduct($conn, $_SESSION['search-product'], 'desc', '0', $start, $limitPage);
+$listProduct = getAllProduct($conn, $_SESSION['search-product'], '', '0', $start, $limitPage);
 $arrayProductFlashSaleSold = array();
 foreach ($listProduct as $key => $value) {
     extract($value);

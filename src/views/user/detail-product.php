@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div>Tình trạng :
-                        <?php if ($detailProduct['soLuong'] > 0) { ?> <b style="color: green">Còn hàng</b>
+                        <?php if ($detailProduct['soLuong'] > 0) { ?> <b style="color: seagreen">Còn hàng</b>
                         <?php } else { ?> <b style="color: red">Hết hàng</b>
                         <?php } ?>
                     </div>
@@ -110,45 +110,50 @@
         </div>
     </div>
 
-    <div class="slider-form">
+    <div class="sale-product">
         <div class="sale-prodoct-header">
-            <div id="title">
-                Sản phẩm cùng thương hiệu
-            </div>
+            <div id="title">Sản phẩm cùng thương hiệu</div>
+            <div id="time"></div>
         </div>
-        <div class="slider">
-            <?php
-            foreach ($listProduct as $key => $value) {
+        <div class="sale-product-content slider">
+            <?php foreach ($listProduct as $key => $value) {
                 extract($value);
                 $maSanPham1 = $maSanPham;
                 $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
-                if ($giaGiam != 0 && (strtotime($ngayHetHanGiam) > strtotime(date('Y-m-d')))) {
-                    $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
-                } else {
-                    $price = $giaTien;
-                }
+                $price = ($giaTien - ($giaTien * ($giaGiam / 100)));
                 ?>
-                <div class="mx-2">
+                <div class="product scale-item">
                     <a href="<?= $linkProduct ?>">
-                        <img src="<?= $hinhAnh ?>" alt="">
+                        <img class="imgProduct" src="<?= $hinhAnh ?>" alt="">
+                        <div class="info-product">
+                            <div class="name-product"><?= $tenSanPham ?></div>
+                            <div class="price__sale" style="display: flex; gap: 15px; align-items: center;">
+                                <div class="price-product"><?= number_format($price, 0, '.', '.') ?><span
+                                        id="vnd">&#8363;</span></div>
+                                <?php if ($price != $giaTien) {
+                                    echo '<div class="price-product"
+                                            style="color: #888;text-decoration: line-through; font-size: 11px;">' . number_format($giaTien, 0, '.', '.') . '<span
+                                            id="vnd">&#8363;</span></div>';
+                                } ?>
+                            </div>
+                            <div class="sold">Đã bán:
+                                <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
+                            </div>
+                        </div>
                     </a>
-                    <div class="text-center xyz">
-                        <h2 class="pt-2 fw-bold"><?= $tenSanPham ?></h2>
-                        <div class="product-price">
-                            <?= number_format($price, 0, '.', '.') ?><span id="vnd">&#8363;</span>
-                        </div>
-                        <div class="sold">Đã bán:
-                            <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
-                        </div>
-                    </div>
+                    <?php if ($soLuong > 0) { ?>
+                        <div class="add-to-cart" data-id="<?= $maSanPham1 ?>" data-price="<?= $price ?>">Thêm
+                            vào giỏ</div>
+                    <?php } else { ?>
+                        <div class="out-count" disabled>Đã hết hàng</div>
+                    <?php } ?>
                 </div>
-                <?php
-            }
-            ?>
+            <?php } ?>
         </div>
-
     </div>
 </div>
+
+<script src="./js/addToCart.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>

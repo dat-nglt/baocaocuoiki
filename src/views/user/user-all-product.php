@@ -64,8 +64,12 @@
                                     </div>
                                 </div>
                             </a>
-                            <button type="button" class="add-to-cart" data-id="<?= $maSanPham1 ?>"
-                                data-price="<?= $price ?>">Thêm vào giỏ</button>
+                            <?php if ($soLuong > 0) { ?>
+                                <div class="add-to-cart" data-id="<?= $maSanPham1 ?>" data-price="<?= $price ?>">Thêm
+                                    vào giỏ</div>
+                            <?php } else { ?>
+                                <div class="out-count" disabled>Đã hết hàng</div>
+                            <?php } ?>
                         </div>
                         <?php $stt++;
                     } ?>

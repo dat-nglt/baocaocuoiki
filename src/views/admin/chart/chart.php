@@ -38,25 +38,25 @@
           <legend>Thời gian</legend>
           <form action="" method="post" class="admin__form-search">
             <select name="sort_chart_date" id="sort_chart_date">
-              <option value="7" <?php if ($_SESSION['sort_chart_date'] === "7") {
+              <option value="6" <?php if ($_SESSION['sort_chart_date'] === "6") {
                 echo 'selected';
               }
               ?>>
                 7 ngày qua
-              <option value="30" <?php if ($_SESSION['sort_chart_date'] === "30") {
+              <option value="29" <?php if ($_SESSION['sort_chart_date'] === "29") {
                 echo 'selected';
               }
               ?>>
                 30 ngày qua
               </option>
-              <option value="60" <?php if ($_SESSION['sort_chart_date'] === "60") {
+              <option value="59" <?php if ($_SESSION['sort_chart_date'] === "59") {
                 echo 'selected';
               }
               ?>>
                 60 ngày qua
               </option>
               </option>
-              <option value="90" <?php if ($_SESSION['sort_chart_date'] === "90") {
+              <option value="89" <?php if ($_SESSION['sort_chart_date'] === "89") {
                 echo 'selected';
               }
               ?>>
@@ -112,11 +112,7 @@
         <?php echo json_encode($minusQuantityChart); ?>;
       var additionQuantityChart =
         <?php echo json_encode($additionQuantityChart); ?>;
-
-      const maxDate = additionQuantityChart.length > minusQuantityChart.length
-        ? additionQuantityChart
-        : minusQuantityChart;
-      chartLogistics(maxDate, additionQuantityChart, minusQuantityChart);
+      chartLogistics(additionQuantityChart, minusQuantityChart);
     }
     else if (optionChart == 'bills') {
       var billChartData =
@@ -178,19 +174,29 @@
       }
     });
   }
-  function chartLogistics(maxDate = [], additionQuantityChart = [], minusQuantityChart = []) {
+  function chartLogistics(additionQuantityChart = [], minusQuantityChart = []) {
+
+    const allDays = [...new Set([...additionQuantityChart.map(item => item[1]), ...minusQuantityChart.map(item => item[1])])];
+    allDays.sort((a, b) => new Date(a) - new Date(b));
+    const result = allDays.map(day => {
+      return [
+        day,
+        additionQuantityChart.find(item => item[1] === day) ? parseInt(additionQuantityChart.find(item => item[1] === day)[0]) : 0,
+        minusQuantityChart.find(item => item[1] === day) ? parseInt(minusQuantityChart.find(item => item[1] === day)[0]) : 0
+      ];
+    });
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: maxDate.map((date, index) => date[1]),
+        labels: result.map((item, index) => item[0]),
         datasets: [{
           label: 'Số sản phẩm nhập kho',
-          data: additionQuantityChart.map((add, index) => add[0]),
+          data: result.map((item, index) => item[1]),
           borderWidth: 1
         }, {
           label: 'Số sản phẩm xuất bán',
-          data: minusQuantityChart.map((minus, index) => minus[0]),
+          data: result.map((item, index) => item[2]),
           borderWidth: 1
         }],
       },
