@@ -16,96 +16,109 @@
                             <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </fieldset>
-                    <!-- <fieldset>
+                    <fieldset>
                         <legend>Trạng thái đơn hàng</legend>
+                        <!-- <?php echo $_SESSION['sort-order-status']?> -->
+                        <form action="" method="post" class="admin__form-search">
+                            <select name="sort-order-status" id="">
+                                <option value="0" <?php if ($_SESSION['sort-order-status'] === '0') {
+                                    echo 'selected';
+                                } ?>>
+                                    Chờ xác nhận
+                                </option>
+                                <option value="1" <?php if ($_SESSION['sort-order-status'] === '1') {
+                                    echo 'selected';
+                                } ?>>
+                                    Đã xác nhận
+                                </option>
+                                <option value="2" <?php if ($_SESSION['sort-order-status'] === '2') {
+                                    echo 'selected';
+                                } ?>>
+                                    Đang giao hàng
+                                </option>
+                                <option value="3" <?php if ($_SESSION['sort-order-status'] === '3') {
+                                    echo 'selected';
+                                } ?>>
+                                    Giao thành công
+                                </option>
+                                <option value="4" <?php if ($_SESSION['sort-order-status'] === '4') {
+                                    echo 'selected';
+                                } ?>>
+                                    Giao thất bại
+                                </option>
+                            </select>
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Sắp xếp</legend>
                         <form action="" method="post" class="admin__form-search">
                             <select name="sort-order" id="">
-                                <option value="0" <?php if ($_SESSION['sort-order-status'] === '0')
-                                    echo 'selected' ?>>
-                                        Chờ xác nhận
-                                    </option>
-                                    <option value="1" <?php if ($_SESSION['sort-order-status'] === '1')
-                                    echo 'selected' ?>>Đã xác nhận
-                                    </option>
-                                    <option value="2" <?php if ($_SESSION['sort-order-status'] === '2')
-                                    echo 'selected' ?>>
-                                        Đang giao hàng
-                                    </option>
-                                    <option value="3" <?php if ($_SESSION['sort-order-status'] === '3')
-                                    echo 'selected' ?>>
-                                        Giao thành công
-                                    </option>
-                                    <option value="4" <?php if ($_SESSION['sort-order-status'] === '4')
-                                    echo 'selected' ?>>
-                                        Giao thất bại
-                                    </option>
-                                </select>
-                                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            </form>
-                        </fieldset> -->
-                        <fieldset>
-                            <legend>Sắp xếp</legend>
-                            <form action="" method="post" class="admin__form-search">
-                                <select name="sort-order" id="">
-                                    <option value="desc" <?php if ($_SESSION['sort-order'] === 'desc')
-                                    echo 'selected' ?>>
-                                        Mới nhất
-                                    </option>
-                                    <option value="asc" <?php if ($_SESSION['sort-order'] === 'asc')
-                                    echo 'selected' ?>>Cũ
-                                        nhất
-                                    </option>
-                                    <option value="asc1" <?php if ($_SESSION['sort-order'] === 'asc1')
-                                    echo 'selected' ?>>
-                                        Tổng tiền tăng dần
-                                    </option>
-                                    <option value="desc1" <?php if ($_SESSION['sort-order'] === 'desc1')
-                                    echo 'selected' ?>>
-                                        Tổng tiền giảm dần
-                                    </option>
-                                </select>
-                                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            </form>
-                        </fieldset>
-                    </div>
+                                <option value="desc" <?php if ($_SESSION['sort-order'] === 'desc') {
+                                    echo 'selected';
+                                } ?>>
+                                    Mới nhất
+                                </option>
+                                <option value="asc" <?php if ($_SESSION['sort-order'] === 'asc') {
+                                    echo 'selected';
+                                } ?>>
+                                    Cũ nhất
+                                </option>
+                                <option value="asc1" <?php if ($_SESSION['sort-order'] === 'asc1') {
+                                    echo 'selected';
+                                } ?>>
+                                    Tổng tiền tăng dần
+                                </option>
+                                <option value="desc1" <?php if ($_SESSION['sort-order'] === 'desc1') {
+                                    echo 'selected';
+                                } ?>>
+                                    Tổng tiền giảm dần
+                                </option>
+                            </select>
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </fieldset>
+
                 </div>
             </div>
-            <table>
-                <tr>
-                    <th style="width: 5%;">#</th>
-                    <th style="width: 22%;">Tên người dùng</th>
-                    <th style="width: 11%;">Số lượng sản phẩm</th>
-                    <th style="width: 15%;">Thành tiền</th>
-                    <th style="width: 8%;">Thời gian mua</th>
-                    <th style="width: 21%;">Ghi chú</th>
-                    <th style="width: 13%;">Trạng thái</th>
-                    <th style="width: 5%;"></th>
-                </tr>
-                <?php
-                                $stt = (($current_page - 1) * $limitPage) + 1;
-                                foreach ($dataOrder as $key => $value) {
-                                    extract($value);
-                                    switch ($trangThai) {
-                                        case '0':
-                                            $status = "Chờ xác nhận";
-                                            break;
-                                        case '1':
-                                            $status = "Đã xác nhận";
-                                            break;
-                                        case '2':
-                                            $status = "Đang giao hàng";
-                                            break;
-                                        case '3':
-                                            $status = "Đơn hàng thành công";
-                                            break;
-                                        case '4':
-                                            $status = "Đơn hàng thất bại";
-                                            break;
-                                        default:
-                                            $status = '';
-                                            break;
-                                    }
-                                    ?>
+        </div>
+        <table>
+            <tr>
+                <th style="width: 5%;">#</th>
+                <th style="width: 22%;">Tên người dùng</th>
+                <th style="width: 11%;">Số lượng sản phẩm</th>
+                <th style="width: 15%;">Thành tiền</th>
+                <th style="width: 8%;">Thời gian mua</th>
+                <th style="width: 21%;">Ghi chú</th>
+                <th style="width: 13%;">Trạng thái</th>
+                <th style="width: 5%;"></th>
+            </tr>
+            <?php
+            $stt = (($current_page - 1) * $limitPage) + 1;
+            foreach ($dataOrder as $key => $value) {
+                extract($value);
+                switch ($trangThai) {
+                    case '0':
+                        $status = "Chờ xác nhận";
+                        break;
+                    case '1':
+                        $status = "Đã xác nhận";
+                        break;
+                    case '2':
+                        $status = "Đang giao hàng";
+                        break;
+                    case '3':
+                        $status = "Đơn hàng thành công";
+                        break;
+                    case '4':
+                        $status = "Đơn hàng thất bại";
+                        break;
+                    default:
+                        $status = '';
+                        break;
+                }
+                ?>
                 <tr class="list__content">
                     <td><?= $stt ?></td>
                     <td>
@@ -137,7 +150,7 @@
                     </td>
                 </tr>
                 <?php $stt++;
-                                } ?>
+            } ?>
         </table>
         <div class="list__paging">
             <div>

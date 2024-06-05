@@ -1,8 +1,14 @@
 <?php
-function getAll_Order($conn, $search, $sort, $startPage, $limit)
+function getAll_Order($conn, $search, $sort, $status, $startPage, $limit)
 {
     $sql = "SELECT d.*, n.tenTaiKhoan, sum(c.soLuong) AS count FROM donhang d JOIN nguoidung n ON d.maNguoiDung = n.maNguoiDung 
-    JOIN chitietdonhang c ON d.maDonHang = c.maDonHang WHERE n.tenTaiKhoan LIKE '%$search%' GROUP BY c.maDonHang";
+    JOIN chitietdonhang c ON d.maDonHang = c.maDonHang WHERE n.tenTaiKhoan LIKE '%$search%'";
+
+    if ($status != '') {
+        $sql .= " AND d.trangThai = '$status'";
+    }
+
+    $sql .= " GROUP BY c.maDonHang";
 
     if ($sort == 'asc' || $sort == 'desc') {
         $sql .= " order by d.maDonHang " . $sort . "";
