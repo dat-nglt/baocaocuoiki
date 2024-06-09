@@ -17,12 +17,22 @@ function getAllProduct($conn, $search, $sort, $classify, $startPage, $limit)
     if ($sort == "1") {
         $sql .= " order by s.giaTien desc";
     }
-    if($sort === ""){
+    if ($sort === "") {
         $sql .= " order by s.soLuong desc";
     }
     if ($startPage != '') {
         $sql .= " limit $startPage, $limit";
     }
+    $resultData = mysqli_query($conn, $sql);
+    return $resultData;
+}
+;
+
+function getAllProductHome($conn,$search, $startPage, $limit)
+{
+    $sql = "SELECT s.*, count(chitietdonhang.maSanPham) as soLuongBan FROM sanpham s LEFT JOIN
+     chitietdonhang ON s.maSanPham = chitietdonhang.maSanPham WHERE s.tenSanPham like '%$search%' GROUP BY s.maSanPham order by s.maSanPham desc 
+     limit $startPage, $limit";
     $resultData = mysqli_query($conn, $sql);
     return $resultData;
 }
@@ -58,7 +68,9 @@ function getCountProductWithClassify($conn, $classify)
 
 function getProductFlashSale($conn, $start = '', $limit = '')
 {
-    $sql = "SELECT * FROM sanpham WHERE giaGiam > 0 AND (DATE(NOW()) < ngayHetHanGiam)";
+    $sql = "SELECT sanpham.*, count(chitietdonhang.maSanPham) as soLuongBan FROM sanpham LEFT JOIN
+     chitietdonhang ON sanpham.maSanPham = chitietdonhang.maSanPham 
+     WHERE sanpham.giaGiam > 0 AND (DATE(NOW()) < sanpham.ngayHetHanGiam) GROUP BY sanpham.maSanPham ORDER by count(chitietdonhang.maSanPham) DESC";
     if ($start != '') {
         $sql .= " LIMIT $start, $limit";
     }
@@ -67,7 +79,7 @@ function getProductFlashSale($conn, $start = '', $limit = '')
 }
 
 function updateQuantityProduct($conn, $quantity, $id, $condition)
-{   
+{
     if ($condition === 'success') {
         $sql = "update sanpham set soLuong = soLuong - '" . $quantity . "' where maSanPham = '" . $id . "'";
     } else {

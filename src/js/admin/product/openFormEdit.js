@@ -5,7 +5,8 @@ $(document).on("click", ".list__action-open-edit", function () {
   var image = $(this).closest("tr").find("td:eq(3) img").attr("src");
   var count = $(this).closest("tr").find("td:eq(4)").text().trim();
   var sale = $(this).closest("tr").find("td:eq(5)").text().trim();
-  var dateSale = $(this).closest("tr").find("td:eq(6)").text().trim();
+  var startDate = $(this).closest("tr").find("td:eq(6) > div > #startDate").text().trim();
+  var endDate = $(this).closest("tr").find("td:eq(6) > div > #endDate").text().trim();
   var category = $(this).closest("tr").find("td:eq(7)").text().trim();
   var des;
 
@@ -24,7 +25,8 @@ $(document).on("click", ".list__action-open-edit", function () {
         count,
         optionCategoryEdit,
         sale,
-        convertedDateSale,
+        convertedStartDate,
+        convertedEndDate,
         id,
         result.data
       );
@@ -40,9 +42,14 @@ showConfirmButton: false,
     },
   });
 
-  if (dateSale != "") {
-    var parts = dateSale.split("-");
-    var convertedDateSale = parts[2] + "-" + parts[1] + "-" + parts[0];
+  if (startDate != "") {
+    var parts = startDate.split("-");
+    var convertedStartDate = parts[2] + "-" + parts[1] + "-" + parts[0];
+  }
+
+  if (endDate != "") {
+    var parts = endDate.split("-");
+    var convertedEndDate = parts[2] + "-" + parts[1] + "-" + parts[0];
   }
 
   var optionCategoryEdit = "";
@@ -89,7 +96,7 @@ showConfirmButton: false,
                     <div class="list__add-handmade" style="padding: 10px 15px 0 15px;">
                         <div style="text-align: start;">
                             <div style="font-size: 18px; font-weight: 500;">Hình ảnh sản phẩm</div>
-                            <div style="display: flex; flex-direction: column;">
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
                                 <div style="display: flex;justify-content: center; margin-bottom: 5px;" id="imgContainer"></div>
                                 <div style="display: flex;justify-content: center; margin-bottom: 5px;">
                                     <img style="height: 120px; width: 100px;" id="oldimg" src="${image}" alt="">
@@ -105,24 +112,32 @@ showConfirmButton: false,
                                 <label for="input-name" class="list__form-label">Tên sản phẩm <span>*</span></label>
                                 <input type="text" class="list__form-input" id="input-name" value="${name}" required placeholder="Nhập tên sản phẩm">
                                 </div>
-                                <div class="list__form-box" style="margin-top: 10px">
+                                <div class="list__form-box" style="margin: 10px 0">
                                     <label for="input-price" class="list__form-label">Giá tiền <span>*</span></label>
                                     <input type="number" class="list__form-input" value="${price}" inputmode="numeric" pattern="[0-9]*" id="input-price" required
                                         placeholder="Nhập giá tiền">
                                 </div>
+                                <div class="list__form-box">
+                            <label class="list__form-label">Thương hiệu</label>
+                                <select id="category-product">
+                                  ${optionCategoryEdit}
+                                </select>
+                        </div>
                             </div>
                     </div>
-                    <div class="list__add-handmade" style="padding: 5px 15px 5px 15px;">
+                    <div class="list__add-handmade" style="padding: 10px 15px 5px 15px;">
                         <div class="list__form-box">
                         <label for="input-count" class="list__form-label">Số lượng <span>*</span></label>
                             <input type="number" class="list__form-input" id="input-count" required
                                 placeholder="Nhập số lượng" inputmode="numeric" value="${count}" pattern="[0-9]*" disabled>
                         </div>
                         <div class="list__form-box">
-                            <label class="list__form-label">Thương hiệu</label>
-                                <select id="category-product">
-                                  ${optionCategoryEdit}
-                                </select>
+                        <label for="input-date-sale" class="list__form-label">Thời gian giảm giá</label>
+                        <div style="display: flex; align-items: center; width:100%; gap: 10px">
+                          <input style="text-align: center;" type="date"  id="input-date-sale" class="list__form-input" value="${convertedStartDate}">
+                          <i class="fa-solid fa-arrow-right" style="font-size: 15px;"></i>
+                          <input style="text-align: center;"  type="date"  id="input-date-sale" class="list__form-input" value="${convertedEndDate}">
+                        </div>
                         </div>
                     </div>
                     <div class="list__add-handmade" style="padding: 5px 15px 5px 15px;">
@@ -131,9 +146,11 @@ showConfirmButton: false,
                     <input type="number" class="list__form-input" min="0" max="99" step="1" value="${sale}" inputmode="numeric" pattern="[0-9]*" id="input-sale">
                     </div>
                     <div class="list__form-box">
-                    <label for="input-date-sale" class="list__form-label">Giảm đến ngày</label>
-                    <input type="date"  id="input-date-sale" class="list__form-input" value="${convertedDateSale}">
-                    </div>
+                            <label class="list__form-label">Lịch sử giảm giá</label>
+                                <select id="category-product">
+                                  ${optionCategoryEdit}
+                                </select>
+                        </div>
                     </div>
                     <input type="hidden" value="${id}" id="id_product">
                     <div class="list__add-handmade" style="display:flex; padding: 10px 15px 0 15px;">

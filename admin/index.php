@@ -43,7 +43,7 @@
     include ("../src/model/bill.php");
     include ("../src/model/chart.php");
     include ("../src/message.php");
-    include ("../src/views/admin/admin-header.php");
+    include ("../src/views/admin/admin-header.php");    
     $limitPage = 12;
     if (isset($_GET['page'])) {
         $page = $_GET['page'];

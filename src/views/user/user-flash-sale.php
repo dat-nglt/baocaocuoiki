@@ -32,10 +32,10 @@
                 </ul>
             </div>
             <div class="category-product-content">
-                <?php if (empty($arrayProductFlashSale)) { ?>
+                <?php if (empty($listProductFlashSale)) { ?>
                     <div class="empty__product">Chưa có sản phẩm thuộc mục này</div>
                 <?php } else {
-                    foreach ($arrayProductFlashSale as $key => $value) {
+                    foreach ($listProductFlashSale as $key => $value) {
                         extract($value);
                         $maSanPham1 = $maSanPham;
                         $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
@@ -58,7 +58,7 @@
                                         } ?>
                                     </div>
                                     <div class="sold">Đã bán:
-                                        <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
+                                        <?= ceil($soLuongBan) ?>
                                     </div>
                                     <div class="time-sale-box"> <?= $arrayProductFlashSaleTime[$maSanPham1] ?></div>
                                 </div>

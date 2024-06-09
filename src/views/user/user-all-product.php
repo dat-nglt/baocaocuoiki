@@ -60,7 +60,7 @@
                                         } ?>
                                     </div>
                                     <div class="sold">Đã bán:
-                                        <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
+                                        <?= ceil($soLuongBan) ?>
                                     </div>
                                 </div>
                             </a>

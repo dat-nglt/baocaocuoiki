@@ -1,18 +1,27 @@
 <?php
-$_SESSION['filt_option_chart'] = isset($_SESSION['filt_option_chart']) ? $_SESSION['filt_option_chart'] : '';
-$_SESSION['sort_chart_date'] = isset($_SESSION['sort_chart_date']) ? $_SESSION['sort_chart_date'] : '7';
+$_SESSION['start_time_chart'] = isset($_SESSION['start_time_chart']) ?
+  $_SESSION['start_time_chart'] :
+  '';
 
-$_SESSION['filt_option_chart'] = isset($_POST['filt_option_chart']) ? $_POST['filt_option_chart'] : $_SESSION['filt_option_chart'];
-$_SESSION['sort_chart_date'] = isset($_POST['sort_chart_date']) ? $_POST['sort_chart_date'] : $_SESSION['sort_chart_date'];
+$_SESSION['chart_option'] = isset($_SESSION['chart_option']) ?
+  $_SESSION['chart_option'] :
+  'all';
 
-$minusQuantityChart = mysqli_fetch_all(getLogisticsQuantity($conn, $_SESSION['sort_chart_date'], 0));
-$additionQuantityChart = mysqli_fetch_all(getLogisticsQuantity($conn, $_SESSION['sort_chart_date'], 1));
+$_SESSION['end_time_chart'] = isset($_SESSION['end_time_chart']) ?
+  $_SESSION['end_time_chart'] :
+  '7';
 
-$billChartData = mysqli_fetch_all(billChart($conn, $_SESSION['sort_chart_date']));
+$_SESSION['start_time_chart'] = isset($_POST['start_time_chart']) ?
+  $_POST['start_time_chart'] :
+  $_SESSION['start_time_chart'];
 
-$salesChartData = mysqli_fetch_all(salesLogistics($conn, $_SESSION['sort_chart_date']));
+$_SESSION['chart_option'] = isset($_POST['chart_option']) ?
+  $_POST['chart_option'] :
+  $_SESSION['chart_option'];
 
-
+$_SESSION['end_time_chart'] = isset($_POST['end_time_chart']) ?
+  $_POST['end_time_chart'] :
+  $_SESSION['end_time_chart'];
 
 require_once '../src/views/admin/chart/chart.php';
 

@@ -19,7 +19,7 @@
     </div>
     <!-- Các sản phẩm giảm giá -->
     <?php
-    if (!empty($arrayProductFlashSale)) {
+    if (!empty($listProductFlashSale)) {
         ?>
         <div class="sale-product">
             <div class="sale-prodoct-header">
@@ -28,7 +28,7 @@
                 <a href="index.php?page=flashsale" id="more-product">Xem tất cả...</a>
             </div>
             <div class="sale-product-content slider">
-                <?php foreach ($arrayProductFlashSale as $key => $value) {
+                <?php foreach ($listProductFlashSale as $key => $value) {
                     extract($value);
                     $maSanPham1 = $maSanPham;
                     $linkProduct = "index.php?page=details-product&id=" . $maSanPham1;
@@ -49,7 +49,7 @@
                                     } ?>
                                 </div>
                                 <div class="sold">Đã bán:
-                                    <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
+                                    <?= ceil($soLuongBan) ?>
                                 </div>
                                 <div class="time-sale-box"> <?= $arrayProductFlashSaleTime[$maSanPham1] ?></div>
                             </div>
@@ -145,7 +145,7 @@
                                 } ?>
                             </div>
                             <div class="sold">Đã bán:
-                                <?= ceil($arrayProductFlashSaleSold[$maSanPham1]['sum(soLuong)']) ?>
+                                <?= ceil($soLuongBan) ?>
                             </div>
                         </div>
                     </a>

@@ -91,9 +91,17 @@
                     </td>
                     <td>
                         <?php if ($ngayHetHanGiam != '0000-00-00') { ?>
-                            <div class="list__hidden-text"><?= date("d-m-Y", strtotime($ngayHetHanGiam)) ?></div>
+                            <div style="justify-content: center;">
+                                <div class="list__hidden-text" id="startDate"><?= date("d-m-Y", strtotime($ngayBatDau)) ?></div>
+                                <p>-</p>
+                                <div class="list__hidden-text" id="endDate"><?= date("d-m-Y", strtotime($ngayHetHanGiam)) ?></div>
+                            </div>
                         <?php } else { ?>
-                            <div class="list__hidden-text"><?php $ngayHetHanGiam ?></div>
+                            <div style="justify-content: center;">
+                                <div class="list__hidden-text"  id="startDate"><?= date("d-m-Y", strtotime($ngayBatDau)) ?></div>
+                                <p>-</p>
+                                <div class="list__hidden-text" id="endDate"><?= date("d-m-Y", strtotime($ngayHetHanGiam)) ?></div>
+                            </div>
                         <?php } ?>
                     </td>
                     <td>

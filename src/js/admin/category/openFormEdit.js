@@ -9,13 +9,13 @@ $(document).on("click", ".list__action-open-edit", function () {
     addFormEdit.className = "list__form";
     bodyContainer.appendChild(addFormEdit);
     addFormEdit.innerHTML = `
-            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 540px;">
+            <form action="" method="post" id="form-add-book" class="list__form-add" style="height: 540px; width: 500px">
             <div class="list__form-title">
                 <span><i class="fa-brands fa-sketch icon"></i> Chỉnh sửa thương hiệu</span><i class="fa-solid fa-xmark close-icon"
                 onclick="closeFormAdd()"></i>
             </div>
             <div class="list__form-content"style="display: block">
-                <div class="list__add-handmade" style="padding: 10px 15px">
+                <div class="list__add-handmade" style="padding: 10px 15px; dis">
                     <div style="text-align: start;">
                         <div style="font-size: 18px; font-weight: 500;">Hình ảnh thương hiệu <span style="color: red">*</span></div>
                         <div style="display: flex; flex-direction: column;">

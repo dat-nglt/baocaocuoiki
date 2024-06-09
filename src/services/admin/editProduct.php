@@ -17,7 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $price = preg_replace('/\s+/', '', trim($_POST['price']));
   $category = $_POST['category'];
   $sale = preg_replace('/\s+/', '', trim($_POST['number']));
-  $dateSale = $_POST['dateSale'];
+  $startDate = $_POST['startDate'];
+  $endDate = $_POST['endDate'];
   $des = $_POST['des'];
   $image = $_POST['image'];
 
@@ -76,13 +77,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $row = mysqli_fetch_assoc($result);
   if ($row['tenSanPham'] === $name) {
     if ($row['maLoai'] === $category) {
-      $sql = "UPDATE sanpham SET tenSanPham = '$name', hinhAnh = '$image', giaTien = '$price', giaGiam = '$sale', ngayHetHanGiam = '$dateSale', moTa = '$des', maLoai = '$category' WHERE maSanPham = '$id'";
+      $sql = "UPDATE sanpham SET tenSanPham = '$name', hinhAnh = '$image', giaTien = '$price', giaGiam = '$sale', ngayBatDau = '$startDate', ngayHetHanGiam = '$endDate', moTa = '$des', maLoai = '$category' WHERE maSanPham = '$id'";
       $result = mysqli_query($conn, $sql);
       if ($result) {
         $sql = "select * from lichsugiam where maSanPham = '$id' and trangThai = 'Đang diễn ra'";
         $result = mysqli_query($conn, $sql);
         if(mysqli_num_rows($result) < 1){
-          $sql = "insert into lichsugiam values ('', '$id' ,DATE(NOW()) ,'$dateSale', 'Đang diễn ra')";
+          $sql = "insert into lichsugiam values ('', '$id' , '$startDate' ,'$endDate', 'Đang diễn ra')";
           $result = mysqli_query($conn, $sql);
           if(!$result){
             $response = array(
@@ -100,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           echo json_encode($response);
         }else{
           $date = date('Y-m-d');
-          if($dateSale < $date){
+          if($endDate < $date){
             $sql = "UPDATE lichsugiam SET ngayKetThuc = '$date', trangThai = 'Đã kết thúc' WHERE maSanPham = '$id' and trangThai = 'Đang diễn ra'";
             $result = mysqli_query($conn, $sql);
             if(!$result){
@@ -122,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               $sql = "UPDATE lichsugiam SET ngayKetThuc = '$date', trangThai = 'Đã kết thúc' WHERE maSanPham = '$id' and trangThai = 'Đang diễn ra'";
                 $result = mysqli_query($conn, $sql);
                 if($result){
-                  $sql = "insert into lichsugiam values ('', '$id' ,DATE(NOW()) ,'$dateSale', 'Đang diễn ra')";
+                  $sql = "insert into lichsugiam values ('', '$id' , '$startDate' ,'$endDate', 'Đang diễn ra')";
                   $result = mysqli_query($conn, $sql);
                   if(!$result){
                     $response = array(
@@ -140,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   echo json_encode($response);
                 }
             }else{
-              $sql = "UPDATE lichsugiam SET ngayKetThuc = '$dateSale' WHERE maSanPham = '$id' and trangThai = 'Đang diễn ra'";
+              $sql = "UPDATE lichsugiam SET ngayKetThuc = '$endDate' WHERE maSanPham = '$id' and trangThai = 'Đang diễn ra'";
               $result = mysqli_query($conn, $sql);
               if(!$result){
                 $response = array(
