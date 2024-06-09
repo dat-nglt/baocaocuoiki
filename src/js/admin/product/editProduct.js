@@ -75,7 +75,7 @@ function submitProductEdit() {
             id,
             image
         };
-        console.log(data);
+
         $.ajax({
             type: "POST",
             url: "../src/services/admin/editProduct.php",

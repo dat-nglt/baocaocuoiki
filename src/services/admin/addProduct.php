@@ -73,12 +73,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo json_encode($response);
     }
   } else {
-    $response = array(
-      'status' => 'error',
-      'msg' => 'Tên sản phẩm đã tồn tại',
-      'path' => "index.php?page=listproducts"
-    );
-    echo json_encode($response);
+    if(mysqli_fetch_assoc($result)['maLoai'] !== $brand){
+      $sql = "INSERT INTO sanpham VALUES ('', '$name', '$image', '$price', '0', '$des', '', DATE(NOW()), '$brand')";
+      $result = mysqli_query($conn, $sql);
+      if ($result) {
+        $response = array(
+          'status' => 'success',
+          'msg' => 'Thêm sản phẩm thành công',
+          'path' => "index.php?page=listproducts"
+        );
+        echo json_encode($response);
+      } else {
+        $response = array(
+          'status' => 'error',
+          'msg' => 'Thêm sản phẩm không thành công',
+          'path' => "index.php?page=listproducts"
+        );
+        echo json_encode($response);
+      }
+    }else{
+      $response = array(
+        'status' => 'error',
+        'msg' => 'Tên sản phẩm đã tồn tại',
+        'path' => "index.php?page=listproducts"
+      );
+      echo json_encode($response);
+    }
   }
 
 } else {

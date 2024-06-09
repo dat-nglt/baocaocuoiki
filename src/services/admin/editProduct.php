@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $des = $_POST['des'];
   $image = $_POST['image'];
 
-  if($name === ''){
+  if ($name === '') {
     $response = array(
       'status' => 'warning',
       'msg' => 'Tên sản phẩm không được bỏ trống',
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     return;
   }
 
-  if($category === ''){
+  if ($category === '') {
     $response = array(
       'status' => 'warning',
       'msg' => 'Vui lòng nhập thêm thương hiệu',
@@ -63,36 +63,143 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if ($sale < 0 || $sale > 99) {
     $response = array(
-        'status' => 'warning',
-        'msg' => 'Giá sản phẩm phải nằm trong khoảng từ 0 đến 99',
-        'path' => "index.php?page=listproducts"
+      'status' => 'warning',
+      'msg' => 'Giá sản phẩm phải nằm trong khoảng từ 0 đến 99',
+      'path' => "index.php?page=listproducts"
     );
     echo json_encode($response);
     return;
-}
+  }
 
   $sql = "select * from sanpham where maSanPham = '$id'";
   $result = mysqli_query($conn, $sql);
-  if (mysqli_fetch_assoc($result)['tenSanPham'] === $name) {
-    $sql = "UPDATE sanpham SET tenSanPham = '$name', hinhAnh = '$image', giaTien = '$price', giaGiam = '$sale', ngayHetHanGiam = '$dateSale', moTa = '$des', maLoai = '$category' WHERE maSanPham = '$id'";
-    $result = mysqli_query($conn, $sql);
-    if ($result) {
-      $response = array(
-        'status' => 'success',
-        'msg' => 'Chỉnh sửa sản phẩm thành công',
-        'path' => "index.php?page=listproducts"
-      );
-      echo json_encode($response);
+  $row = mysqli_fetch_assoc($result);
+  if ($row['tenSanPham'] === $name) {
+    if ($row['maLoai'] === $category) {
+      $sql = "UPDATE sanpham SET tenSanPham = '$name', hinhAnh = '$image', giaTien = '$price', giaGiam = '$sale', ngayHetHanGiam = '$dateSale', moTa = '$des', maLoai = '$category' WHERE maSanPham = '$id'";
+      $result = mysqli_query($conn, $sql);
+      if ($result) {
+        $sql = "select * from lichsugiam where maSanPham = '$id' and trangThai = 'Đang diễn ra'";
+        $result = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($result) < 1){
+          $sql = "insert into lichsugiam values ('', '$id' ,DATE(NOW()) ,'$dateSale', 'Đang diễn ra')";
+          $result = mysqli_query($conn, $sql);
+          if(!$result){
+            $response = array(
+              'status' => 'error',
+              'msg' => 'Thêm lịch sử giảm giá không thành công',
+              'path' => "index.php?page=listproducts"
+            );
+            echo json_encode($response);
+          }
+          $response = array(
+            'status' => 'success',
+            'msg' => 'Chỉnh sửa sản phẩm thành công',
+            'path' => "index.php?page=listproducts"
+          );
+          echo json_encode($response);
+        }else{
+          $date = date('Y-m-d');
+          if($dateSale < $date){
+            $sql = "UPDATE lichsugiam SET ngayKetThuc = '$date', trangThai = 'Đã kết thúc' WHERE maSanPham = '$id' and trangThai = 'Đang diễn ra'";
+            $result = mysqli_query($conn, $sql);
+            if(!$result){
+              $response = array(
+                'status' => 'error',
+                'msg' => 'Cập nhật lịch sử giảm giá không thành công',
+                'path' => "index.php?page=listproducts"
+              );
+              echo json_encode($response);
+            }
+            $response = array(
+              'status' => 'success',
+              'msg' => 'Chỉnh sửa sản phẩm thành công',
+              'path' => "index.php?page=listproducts"
+            );
+            echo json_encode($response);
+          }else{
+            if($row['giaGiam'] !== $sale){
+              $sql = "UPDATE lichsugiam SET ngayKetThuc = '$date', trangThai = 'Đã kết thúc' WHERE maSanPham = '$id' and trangThai = 'Đang diễn ra'";
+                $result = mysqli_query($conn, $sql);
+                if($result){
+                  $sql = "insert into lichsugiam values ('', '$id' ,DATE(NOW()) ,'$dateSale', 'Đang diễn ra')";
+                  $result = mysqli_query($conn, $sql);
+                  if(!$result){
+                    $response = array(
+                      'status' => 'error',
+                      'msg' => 'Thêm lịch sử giảm giá không thành công',
+                      'path' => "index.php?page=listproducts"
+                    );
+                    echo json_encode($response);
+                  }
+                  $response = array(
+                    'status' => 'success',
+                    'msg' => 'Cập nhật lịch sử giảm giá thành công',
+                    'path' => "index.php?page=listproducts"
+                  );
+                  echo json_encode($response);
+                }
+            }else{
+              $sql = "UPDATE lichsugiam SET ngayKetThuc = '$dateSale' WHERE maSanPham = '$id' and trangThai = 'Đang diễn ra'";
+              $result = mysqli_query($conn, $sql);
+              if(!$result){
+                $response = array(
+                  'status' => 'error',
+                  'msg' => 'Cập nhật lịch sử giảm giá không thành công',
+                  'path' => "index.php?page=listproducts"
+                );
+                echo json_encode($response);
+              }
+              $response = array(
+                'status' => 'success',
+                'msg' => 'Chỉnh sửa sản phẩm thành công',
+                'path' => "index.php?page=listproducts"
+              );
+              echo json_encode($response);
+            }
+          }
+        }
+      
+      } else {
+        $response = array(
+          'status' => 'error',
+          'msg' => 'Chỉnh sửa sản phẩm không thành công',
+          'path' => "index.php?page=listproducts"
+        );
+        echo json_encode($response);
+      }
     } else {
-      $response = array(
-        'status' => 'error',
-        'msg' => 'Chỉnh sửa sản phẩm không thành công',
-        'path' => "index.php?page=listproducts"
-      );
-      echo json_encode($response);
+      $sql = "select * from sanpham where maLoai = '$category' AND tenSanPham = '$name'";
+      $result = mysqli_query($conn, $sql);
+      if (mysqli_num_rows($result) > 0) {
+        $response = array(
+          'status' => 'error',
+          'msg' => 'Tên sản phẩm đã tồn tại',
+          'path' => "index.php?page=listproducts"
+        );
+        echo json_encode($response);
+      } else {
+        $sql = "UPDATE sanpham SET tenSanPham = '$name', hinhAnh = '$image', giaTien = '$price', giaGiam = '$sale', ngayHetHanGiam = '$dateSale', moTa = '$des', maLoai = '$category' WHERE maSanPham = '$id'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+          $response = array(
+            'status' => 'success',
+            'msg' => 'Chỉnh sửa sản phẩm thành công',
+            'path' => "index.php?page=listproducts"
+          );
+          echo json_encode($response);
+        } else {
+          $response = array(
+            'status' => 'error',
+            'msg' => 'Chỉnh sửa sản phẩm không thành công',
+            'path' => "index.php?page=listproducts"
+          );
+          echo json_encode($response);
+        }
+      }
     }
   } else {
-    $sql = "select * from sanpham where tenSanPham = '$name'";
+    $sql = "select * from sanpham where maLoai = '$category' AND tenSanPham = '$name'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
       $response = array(
@@ -102,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       );
       echo json_encode($response);
     } else {
-      $sql = "UPDATE sanpham SET tenSanPham = '$name', giaTien = '$price', hinhAnh = '$image', giaGiam = '$sale', ngayHetHanGiam = '$dateSale', moTa = '$des', maLoai = '$category' WHERE maSanPham = '$id'";
+      $sql = "UPDATE sanpham SET tenSanPham = '$name', hinhAnh = '$image', giaTien = '$price', giaGiam = '$sale', ngayHetHanGiam = '$dateSale', moTa = '$des', maLoai = '$category' WHERE maSanPham = '$id'";
       $result = mysqli_query($conn, $sql);
       if ($result) {
         $response = array(
@@ -120,9 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode($response);
       }
     }
-
   }
-
 } else {
   $response = array(
     'status' => 'error',
